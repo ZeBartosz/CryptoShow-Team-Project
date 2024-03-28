@@ -12,6 +12,12 @@ body {
     gap: 10px;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .loginText {
     color: white;
     font-weight: bold;
@@ -63,38 +69,5 @@ input {
     color: hsl(185, 100%, 8%);
     font-size: large;
     font-weight: bold;
-
-}
-
-.loginBtn span {
-    padding-left: 30px;
-    padding-right: 30px;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-}
-
-.loginBtn span:after {
-    padding-left: 30px;
-    padding-right: 30px;
-    content: "\0bb";
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-.loginBtn:hover span {
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-right: 55px;
-}
-
-.loginBtn:hover span:after {
-    padding-left: 30px;
-    padding-right: 30px;
-    opacity: 1;
-    right: 0;
 }
 
