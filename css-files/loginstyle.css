@@ -1,0 +1,100 @@
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: hsl(185, 100%, 8%);
+}
+
+.body {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.loginText {
+    color: white;
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+.loginText p {
+    margin-bottom: 0px;
+}
+
+input {
+    color: black;
+    border-radius: 25px;
+    width: 300px;
+    height: 50px;
+    margin-bottom: 10px;
+    outline: none;
+    opacity: 0.4;
+    
+}
+
+.loginInput {
+    font-size: large;
+    background-image: url(../images/login.png);
+    background-repeat: no-repeat;
+    background-position: 0.5em;
+    background-size: contain;
+    padding-left: 60px;
+    
+}
+
+
+
+
+.passwordInput {
+    font-size: large;
+    background-image: url(../images/lock.png);
+    background-repeat: no-repeat;
+    background-position: 0.5em;
+    background-size: contain;
+    padding-left: 60px;
+}
+
+.loginBtn {
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    border: 0px;
+    color: hsl(185, 100%, 8%);
+    font-size: large;
+    font-weight: bold;
+
+}
+
+.loginBtn span {
+    padding-left: 30px;
+    padding-right: 30px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.loginBtn span:after {
+    padding-left: 30px;
+    padding-right: 30px;
+    content: "\0bb";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.loginBtn:hover span {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-right: 55px;
+}
+
+.loginBtn:hover span:after {
+    padding-left: 30px;
+    padding-right: 30px;
+    opacity: 1;
+    right: 0;
+}
+
