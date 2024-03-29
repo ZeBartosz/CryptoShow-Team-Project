@@ -4,22 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flexbox layouts</title>
+    <title>CryptoShow</title>
     <link rel="stylesheet" href="./css-files/IndexStyle.css">
+    <script src="./JS/carousel.js" defer></script>
+
 </head>
 
 <body>
     <header>
-        <h1>Crypto!</h1>
+        <h1>CryptoShow</h1>
         <nav>
             <a href="#">Lorem</a>
             <a href="#">Quis</a>
             <a href="#">Fugiat</a>
             <a href="#">Deleniti</a>
-            <a href="./login.html">Login</a>
+            <a href="#">Ipsum</a>
             <a href="#">Profiles</a>
         </nav>
+        <a href=./login.html>
+            <button class="login-button">
+                Login
+            </button>
+        </a>
+
+
     </header>
+
+
+    <div class="container">
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="event-image"><img src="https://fakeimg.pl/960x400?text=1" alt="Slide 1"></div>
+                <div class="event-image"><img src="https://fakeimg.pl/960x400?text=2" alt="Slide 2"></div>
+                <div class="event-image"><img src="https://fakeimg.pl/960x400?text=3" alt="Slide 3"></div>
+            </div>
+            <div class="carousel-arrows">
+                <button class="arrow-btn prev" onclick="prevImage()"></button>
+                <button class="arrow-btn next" onclick="nextImage()"></button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <p>&copy; 2024 Cryptographic Device Show. All rights reserved.</p>
+    </footer>
+
 </body>
 
 </html>
