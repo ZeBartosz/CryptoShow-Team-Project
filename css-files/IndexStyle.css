@@ -6,17 +6,25 @@ body {
 
 
 header {
-    background-color: green;
+    background-color: hsl(185, 100%, 8%);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: green;
     color: white;
     padding: 0.5em 0.5em;
 }
 
 h1 {
     margin: 0;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 175%;
+    padding: 20px;
+    font-style: italic;
+
 }
 
 nav ul {
@@ -167,7 +175,7 @@ header>a {
 }
 
 footer {
-    background-color: green;
+    background-color: hsl(185, 100%, 8%);
     color: rgb(255, 255, 255);
     text-align: center;
     padding: 5px 0;
@@ -177,7 +185,7 @@ footer {
 }
 
 footer a {
-    color: rgb(0, 0, 0);
+    color: white;
     text-decoration: none;
 
 
