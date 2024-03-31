@@ -72,3 +72,10 @@ CREATE TABLE `user_event` (
      FOREIGN KEY (fk_event_id) REFERENCES event_id (event)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 COLLATE=utf8_unicode_ci;
+
+
+
+-- --------------------------------
+-- Insert dummy account for testing
+-- --------------------------------
+INSERT INTO registered_user (user_nickname, user_name, user_email, user_hashed_password, user_device_count, user_registered_timestamp) VALUES ('user', 'user name', 'user@user.com', '123', 0, NOW())
