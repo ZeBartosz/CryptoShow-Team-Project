@@ -41,7 +41,7 @@ nav a {
 }
 
 nav a:hover {
-    background-color: aqua;
+    background-color: black;
 
 
 }
@@ -71,15 +71,6 @@ header>a {
 
 }
 
-footer {
-    background-color: green;
-    color: #ffffff;
-    padding: 10px 0;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
 
 .container {
     max-width: 960px;
@@ -96,7 +87,7 @@ footer {
 
 .carousel {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition-duration: 500ms;
 }
 
 .event-image {
@@ -114,18 +105,19 @@ footer {
 }
 
 .arrow-btn {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.1);
     color: #fff;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     font-size: 20px;
+    transition-duration: 300ms;
 }
 
 .arrow-btn:hover {
     background-color: rgba(0, 0, 0, 0.7);
+    transition-duration: 300ms;
 }
 
 .arrow-btn::before {
@@ -135,15 +127,63 @@ footer {
     border-width: 0.15em 0.15em 0 0;
     padding: 0.25em;
     transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
+
 }
 
 .prev::before {
     margin-right: 0.5em;
     transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
+
 }
 
 .next::before {
     margin-left: 0.5em;
+}
+
+.website-features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.features {
+    flex: 0 0 calc(15% - 25px);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    transition-duration: 300ms;
+
+
+
+
+
+}
+
+.features:hover {
+    background-color: rgb(170, 166, 166, 0.4);
+    cursor: pointer;
+    transition-duration: 300ms;
+
+}
+
+footer {
+    background-color: green;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 5px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+
+
+
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
