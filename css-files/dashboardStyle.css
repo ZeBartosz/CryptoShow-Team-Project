@@ -11,7 +11,7 @@ header {
     padding: 0.5em 0.5em;
 }
 
-button {
+.logoutBtn {
     width: 100px;
     height: 50px;
     border-radius: 25px;
@@ -21,13 +21,13 @@ button {
     font-weight: bold;
 }
 
-button:hover {
+.logoutBtn:hover {
     background-color: black;
     color: white;
     cursor: pointer;
 }
 
-a {
+header a {
     font-size: 1.3rem;
     text-decoration: none;
     color: inherit;
@@ -38,7 +38,7 @@ a {
     text-align: center;
 }
 
-a:hover {
+header a:hover {
     background-color: black;
 }
 
@@ -48,4 +48,111 @@ li {
 
 ul {
     padding: 0px;
+}
+
+.container {
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition-duration: 500ms;
+}
+
+.event-image {
+    min-width: 100%;
+}
+
+.carousel-arrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrow-btn {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition-duration: 300ms;
+}
+
+.arrow-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transition-duration: 300ms;
+}
+
+.arrow-btn::before {
+    content: '';
+    display: flex;
+    border-style: solid;
+    border-width: 0.15em 0.15em 0 0;
+    padding: 0.25em;
+    transform: rotate(45deg);
+}
+
+.prev::before {
+    margin-right: 0.5em;
+    transform: rotate(-135deg);
+}
+
+.next::before {
+    margin-left: 0.5em;
+}
+
+.website-features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.features {
+    flex: 0 0 calc(15% - 25px);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    transition-duration: 300ms;
+}
+
+.features:hover {
+    background-color: rgb(170, 166, 166, 0.4);
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+
+footer {
+    background-color: hsl(185, 100%, 8%);
+    color: white;
+    font-size: 0.6em;
+    text-align: center;
+    padding: 5px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: white;
+    font-size: 1.3rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
