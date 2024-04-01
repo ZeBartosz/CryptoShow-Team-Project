@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['userId'])) {
 } else {
-    header("Location: ../login.html");
+    header("Location: ../login.html?error=sessionerror");
+    session_unset();
     session_destroy();
     exit();
 }
