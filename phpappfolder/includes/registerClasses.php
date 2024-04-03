@@ -2,15 +2,15 @@
 
 class Register extends Dbh {
 
-    protected function setUser($userNickname, $pwd, $email) {
-        $stmt = $this->connect()->prepare("INSERT INTO registered_user (user_nickname, user_hashed_password,
-        user_email, user_registered_timestamp) VALUES (?, ?, ?, NOW());");
+    protected function setUser($userNickname, $userName, $pwd, $email) {
+        $stmt = $this->connect()->prepare("INSERT INTO registered_user (user_nickname, user_name, user_hashed_password,
+        user_email, user_registered_timestamp) VALUES (?, ?, ?, ?, NOW());");
 
 
 
         $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
 
-        if(!$stmt->execute(array($userNickname, $hashedPwd, $email))) {
+        if(!$stmt->execute(array($userNickname, $userName, $hashedPwd, $email))) {
             $stmt = null;
             header("location: registerPage.php?error=stmtfailed");
             exit();
