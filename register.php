@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="./css-files/registerStyle.css">
-</head>
-<body>
-<header>
-    <a class="logo" href="./index.html"><h1>CryptoShow</h1></a>
-    <ul>
-        <li><a class='headerBtn' href='./register.html'>Register</a></li>
-        <li><a class='headerBtn' href='./login.html'>Login</a></li>
-    </ul>
-</header>
-<body>
+<?php
+$title = "Register here!";
+$css_file = "./css-files/dashboardStyle.css";
+include_once "header.php";
+require_once "validation.php"
+?>
 <div class="body">
     <form action="php-files/registerProcess.php" method="post">
         <label for="username">Username or Email:</label><br>
@@ -33,6 +22,7 @@
         <input type="email" id="email" name="email"><br><br>
         <input type="submit" name="submit">
     </form>
-    <a href="./login.html">Log in here if you have an account</a>
+    <a href="./login.php">Log in here if you have an account</a>
+</div>
 </body>
 </html>
