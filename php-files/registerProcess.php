@@ -15,5 +15,5 @@ if(isset($_POST["submit"])) {
 
     $register->registerUser();
 
-    header("location: ../login.html?registersuccess");
+    header("location: ../login.php?registersuccess");
 }
