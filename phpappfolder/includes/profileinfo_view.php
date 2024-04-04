@@ -1,6 +1,5 @@
 <?php
 
-
 class ProfileInfoView extends ProfileInfo {
 
     public function fetchNickname($userId){
@@ -19,6 +18,12 @@ class ProfileInfoView extends ProfileInfo {
         $profileInfo = $this->getProfileInfo($userId);
 
         echo $profileInfo[0]["user_email"];
+    }
+
+    public function fetchDeivceCount($userId){
+        $profileInfo = $this->getProfileInfo($userId);
+
+        echo $profileInfo[0]["user_device_count"];
     }
 
 

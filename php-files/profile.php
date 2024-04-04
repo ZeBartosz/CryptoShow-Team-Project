@@ -1,6 +1,5 @@
 <?php
     session_start();
-    echo "found id" . $_SESSION['user_id'];
     include "profileinfo.php";
     include "profileinfo_contrl.php";
     include "profileinfo_view.php";
@@ -18,6 +17,7 @@
 </head>
 <body>
 <header>
+
     <h1>CryptoShow</h1>
     <nav>
         <ul>
@@ -40,12 +40,11 @@
     <h1>User nickname: <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
     <p>User name: <?php $profileInfo->fetchName($_SESSION["user_id"])?></p>
     <p>User email: <?php $profileInfo->fetchEmail($_SESSION["user_id"])?></p>
-    <p>User device count: 0</p>
-
-
-
+    <a href="profileSetting.php">Edit Profile</a>
 </section>
-
+<section>
+    <p>User device count: <?php $profileInfo->fetchDeivceCount($_SESSION["user_id"])?>/5</p>
+</section>
 
 </body>
 </html>

@@ -1,12 +1,12 @@
 <?php
 
-    include ("dbh.php");
-    echo "found id" . $_SESSION['user_id'];
+include_once "dbh.php";
 
 class ProfileInfo extends Dbh
 {
 
-    protected function getProfileInfo($userId) {
+    protected function getProfileInfo($userId)
+    {
 
         $sql = "SELECT * FROM registered_user WHERE user_id = ?;";
         $stmt = $this->connect()->prepare($sql);
@@ -20,7 +20,7 @@ class ProfileInfo extends Dbh
 
         if ($stmt->rowCount() == 0) {
             $stmt = null;
-            header("Location: profile.php?error=profilenotFound");
+            header("Location: ../php-files/profile.php?error=profilenotFound");
             exit();
         }
 
@@ -30,18 +30,19 @@ class ProfileInfo extends Dbh
     }
 
 
+    protected function setNewProfileInfo($userId, $userNickname, $userName, $userEmail)
+    {
 
-    protected function setNewProfileInfo($userId, $userNickname, $userName, $userEmail) {
+        $stmt = $this->connect()->prepare('UPDATE registered_user SET user_nickname = ?, user_name = ?, user_email = ? WHERE user_id = ?;');
 
-        $stmt = $this->prepare('UPDATE registered_user SET user_nickname = ?, user_name = ?, user_email = ? WHERE user_id = ?;');
-
-        if (!$stmt->execute(array($userId, $userNickname,$userName ,$userEmail))) {
+        if (!$stmt->execute(array($userNickname, $userName, $userEmail, $userId))) {
             $stmt = null;
-            header("Location: profile.php?error=stmtfailed");
+            header("Location: ../php-files/profile.php?error=stmtfaied");
             exit();
         }
 
-       $stmt = null;
+        $stmt = null;
+
     }
 
 
