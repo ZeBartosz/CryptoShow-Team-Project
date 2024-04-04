@@ -11,7 +11,7 @@ include_once "header.php";
             <input type="password" id="password" name="password"><br><br>
             <input type="submit" name="submit">
         </form>
-        <a href="./register.html">Register here</a>
+        <a href="./register.php">Register here</a>
     </div>
 </body>
 </html>
