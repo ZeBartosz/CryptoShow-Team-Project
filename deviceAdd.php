@@ -1,21 +1,13 @@
 <?php
-    session_start();
+    $title = "Add Device";
+    $css_file = "./css-files/dashboardStyle.css";
+    include_once "header.php";
     include "deviceProcess.php";
     include "deviceController.php";
     include "deviceView.php";
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css-files/IndexStyle.css">
-    <title>Profile</title>
-</head>
-<body>
-<header>
 
     <section class="profile">
         <div class="profile-bg">
