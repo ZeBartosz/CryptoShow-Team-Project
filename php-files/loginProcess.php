@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(isset($_POST["submit"])) {
     echo "complete";
     $userNickname = $_POST["username"];
@@ -11,5 +10,5 @@ if(isset($_POST["submit"])) {
 
     $login->loginUser();
 
-    header("location: dashboard.php");
+    header("location: ../index.php");
 }
