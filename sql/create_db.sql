@@ -39,7 +39,7 @@ CREATE TABLE `crypto_device` (
     `crypto_device_image_name` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     `crypto_device_record_visible` BOOLEAN DEFAULT FALSE,
     `crypto_device_registered_timestamp` timestamp NOT NULL,
-    FOREIGN KEY (fk_user_id) REFERENCES user_id (registered_user),
+    FOREIGN KEY (fk_user_id) REFERENCES registered_user (user_id),
     PRIMARY KEY (`crypto_device_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 COLLATE=utf8_unicode_ci;
@@ -68,8 +68,8 @@ DROP TABLE IF EXISTS `user_event`;
 CREATE TABLE `user_event` (
     `fk_user_id` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     `fk_event_id` DATE COLLATE utf8_unicode_ci DEFAULT NULL,
-     FOREIGN KEY (fk_user_id) REFERENCES user_id (registered_user),
-     FOREIGN KEY (fk_event_id) REFERENCES event_id (event)
+     FOREIGN KEY (fk_user_id) REFERENCES registered_user (user_id),
+     FOREIGN KEY (fk_event_id) REFERENCES event (event_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 COLLATE=utf8_unicode_ci;
 
