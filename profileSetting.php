@@ -12,7 +12,7 @@
             <div class="wrapper">
                 <div class="profile-settings">
                     <h3>PROFILE SETTINGS</h3>
-                    <form action="profileSettingProcess.php" method="post">
+                    <form action="./php-files/profileSettingProcess.php" method="post">
                         <P>Change your nickname!</P>
                         <input type="text" name="nickname" placeholder="User nickname..." value="<?php $profileInfo->fetchNickname($_SESSION["user_id"])?>">
                         <p>Change your name!</p>
