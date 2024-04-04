@@ -7,13 +7,13 @@ class Login extends Dbh {
 
         if(!$stmt->execute(array($userNickname, $pwd))) {
             $stmt = null;
-            header("location: ../loginPage.php?error=stmtfailed");
+            header("location: ../login.php?error=stmtfailed");
             exit();
         }
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../loginPage.php?error=usernotfound");
+            header("location: ../login.php?error=usernotfound");
             exit();
         }
 
@@ -24,7 +24,7 @@ class Login extends Dbh {
 
         if($checkPwd == false) {
             $stmt = null;
-            header("location: ../loginPage.php?error=wrongpassword");
+            header("location: ../login.php?error=wrongpassword");
             exit();
         } elseif ($checkPwd == true) {
             $stmt = $this->connect()->prepare('SELECT * FROM registered_user WHERE user_nickname = ? OR user_email = ?
@@ -33,20 +33,22 @@ class Login extends Dbh {
 
             if(!$stmt->execute(array($userNickname, $userNickname, $pwd))) {
                 $stmt = null;
-                header("location: ../loginPage.php?error=stmtfailed");
+                header("location: ../login.php?error=stmtfailed");
                 exit();
             }
 
             if($stmt->rowCount() == 0) {
                 $stmt = null;
-                header("location: ../loginPage.php?error=usernotfound");
+                header("location: ../login.php?error=usernotfound");
                 exit();
             }
+
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
             session_start();
-            $_SESSION["userId"] = $user[0]["user_id"];
+            $_SESSION["is_admin"] = $user[0]["is_admin"];
+            $_SESSION["user_id"] = $user[0]["user_id"];
             $_SESSION["userNickname"] = $user[0]["user_nickname"];
 
             $stmt = null;
