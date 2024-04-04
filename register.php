@@ -2,7 +2,6 @@
 $title = "Register here!";
 $css_file = "./css-files/dashboardStyle.css";
 include_once "header.php";
-require_once "validation.php"
 ?>
 <div class="body">
     <form action="php-files/registerProcess.php" method="post">
