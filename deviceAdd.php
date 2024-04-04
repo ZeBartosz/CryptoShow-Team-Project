@@ -14,7 +14,7 @@
             <div class="wrapper">
                 <div class="profile-settings">
                     <h3>ADD DEVICE</h3>
-                    <form action="deviceAddProcess.php" method="post">
+                    <form action="./php-files/deviceAddProcess.php" method="post">
                         <P>Change your device name!</P>
                         <input type="text" name="name" placeholder="device name...">
                         <p>Change your device image!</p>

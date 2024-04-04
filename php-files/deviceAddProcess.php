@@ -19,5 +19,5 @@ if(isset($_POST["submit"])) {
 
     $deviceInfo->insertDevice($name, $image, $visible);
 
-    header("location: profile.php?error=none");
+    header("location: ../profile.php?error=none");
 }

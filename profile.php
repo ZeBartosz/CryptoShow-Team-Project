@@ -13,8 +13,10 @@ $profileInfo = new ProfileInfoView()
     <p>User email: <?php $profileInfo->fetchEmail($_SESSION["user_id"])?></p>
     <a href="profileSetting.php">Edit Profile</a>
 </section>
+
 <section>
     <p>User device count: <?php $profileInfo->fetchDeivceCount($_SESSION["user_id"])?>/5</p>
+    <a href="deviceAdd.php">Add Device</a>
 </section>
 
 </body>
