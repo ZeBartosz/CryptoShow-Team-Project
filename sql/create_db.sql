@@ -69,7 +69,7 @@ CREATE TABLE `user_event` (
     `fk_user_id` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     `fk_event_id` DATE COLLATE utf8_unicode_ci DEFAULT NULL,
      FOREIGN KEY (fk_user_id) REFERENCES registered_user (user_id),
-     FOREIGN KEY (fk_event_id) REFERENCES event_id (event)
+     FOREIGN KEY (fk_event_id) REFERENCES event (event_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 COLLATE=utf8_unicode_ci;
 
