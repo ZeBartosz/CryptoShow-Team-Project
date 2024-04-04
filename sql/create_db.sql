@@ -73,9 +73,12 @@ CREATE TABLE `user_event` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 COLLATE=utf8_unicode_ci;
 
-
+-- --------------------------------
+-- Add is_admin column
+-- --------------------------------
+ALTER TABLE `registered_user` ADD COLUMN `is_admin` BOOLEAN DEFAULT FALSE;
 
 -- --------------------------------
--- Insert dummy account for testing
+-- Update value of is_admin for user_id 1
 -- --------------------------------
-INSERT INTO registered_user (user_nickname, user_name, user_email, user_hashed_password, user_device_count, user_registered_timestamp) VALUES ('user', 'user name', 'user@user.com', '123', 0, NOW())
+UPDATE registered_user SET is_admin = true WHERE user_id = 1;
