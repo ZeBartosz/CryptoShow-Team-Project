@@ -20,6 +20,7 @@ if(isset($_GET['logout'])) {
     <title><?php echo $title;?></title>
     <link rel="stylesheet" href="<?php echo $css_file ?>">
     <script src="./Js-Files/carousel.js" defer></script>
+    <script src="./Js-Files/adminTabs.js" defer></script>
     </head>
 <body>
 <header>
