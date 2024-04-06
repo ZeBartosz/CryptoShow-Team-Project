@@ -57,6 +57,7 @@ CREATE TABLE `event` (
     `event_date` DATE COLLATE utf8_unicode_ci DEFAULT NULL,
     `event_venue` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     `event_description` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+    `is_published` BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (`event_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 COLLATE=utf8_unicode_ci;
