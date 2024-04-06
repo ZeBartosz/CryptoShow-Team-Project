@@ -23,6 +23,7 @@ CREATE TABLE `registered_user` (
     `user_hashed_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
     `user_device_count` tinyint(5) unsigned NOT NULL DEFAULT 0,
     `user_registered_timestamp` timestamp NOT NULL,
+    `is_admin` BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -39,7 +40,7 @@ CREATE TABLE `crypto_device` (
     `crypto_device_image_name` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     `crypto_device_record_visible` BOOLEAN DEFAULT FALSE,
     `crypto_device_registered_timestamp` timestamp NOT NULL,
-    FOREIGN KEY (fk_user_id) REFERENCES registered_user (user_id),
+    FOREIGN KEY (fk_user_id) REFERENCES registered_user (user_id) ON DELETE CASCADE,
     PRIMARY KEY (`crypto_device_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 COLLATE=utf8_unicode_ci;
@@ -55,6 +56,7 @@ CREATE TABLE `event` (
     `event_name` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     `event_date` DATE COLLATE utf8_unicode_ci DEFAULT NULL,
     `event_venue` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+    `event_description` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     PRIMARY KEY (`event_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 COLLATE=utf8_unicode_ci;
@@ -70,13 +72,8 @@ CREATE TABLE `user_event` (
     `fk_event_id` INT(10) unsigned NOT NULL,
      FOREIGN KEY (fk_user_id) REFERENCES registered_user (user_id),
      FOREIGN KEY (fk_event_id) REFERENCES event (event_id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ON DELETE CASCADE
 COLLATE=utf8_unicode_ci;
-
--- --------------------------------
--- Add is_admin column
--- --------------------------------
-ALTER TABLE `registered_user` ADD COLUMN `is_admin` BOOLEAN DEFAULT FALSE;
 
 -- --------------------------------
 -- Update value of is_admin for user_id 1
