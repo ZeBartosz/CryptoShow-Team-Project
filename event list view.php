@@ -1,3 +1,22 @@
+<?php
+
+    try {
+        require_once "phpappfolder/includes/db_connect.php";
+
+$query = "SELECT event_date, event_name, event_venue FROM event;";
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$pdo = null;
+$stmt = null;
+
+    
+    } catch (PDOException $th) {
+       die("Query failed: " . $th->getMessage());
+ 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,23 +52,19 @@
           <div class="filter" onclick="filterEvents('upcoming')">Upcoming Events</div>
           <div class="filter" onclick="filterEvents('past')">Past Events</div>
         </div>
-    
-<ul class="event-list">
-   <li class="event">
-    <div class="event-date">June 5 @ 8:00 am - 5:00 pm</div>
-    <div class="event-title">Conference</div>
-    <div class="event-location">Location details here</div>
-    <button class="book-button">Book Now</button>
-  </li>
-  <li class="event">
-    <div class="event-date">June 6 @ 6:00 pm - 9:30 pm</div>
-    <div class="event-title">Engineer Best-of-breed Web-readiness</div>
-    <div class="event-location">Farmer's Market Pavilion 241 Indian Spring St., Pittsburgh</div>
-    <button class="book-button">Book Now</button>
-  </li>
+        <ul class="event-list">
+<?php  foreach ($results as $row) {
+echo'
+<li class="event">  
+<div class="event-date">';echo htmlspecialchars( $row["event_date"]);echo'</div>
+    <div class="event-title">';echo htmlspecialchars( $row["event_name"]); echo'</div>
+    <div class="event-location">';echo htmlspecialchars( $row["event_venue"]); echo'</div>
+    <button class="book-button">Book Now </button>
+</li>';}
+    ?></ul> 
   
   <!-- Repeat for each event i am going to use php looping the event from the database  -->
-</ul>
+
 </div>
 </body>
 <footer>
