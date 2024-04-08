@@ -19,6 +19,7 @@ if(isset($_GET['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title;?></title>
     <link rel="stylesheet" href="<?php echo $css_file ?>">
+    <link rel="stylesheet" href="<?php echo $css_file2 ?>">
     <script src="./Js-Files/carousel.js" defer></script>
     <script src="./Js-Files/adminTabs.js" defer></script>
     </head>
