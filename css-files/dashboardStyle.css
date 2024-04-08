@@ -47,11 +47,11 @@ header {
     background-color: black;
 }
 
-li {
+header li {
     list-style: none;
 }
 
-ul {
+header ul {
     display: flex;
     padding: 0px;
 }
