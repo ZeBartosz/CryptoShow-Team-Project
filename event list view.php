@@ -19,7 +19,7 @@
 ?>
 
 <?php
-$title = "Welcome to Cryptoshow";
+$title = "Cryptoshow events";
 $css_file = "./css-files/dashboardStyle.css";
 $css_file2 = "./css-files/x.css";
 include_once "./phpappfolder/includes/header.php";
