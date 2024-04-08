@@ -6,6 +6,21 @@
     include "deviceController.php";
     include "deviceView.php";
 
+    if(isset($_POST["submit"])) {
+
+        $id = $_SESSION["user_id"];
+
+        $name = htmlspecialchars($_POST["name"], ENT_QUOTES, "UTF-8");
+        $image = htmlspecialchars($_POST["image"], ENT_QUOTES, "UTF-8");
+        $visible = htmlspecialchars($_POST["visible"], ENT_QUOTES, "UTF-8" );
+
+        $deviceInfo = new DeviceController($id);
+
+        $deviceInfo->insertDevice($name, $image, $visible);
+
+        header("location: profile.php?error=none");
+    }
+
 ?>
 
 
@@ -14,7 +29,7 @@
             <div class="wrapper">
                 <div class="profile-settings">
                     <h3>ADD DEVICE</h3>
-                    <form action="./php-files/deviceAddProcess.php" method="post">
+                    <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="post">
                         <P>Change your device name!</P>
                         <input type="text" name="name" placeholder="device name...">
                         <p>Change your device image!</p>
