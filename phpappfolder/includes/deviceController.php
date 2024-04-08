@@ -13,7 +13,7 @@ class DeviceController extends DeviceProcess
     public function updateDeivce($device_name, $device_image_name, $crypto_device_record_visible, $deviceID)
     {
         if ($this->emptyInputCheck($device_name, $device_image_name, $crypto_device_record_visible)) {
-            header("location: ../profile.php?error=emptyinput");
+            header("location: profile.php?error=emptyinput");
             exit();
         }
 
@@ -23,16 +23,26 @@ class DeviceController extends DeviceProcess
 
     public function insertDevice($device_name, $device_image_name, $crypto_device_record_visible){
         if ($this->emptyInputCheck($device_name, $device_image_name, $crypto_device_record_visible)) {
-            header("location: ../profile.php?error=emptyinput");
+            header("location: profile.php?error=emptyinput");
             exit();
         }
 
         $this->setDevice($device_name, $device_image_name, $crypto_device_record_visible, $this->userId);
     }
 
+    public function deleteDevice($deviceId){
+        if (empty($deviceId)) {
+            header("location: profile.php?error=emptyinput");
+            exit();
+        } else {
+            $this->deleteThisDevice($deviceId);
+        }
+    }
+
+
+
     private function emptyInputCheck($device_name, $device_image_name, $crypto_device_record_visible)
     {
-        $result = null;
         if (empty($device_name) || empty($device_image_name) || empty($crypto_device_record_visible)) {
             $result = true;
         } else {
