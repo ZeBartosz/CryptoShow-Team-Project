@@ -29,6 +29,29 @@ class DeviceProcess extends Dbh
         return $DevicesData;
     }
 
+    protected function getSpecificDevicesInfo($deviceId)
+    {
+
+        $sql = "SELECT * FROM crypto_device WHERE crypto_device_id = ?;";
+        $stmt = $this->connect()->prepare($sql);
+
+        if (!$stmt->execute(array($deviceId))) {
+            $stmt = null;
+            header("Location: profile.php?error=stmtfailed");
+            exit();
+        }
+
+        if ($stmt->rowCount() == 0) {
+            $stmt = null;
+            header("Location: profile.php?error=nothingInTheArray");
+            exit();
+        }
+
+        $DevicesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $DevicesData;
+    }
+
 
     protected function setNewProfileInfo($device_name, $device_image_name, $crypto_device_record_visible, $device_id) {
 
@@ -36,7 +59,21 @@ class DeviceProcess extends Dbh
 
         if (!$stmt->execute(array($device_name, $device_image_name, $crypto_device_record_visible, $device_id))) {
             $stmt = null;
-            header("Location: ../php-files/profile.php?error=stmtfaied");
+            header("Location: profile.php?error=stmtfaied");
+            exit();
+        }
+
+        $stmt = null;
+
+    }
+
+    protected function deleteThisDevice($device_id) {
+
+        $stmt = $this->connect()->prepare('DELETE FROM crypto_device WHERE crypto_device_id = ?;');
+
+        if (!$stmt->execute(array($device_id))) {
+            $stmt = null;
+            header("Location: profile.php?error=stmtfaied");
             exit();
         }
 
