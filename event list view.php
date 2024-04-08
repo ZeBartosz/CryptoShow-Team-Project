@@ -16,13 +16,11 @@
     } catch (PDOException $th) {
         die("Query failed: " . $th->getMessage());
     }
-?>
-
-<?php
-$title = "Cryptoshow events";
+$title = " Cryptoshow events";
 $css_file = "./css-files/dashboardStyle.css";
 $css_file2 = "./css-files/x.css";
 include_once "./phpappfolder/includes/header.php";
+
 ?>
 
 <script>
@@ -38,31 +36,38 @@ include_once "./phpappfolder/includes/header.php";
                 });
             }
 </script>
-
-   
 <div class="container">
             <div class="sidebar">
                 <div class="filter" onclick="filterEvents('all')">All Events</div>
                 <div class="filter" onclick="filterEvents('upcoming')">Upcoming Events</div>
                 <div class="filter" onclick="filterEvents('past')">Past Events</div>
             </div>
-        <ul class="event-list">
-            <?php foreach ($results as $row): ?>
-                    <?php $eventCategory = categorizeEvent($row["event_date"]); ?>
-                <li class="event <?php echo $eventCategory; ?>">
-                    <div class="event-date"><?php echo htmlspecialchars($row["event_date"]); ?></div>
-                    <div class="event-title"><?php echo htmlspecialchars($row["event_name"]); ?></div>
-                    <div class="event-location"><?php echo htmlspecialchars($row["event_venue"]); ?></div>
-                    <button class="book-button">Book Now</button>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-</div>
+            <ul class="event-list">
+    <?php foreach ($results as $row): ?>
+        <?php $eventCategory = categorizeEvent($row["event_date"]); ?>
+        <li class="event <?php echo $eventCategory; ?>">
+            <div class="event-date"><?php echo htmlspecialchars($row["event_date"]); ?></div>
+            <div class="event-title"><?php echo htmlspecialchars($row["event_name"]); ?></div>
+            <div class="event-location"><?php echo htmlspecialchars($row["event_venue"]); ?></div>
+            <button class="book-button">Book Now</button>
+            <br>
+            <form action="popup.php" method="post">
+                <input type="hidden" name="event_date" value="<?php echo htmlspecialchars($row["event_date"]); ?>">
+                <input type="hidden" name="event_name" value="<?php echo htmlspecialchars($row["event_name"]); ?>">
+                <input type="hidden" name="event_venue" value="<?php echo htmlspecialchars($row["event_venue"]); ?>">
+                <input type="submit" name="submit_button_" value="For more information click here">
+            </form>
+        </li>
+        
+    <?php endforeach; ?>
+</ul>
+
+
+
 
     <footer>
         <p>&copy; 2024 CryptoShow. All rights reserved.</p>
     </footer>
-    
+
     </body>
 </html>
-
