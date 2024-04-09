@@ -1,7 +1,7 @@
 <?php
     try {
         require_once "./phpappfolder/includes/db_connect.php";
-        $query = "SELECT event_date, event_name, event_venue FROM event;";
+        $query = "SELECT event_date, event_name, event_venue, event_description FROM event;";
         $stmt = $pdo->prepare($query);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -55,16 +55,14 @@ include_once "./phpappfolder/includes/header.php";
                 <input type="hidden" name="event_date" value="<?php echo htmlspecialchars($row["event_date"]); ?>">
                 <input type="hidden" name="event_name" value="<?php echo htmlspecialchars($row["event_name"]); ?>">
                 <input type="hidden" name="event_venue" value="<?php echo htmlspecialchars($row["event_venue"]); ?>">
-                <input type="submit" name="submit_button_" value="For more information click here">
+                <input type="hidden" name="event_description" value="<?php echo htmlspecialchars($row["event_description"]); ?>">
+                
+                <input type="submit" name="submit_button" value="For more information click here">
             </form>
         </li>
         
     <?php endforeach; ?>
 </ul>
-
-
-
-
     <footer>
         <p>&copy; 2024 CryptoShow. All rights reserved.</p>
     </footer>
