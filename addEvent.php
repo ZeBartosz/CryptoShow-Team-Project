@@ -1,12 +1,13 @@
 <?php
 $title = "Add Event";
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/header.css";
+$css_filee = "./css-files/adminStyle.css";
 include "header.php";
 require_once "validateAdmin.php";
 include "db_connect.php";
 ?>
 
-<form action="./php-files/eventAddProcess.php" method="post">
+<form class ="edit-form" action="./php-files/eventAddProcess.php" method="post">
     <div>
         <label>Event name</label>
         <input type="text" name="name" placeholder="Event Name">
@@ -37,3 +38,4 @@ include "db_connect.php";
 </body>
 
 </html>
+
