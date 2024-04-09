@@ -1,5 +1,7 @@
 <?php
-$css_file = "./css-files/dashboardStyle.css";
+$title = "Edit User";
+$css_file ="./css-files/adminStyle.css";
+$css_filee = "./css-files/header.css";
 include_once "header.php";
 require_once "validateAdmin.php";
 include "db_connect.php";
@@ -21,18 +23,18 @@ if(isset($_GET["id"])) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
-<form action="./php-files/userEditProcess.php" method="post">
+<form class="edit-form" action="./php-files/userEditProcess.php" method="post">
     <input type="hidden" value="<?= $result["user_id"] ?>" name="userid">
     <div>
-        <label>Username</label>
+        <label>Username:</label>
         <input type="text" value="<?= $result["user_nickname"] ?>" name="username">
     </div>
     <div>
-        <label>Full name</label>
+        <label>Full name:</label>
         <input type="text" value="<?= $result["user_name"] ?>" name="fullname">
     </div>
     <div>
-        <label>Email</label>
+        <label>Email:</label>
         <input type="email" value="<?= $result["user_email"] ?>" name="email">
     </div>
     <div>
