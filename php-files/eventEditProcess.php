@@ -68,9 +68,10 @@ if(isset($_POST["submit"])) {
     $name = $_POST["name"];
     $date = $_POST["date"];
     $venue = $_POST["venue"];
+    $description = $_POST["description"];
 
     try {
-        $query = "UPDATE event SET event_name=:name, event_date=:date, event_venue=:venue WHERE event_id=:id";
+        $query = "UPDATE event SET event_name=:name, event_date=:date, event_venue=:venue, event_description=:description WHERE event_id=:id";
 
         $stmt = $pdo->prepare($query);
 
@@ -79,6 +80,7 @@ if(isset($_POST["submit"])) {
             ":date" => $date,
             ":venue" => $venue,
             ":id" => $id,
+            ":description" => $description,
         ];
 
         $result = $stmt->execute($data);
