@@ -1,11 +1,11 @@
 <?php
 $title = "Admin Page";
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/adminStyle.css";
+$css_filee = "./css-files/header.css";
 include_once "header.php";
 require_once "validateAdmin.php";
 include "db_connect.php";
 ?>
-<link rel="stylesheet" href="./css-files/adminStyle.css">
 <?php if(isset($_SESSION["message"])) { ?>
     <h5><?= $_SESSION['message'] ?></h5> <?php
     unset($_SESSION["message"]);
@@ -30,7 +30,7 @@ include "db_connect.php";
                     <th>Email</th>
                     <th>Device count</th>
                     <th>Registered</th>
-                    <th>Edit</th>
+                    <th colspan="2">Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,12 +53,12 @@ include "db_connect.php";
                             <td><?= $row['user_email']?></td>
                             <td><?= $row['user_device_count']?></td>
                             <td><?= $row['user_registered_timestamp']?></td>
-                            <td><a href="userEdit.php?id=<?= $row['user_id']; ?>"><button>Edit</button></a></td>
+                            <td><a href="userEdit.php?id=<?= $row['user_id']; ?>"><button type= "submit">Edit</button></a></td>
                             <td>
                             <form action="./php-files/userEditProcess.php" method="post">
-                            <button type="submit" name="delete" value="<?=$row['user_id']?>" onclick="return confirm('Are you sure?')">Delete</button>
+                            <button type="delete" name="delete" value="<?=$row['user_id']?>" onclick="return confirm('Are you sure?')">Delete</button>
                             </form>
-                            <td>
+                            
                         </tr>
                         <?php
                     }
@@ -76,7 +76,7 @@ include "db_connect.php";
         <div class="content">
             <h2>Events</h2>
             <div>
-                <a href="./addEvent.php"><button>Add Event</button></a>
+                <a href="./addEvent.php"><button class= "addEventBtn">Add Event</button></a>
             </div>
             <table>
                 <thead>
@@ -87,7 +87,7 @@ include "db_connect.php";
                     <th>Event Date</th>
                     <th>Event Venue</th>
                     <th>Published</th>
-                    <th>Edit</th>
+                    <th colspan="3">Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -108,10 +108,10 @@ include "db_connect.php";
                             <td><?= $row['event_date']?></td>
                             <td><?= $row['event_venue']?></td>
                             <td><?php if($row['is_published']){echo "Yes";}else{echo "No";}?></td>
-                            <td><a href="eventEdit.php?eventid=<?= $row['event_id']; ?>"><button>Edit</button></a></td>
+                            <td><a href="eventEdit.php?eventid=<?= $row['event_id']; ?>"><button type="submit">Edit</button></a></td>
                             <td>
                                 <form action="./php-files/eventEditProcess.php" method="post">
-                                    <button type="submit" name="delete" value="<?=$row['event_id']?>" onclick="return confirm('Are you sure?')">Delete</button>
+                                    <button type="delete" name="delete" value="<?=$row['event_id']?>" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             </td>
                             <td>
@@ -188,9 +188,9 @@ include "db_connect.php";
 </div>
 
 
-<footer>
-    <p>&copy; 2024 CryptoShow. All rights reserved.</p>
-</footer>
+<?php
+    include_once "footer.php";
+    ?>
 
 </body>
 
