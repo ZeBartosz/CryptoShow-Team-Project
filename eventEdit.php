@@ -43,10 +43,9 @@ if(isset($_GET["eventid"])) {
     <button type="submit" name="submit">Update Event</button>
 </form>
 
-<footer>
-        <p>&copy; 2024 CryptoShow. All rights reserved.</p>
-    </footer>
-
+<?php
+    include_once "footer.php";
+    ?>
 </body>
 
 </html>

@@ -31,9 +31,9 @@ include "db_connect.php";
     <button type="submit" name="submit">Upload Event</button>
 </form>
 
-<footer>
-    <p>&copy; 2024 CryptoShow. All rights reserved.</p>
-</footer>
+<?php
+    include_once "footer.php";
+    ?>
 
 </body>
 
