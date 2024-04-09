@@ -1,8 +1,12 @@
 <?php
 $title = "Welcome to Cryptoshow";
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/IndexStyle.css";
+$css_filee = "./css-files/header.css";
+
 include_once "header.php";
 ?>
+
+
 <div class="container">
         <div class="carousel-container">
             <div class="carousel">
@@ -16,13 +20,26 @@ include_once "header.php";
             </div>
         </div>
     </div>
+    <div class="website-features">
+        <button class="features">
+            <h2>Lorem ipsum</h2>
+            <p>Lorem ipsum</p>
+        </button>
+        <button class="features">
+            <h2>Lorem ipsum</h2>
+            <p>Lorem ipsum</p>
+        </button>
+        <button class="features">
+            <h2>Lorem ipsum</h2>
+            <p>Lorem ipsum</p>
+        </button>
+
+    </div>
 
 
-
-    <footer>
-        <p>&copy; 2024 CryptoShow. All rights reserved.</p>
-    </footer>
-
+    <?php
+    include_once "footer.php";
+    ?>
 </body>
 
 </html>
