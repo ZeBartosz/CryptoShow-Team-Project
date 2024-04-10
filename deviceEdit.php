@@ -19,12 +19,15 @@ if(isset($_POST["submit"])) {
         $id = $_SESSION["user_id"];
 
         $name = htmlspecialchars($_POST["name"], ENT_QUOTES, "UTF-8");
-        $picture = htmlspecialchars($_POST["picture"], ENT_QUOTES, "UTF-8");
         $is_visible = isset($_POST["visible"])? 1 : 0;
         $deviceInfo = new DeviceController();
 
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+
         $deviceInfo->setForeignId($id);
-        $deviceInfo->updateDeivce($name, $picture, $is_visible, $deviceId);
+        $deviceInfo->updateDeivce($name, $target_file, $is_visible, $deviceId);
 
         if(isset($_GET["isAdmin"]) == 1) {
             $_SESSION["message"] = "Edited device successfully";
@@ -42,6 +45,7 @@ if(isset($_POST["delete"])) {
         $deviceInfo = new DeviceController();
         $deviceInfo->setForeignId($id);
 
+
         $deviceInfo->deleteDevice($deviceId);
 
         header("location: profile.php?error=none");
@@ -55,11 +59,11 @@ if(isset($_POST["delete"])) {
         <div class="wrapper">
             <div class="profile-settings">
                 <h3>DEVICE SETTINGS</h3>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <P>Change Device name! <?php echo $deviceId; ?></P>
                     <input type="text" name="name" placeholder="Device name..." value="<?php $deviceInfo1->fetchSpeDeviceName($deviceId)?>">
-                    <p>Change Device picture!</p>
-                    <input type="text" name="picture" placeholder="Device picture..." value="<?php $deviceInfo1->fetchSpeDeviceImagine($deviceId)?>">
+                    <p>Change your device image!</p>
+                    <input type="file" name="image" placeholder="device image..." >
                     <p>Change visibility!</p>
                     <input type="checkbox" <?php if($deviceInfo1->fetchSpeDeviceVisible($deviceId)) echo "checked";?> value="<?php $deviceInfo1->fetchSpeDeviceVisible($deviceId) ?>" name="visible">
                     <button type="submit" name="submit">SAVE</button>
