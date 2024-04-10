@@ -10,7 +10,8 @@ include "deviceModel.php";
 include "deviceController.php";
 include "deviceView.php";
 $profileInfo = new ProfileInfoView();
-$deviceInfo = new DeviceView();
+$controller = new DeviceController();
+$deviceInfo = new DeviceView($controller);
 
 $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
 
