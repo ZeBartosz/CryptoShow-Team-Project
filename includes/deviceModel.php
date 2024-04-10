@@ -2,7 +2,7 @@
 
 include_once "dbh.php";
 
-class DeviceProcess extends Dbh
+class DeviceModel extends Dbh
 {
 
     protected function getDevicesInfo($userId)
@@ -86,5 +86,37 @@ class DeviceProcess extends Dbh
 
     }
 
+    public function getAllDeviceInfo()
+    {
+        try {
+            $query = "SELECT * FROM crypto_device";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute();
+            $stmt = null;
 
+            $device_info = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $device_info;
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error fetching all events: " . $e->getMessage();
+        }
     }
+
+    public function deleteDeviceInfo($device_id)
+    {
+        try {
+            $query = "DELETE FROM crypto_device WHERE crypto_device_id=:deviceid";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->bindParam(":deviceid", $device_id, PDO::PARAM_INT);
+            $stmt->execute();
+            $stmt = null;
+
+            header("location: ./admin.php");
+            $_SESSION["message"] = "Device deleted successfully";
+        } catch (PDOException $e) {
+            header("location: ./admin.php");
+            $_SESSION["message"] = "Error deleting device: " . $e->getMessage();
+        }
+    }
+
+
+}
