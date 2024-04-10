@@ -1,5 +1,6 @@
 <?php
 
+include_once "deviceModel.php";
 class DeviceController extends DeviceModel
 {
 
