@@ -1,11 +1,17 @@
 <?php
 
-class DeviceController extends DeviceProcess
+class DeviceController extends DeviceModel
 {
 
     private $userId;
+    private $model;
 
-    public function __construct($userId)
+    public function __construct()
+    {
+        $this->model = new DeviceModel();
+    }
+
+    public function setForeignId($userId)
     {
         $this->userId = $userId;
     }
