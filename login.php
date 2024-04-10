@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="content">
         <h1>Sign in</h1>
         <p>Sign into your CryptoShow account</p>
-        <form action="./php-files/loginProcess.php" method="post">
+        <form method="post">
             <label for="username">Username or Email:</label><br>
             <input type="text" id="username" name="username"placeholder="Username"><br>
             <label for="password">Password:</label><br>
