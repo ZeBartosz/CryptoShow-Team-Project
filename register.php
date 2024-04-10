@@ -3,6 +3,7 @@ $title = "Register here!";
 $css_file = "./css-files/registerStyle.css";
 $css_filee = "./css-files/header.css";
 include_once "header.php";
+require_once "validateSession.php";
 ?>
 <div class="body">
 <h1>Create an account</h1>
@@ -27,6 +28,6 @@ include_once "header.php";
 </div>
 <?php
     include_once "footer.php";
-    ?>
+?>
 </body>
 </html>
