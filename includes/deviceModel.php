@@ -75,11 +75,11 @@ class DeviceModel extends Dbh
 
     }
 
-    protected function setDevice($device_name, $device_image_name, $crypto_device_record_visible, $userid) {
+    protected function setDevice($device_name, $crypto_device_image_name, $crypto_device_record_visible, $userid) {
 
         $stmt = $this->connect()->prepare('INSERT INTO crypto_device (fk_user_id, crypto_device_name, crypto_device_image_name, crypto_device_record_visible, crypto_device_registered_timestamp) VALUES  (?, ?, ?, ?, NOW());');
 
-        $stmt->execute(array($userid, $device_name, $device_image_name, $crypto_device_record_visible));
+        $stmt->execute(array($userid, $device_name, $crypto_device_image_name, $crypto_device_record_visible));
 
 
         $stmt = null;
@@ -92,7 +92,6 @@ class DeviceModel extends Dbh
             $query = "SELECT * FROM crypto_device";
             $stmt = $this->connect()->prepare($query);
             $stmt->execute();
-            $stmt = null;
 
             $device_info = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $device_info;
@@ -108,7 +107,6 @@ class DeviceModel extends Dbh
             $stmt = $this->connect()->prepare($query);
             $stmt->bindParam(":deviceid", $device_id, PDO::PARAM_INT);
             $stmt->execute();
-            $stmt = null;
 
             header("location: ./admin.php");
             $_SESSION["message"] = "Device deleted successfully";
