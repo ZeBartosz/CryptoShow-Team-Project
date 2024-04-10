@@ -12,20 +12,34 @@ class DeviceController extends DeviceProcess
 
     public function updateDeivce($device_name, $device_image_name, $crypto_device_record_visible, $deviceID)
     {
-        if ($this->emptyInputCheck($device_name, $device_image_name, $crypto_device_record_visible)) {
+        if ($this->emptyInputCheck($device_name)) {
             header("location: profile.php?error=emptyinput");
             exit();
         }
+
+        $result = $this->isVisible($crypto_device_record_visible);
+        if($result === false) {
+            header("location: profile.php?error=invalidInput");
+            exit();
+        }
+
 
         $this->setNewProfileInfo($device_name, $device_image_name, $crypto_device_record_visible, $deviceID);
 
     }
 
     public function insertDevice($device_name, $device_image_name, $crypto_device_record_visible){
-        if ($this->emptyInputCheck($device_name, $device_image_name, $crypto_device_record_visible)) {
+        if ($this->emptyInputCheck($device_name)) {
             header("location: profile.php?error=emptyinput");
             exit();
         }
+
+        $result = $this->isVisible($crypto_device_record_visible);
+        if($result === false) {
+            header("location: profile.php?error=invalidInput");
+            exit();
+        }
+
 
         $this->setDevice($device_name, $device_image_name, $crypto_device_record_visible, $this->userId);
     }
@@ -41,14 +55,26 @@ class DeviceController extends DeviceProcess
 
 
 
-    private function emptyInputCheck($device_name, $device_image_name, $crypto_device_record_visible)
+    private function emptyInputCheck($device_name)
     {
-        if (empty($device_name) || empty($device_image_name) || empty($crypto_device_record_visible)) {
+        if (empty($device_name)) {
             $result = true;
         } else {
             $result = false;
         }
         return $result;
     }
+
+    private function isVisible($visible){
+        $result;
+        if ($visible === 1 || $visible === 0){
+            $result = true;
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
+
 
 }
