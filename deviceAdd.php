@@ -11,7 +11,7 @@
         $name = htmlspecialchars($_POST["name"], ENT_QUOTES, "UTF-8");
         $is_visible = isset($_POST["visible"])? 1 : 0;
 
-        $target_dir = "upload/";
+        $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
