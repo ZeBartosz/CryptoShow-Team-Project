@@ -4,6 +4,24 @@ $css_file = "./css-files/registerStyle.css";
 $css_filee = "./css-files/header.css";
 include_once "header.php";
 require_once "validateSession.php";
+require_once "dbh.php";
+include_once "registerController.php";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userNickname = $_POST["username"];
+    $firstName = $_POST["name"];
+    $lastName = $_POST["lastname"];
+    $userName = $firstName . " " . $lastName;
+    $pwd = $_POST["password"];
+    $repeatPwd = $_POST["rptPassword"];
+    $email = $_POST["email"];
+
+    $register = new registerControl($userNickname, $userName, $pwd, $repeatPwd, $email);
+
+    $register->registerUser();
+
+    header("location: ../login.php?registersuccess");
+}
 ?>
 <div class="body">
 <h1>Create an account</h1>
