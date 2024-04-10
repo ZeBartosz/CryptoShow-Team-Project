@@ -47,7 +47,12 @@ if(isset($_POST["delete"])) {
 
 
         $deviceInfo->deleteDevice($deviceId);
-
+        if(isset($_GET["isAdmin"]) == 1) {
+            $_SESSION["message"] = "Edited device successfully";
+            header("location: admin.php");
+            exit();
+        }
+        
         header("location: profile.php?error=none");
     }
 
