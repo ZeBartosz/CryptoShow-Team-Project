@@ -1,5 +1,6 @@
 <?php
 
+include_once "deviceModel.php";
 class DeviceView extends DeviceModel {
 
     private $controller;
@@ -18,7 +19,7 @@ class DeviceView extends DeviceModel {
     public function fetchDeviceImagine($userId){
         $profileInfo = $this->getDevicesInfo($userId);
 
-        echo $profileInfo[0]["crypto_device_image"];
+        echo $profileInfo[0]["crypto_device_image_name"];
     }
 
 
