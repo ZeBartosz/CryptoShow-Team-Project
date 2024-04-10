@@ -6,13 +6,35 @@
     include "profileinfo_contrl.php";
     include "profileinfo_view.php";
     $profileInfo = new ProfileInfoView();
+
+session_start();
+
+if(isset($_POST["submit"])) {
+
+    $id = $_SESSION["user_id"];
+
+    $nickname = htmlspecialchars($_POST["nickname"], ENT_QUOTES, "UTF-8");
+    $name = htmlspecialchars($_POST["name"], ENT_QUOTES, "UTF-8");
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL, );
+
+
+    include_once "dbh.php";
+    include_once "profileinfo.php";
+    include_once "profileinfo_contrl.php";
+    include_once "profileinfo_view.php";
+    $profileInfo = new ProfileInfoContrl($id);
+
+    $profileInfo->updateProfileInfo($nickname, $name, $email);
+
+    header("location: profile.php?error=none");
+}
 ?>
     <section class="profile">
         <div class="profile-bg">
             <div class="wrapper">
                 <div class="profile-settings">
                     <h3>PROFILE SETTINGS</h3>
-                    <form action="./php-files/profileSettingProcess.php" method="post">
+                    <form method="post">
                         <P>Change your nickname!</P>
                         <input type="text" name="nickname" placeholder="User nickname..." value="<?php $profileInfo->fetchNickname($_SESSION["user_id"])?>">
                         <p>Change your name!</p>
