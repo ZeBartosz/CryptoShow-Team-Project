@@ -12,7 +12,7 @@ class DeviceView extends DeviceProcess {
     public function fetchDeviceImagine($userId){
         $profileInfo = $this->getDevicesInfo($userId);
 
-        echo $profileInfo[0]["crypto_device_image_name"];
+        echo $profileInfo[0]["crypto_device_image"];
     }
 
 
@@ -37,14 +37,14 @@ class DeviceView extends DeviceProcess {
     public function fetchSpeDeviceImagine($deviceId){
         $profileInfo = $this->getSpecificDevicesInfo($deviceId);
 
-        echo $profileInfo[0]["crypto_device_image_name"];
+        echo $profileInfo[0]["crypto_device_image"];
     }
 
 
     public function fetchSpeDeviceVisible($deviceId){
         $profileInfo = $this->getSpecificDevicesInfo($deviceId);
 
-        echo $profileInfo[0]["crypto_device_record_visible"];
+        return $profileInfo[0]["crypto_device_record_visible"];
     }
 
 }
