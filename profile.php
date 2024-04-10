@@ -24,18 +24,18 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
     </section>
 
     <section>
-        <p>User device count: <?php $profileInfo->fetchDeivceCount($_SESSION["user_id"]); ?>/5</p>
+        <p>User device count: <?php echo $profileInfo->fetchDeivceCount($_SESSION["user_id"]); ?>/5</p>
         <div class="service-boxes">
             <div class="container">
                 <?php foreach($items as $row) { ?>
                 <div class="col-lg-4">
                     <div class="service-box">
                         <div class="box-inner">
-                            <img src="https://source.unsplash.com/random/500x500?sig=1" alt="">
+                            <img src="<?php ($row["crypto_device_image_name"])?>;">
                             <div class="box-content">
                                 <h3 class="title"><?php echo $row["crypto_device_name"]; ?></h3>
                                 <h3 class="title"><?php echo $row["crypto_device_id"]; ?></h3>
-                                <a href="deviceEdit.php?deviceId=<?php echo $row["crypto_device_id"]; ?>" class="link-device-edit" >Edit Device</a>
+                                <a href="deviceEdit.php?deviceId=<?php echo $row["crypto_device_id"]; ?>&userId=<?php echo $_SESSION["user_id"]; ?>" class="link-device-edit" >Edit Device</a>
                             </div>
                         </div>
                     </div>
@@ -43,6 +43,7 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
                 <?php } ?>
             </div>
         </div>
+
         <a href="deviceAdd.php">Add Device</a>
     </section>
 </body>
