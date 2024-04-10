@@ -1,13 +1,36 @@
 <?php
-$title = "Add Event";
-$css_file = "./css-files/header.css";
-$css_filee = "./css-files/adminStyle.css";
+$css_file = "./css-files/dashboardStyle.css";
 include "header.php";
 require_once "validateAdmin.php";
 include "db_connect.php";
-?>
+include_once "eventController.php";
 
-<form class ="edit-form" action="./php-files/eventAddProcess.php" method="post">
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $event_name = $_POST["name"];;
+    $event_date = $_POST["date"];
+    $event_description = $_POST["desc"];
+    $event_venue = $_POST["venue"];
+    $is_published = isset($_POST["publish"])? 1 : 0;
+    $controller = new EventController();
+    $result = $controller->addEvent($event_name, $event_description, $event_date, $event_venue, $is_published);
+
+    if($result === true) {
+        $_SESSION["message"] = "Successfully added event";
+        header("location: ./admin.php");
+
+    } else {
+        $_SESSION["message"] = "Error adding event";
+        header("location: ./admin.php");
+        exit();
+    }
+}
+
+?>
+<?php if(isset($_SESSION["message"])) { ?>
+    <h5><?= $_SESSION["message"] ?></h5> <?php
+    unset($_SESSION["message"]);
+} ?>
+<form method="post">
     <div>
         <label>Event name</label>
         <input type="text" name="name" placeholder="Event Name">
@@ -30,12 +53,11 @@ include "db_connect.php";
     </div>
     <button type="submit" name="submit">Upload Event</button>
 </form>
+<a href="./admin.php"><button>Cancel</button></a>
 
 <?php
-    include_once "footer.php";
-    ?>
-
+include_once "footer.php";
+?>
 </body>
 
 </html>
-
