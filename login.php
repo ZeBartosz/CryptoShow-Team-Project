@@ -3,6 +3,19 @@ $title = "Login page";
 $css_file = "./css-files/loginStyle.css";
 $css_filee ="./css-files/header.css";
 include_once "header.php";
+require_once "validateSession.php";
+require_once "dbh.php";
+include_once "loginController.php";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userNickname = $_POST["username"];
+    $pwd = $_POST["password"];
+
+    $login = new LoginControl($userNickname, $pwd);
+    $login->loginUser();
+
+    header("location: ../index.php");
+}
 ?>
     <div class="content">
         <h1>Sign in</h1>
