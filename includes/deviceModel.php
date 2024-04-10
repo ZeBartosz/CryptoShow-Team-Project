@@ -49,7 +49,7 @@ class DeviceModel extends Dbh
 
     protected function setNewProfileInfo($device_name, $device_image_name, $crypto_device_record_visible, $device_id) {
 
-        $stmt = $this->connect()->prepare('UPDATE crypto_device SET crypto_device_name = ?, crypto_device_image = ?, crypto_device_record_visible = ? WHERE crypto_device_id = ?;');
+        $stmt = $this->connect()->prepare('UPDATE crypto_device SET crypto_device_name = ?, crypto_device_image_name = ?, crypto_device_record_visible = ? WHERE crypto_device_id = ?;');
 
         if (!$stmt->execute(array($device_name, $device_image_name, $crypto_device_record_visible, $device_id))) {
             $stmt = null;
@@ -77,7 +77,7 @@ class DeviceModel extends Dbh
 
     protected function setDevice($device_name, $device_image_name, $crypto_device_record_visible, $userid) {
 
-        $stmt = $this->connect()->prepare('INSERT INTO crypto_device (fk_user_id, crypto_device_name, crypto_device_image, crypto_device_record_visible, crypto_device_registered_timestamp) VALUES  (?, ?, ?, ?, NOW());');
+        $stmt = $this->connect()->prepare('INSERT INTO crypto_device (fk_user_id, crypto_device_name, crypto_device_image_name, crypto_device_record_visible, crypto_device_registered_timestamp) VALUES  (?, ?, ?, ?, NOW());');
 
         $stmt->execute(array($userid, $device_name, $device_image_name, $crypto_device_record_visible));
 
