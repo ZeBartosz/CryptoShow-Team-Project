@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = new LoginControl($userNickname, $pwd);
     $login->loginUser();
 
-    header("location: ../index.php");
+    header("location: ./index.php");
 }
 ?>
     <div class="content">
