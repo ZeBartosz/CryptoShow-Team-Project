@@ -2,16 +2,16 @@
 $title = "Edit Device";
 $css_file = "./css-files/dashboardStyle.css";
 include_once "header.php";
-include "deviceProcess.php";
+include "deviceModel.php";
 include "deviceController.php";
 include "deviceView.php";
-
-if($_SESSION["user_id"] == $_GET["userId"] || $_SESSION["is_admin"]) {
+if(isset($_SESSION["user_id"]) == $_GET["userId"] || $_SESSION["is_admin"]) {
 } else {
     header("location: index.php?error=none");
 }
 
-$deviceInfo1 = new DeviceView();
+$deviceController = new DeviceController();
+$deviceInfo1 = new DeviceView($deviceController);
 $deviceId = $_GET["deviceId"];
 
 if(isset($_POST["submit"])) {
@@ -21,11 +21,16 @@ if(isset($_POST["submit"])) {
         $name = htmlspecialchars($_POST["name"], ENT_QUOTES, "UTF-8");
         $picture = htmlspecialchars($_POST["picture"], ENT_QUOTES, "UTF-8");
         $is_visible = isset($_POST["visible"])? 1 : 0;
+        $deviceInfo = new DeviceController();
 
-        $deviceInfo = new DeviceController($id);
-
+        $deviceInfo->setForeignId($id);
         $deviceInfo->updateDeivce($name, $picture, $is_visible, $deviceId);
 
+        if(isset($_GET["isAdmin"]) == 1) {
+            $_SESSION["message"] = "Edited device successfully";
+            header("location: admin.php");
+            exit();
+        }
         header("location: profile.php?error=none");
     }
 }
@@ -34,7 +39,8 @@ if(isset($_POST["delete"])) {
     if (isset($deviceId)) {
         $id = $_SESSION["user_id"];
 
-        $deviceInfo = new DeviceController($id);
+        $deviceInfo = new DeviceController();
+        $deviceInfo->setForeignId($id);
 
         $deviceInfo->deleteDevice($deviceId);
 
@@ -50,12 +56,11 @@ if(isset($_POST["delete"])) {
             <div class="profile-settings">
                 <h3>DEVICE SETTINGS</h3>
                 <form method="post">
-                    <P>Change Device name!</P>
+                    <P>Change Device name! <?php echo $deviceId; ?></P>
                     <input type="text" name="name" placeholder="Device name..." value="<?php $deviceInfo1->fetchSpeDeviceName($deviceId)?>">
                     <p>Change Device picture!</p>
                     <input type="text" name="picture" placeholder="Device picture..." value="<?php $deviceInfo1->fetchSpeDeviceImagine($deviceId)?>">
                     <p>Change visibility!</p>
-
                     <input type="checkbox" <?php if($deviceInfo1->fetchSpeDeviceVisible($deviceId)) echo "checked";?> value="<?php $deviceInfo1->fetchSpeDeviceVisible($deviceId) ?>" name="visible">
                     <button type="submit" name="submit">SAVE</button>
                     <form method="post">
