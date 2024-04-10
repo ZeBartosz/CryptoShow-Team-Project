@@ -136,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $deviceController = new DeviceController();
                 $deviceView = new DeviceView($deviceController);
                 $deviceDisplayed = $deviceView->displayAllDeviceInfo();
-                if(!$eventDisplayed === true) {
+                if(!$deviceDisplayed === true) {
                     echo "<tr>";
                     echo "<td colspan='6'>No Record</td>";
                     echo "</tr>";
@@ -154,10 +154,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 
-<footer>
-    <p>&copy; 2024 CryptoShow. All rights reserved.</p>
-</footer>
-
+<?php
+include_once "footer.php"
+?>
 </body>
 
 </html>
