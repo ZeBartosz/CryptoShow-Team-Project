@@ -6,7 +6,7 @@ include_once "header.php";
 include "profileinfo.php";
 include "profileinfo_contrl.php";
 include "profileinfo_view.php";
-include "deviceProcess.php";
+include "deviceModel.php";
 include "deviceController.php";
 include "deviceView.php";
 $profileInfo = new ProfileInfoView();
