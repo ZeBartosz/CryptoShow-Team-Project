@@ -1,8 +1,8 @@
 <?php
 $title = " event details";
 $css_file = "./css-files/dashboardStyle.css";
-$css_file2 = "./css-files/popup.css";
-include_once "./phpappfolder/includes/header.php";
+$css_filee = "./css-files/popup.css";
+include_once "./includes/header.php";
 
 
 
@@ -46,4 +46,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </footer>
 </body>
 </html>
+
 
