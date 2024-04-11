@@ -1,6 +1,6 @@
 <?php
     try {
-        require_once "./phpappfolder/includes/db_connect.php";
+        require_once "./includes/db_connect.php";
         $query = "SELECT event_date, event_name, event_venue, event_description FROM event;";
         $stmt = $pdo->prepare($query);
         $stmt->execute();
@@ -18,8 +18,8 @@
     }
 $title = " Cryptoshow events";
 $css_file = "./css-files/dashboardStyle.css";
-$css_file2 = "./css-files/x.css";
-include_once "./phpappfolder/includes/header.php";
+$css_filee = "./css-files/x.css";
+include_once "./includes/header.php";
 
 ?>
 
