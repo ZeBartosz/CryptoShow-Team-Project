@@ -27,7 +27,7 @@ class UserView extends UserController {
                         <th>Email</th>
                         <th>Device count</th>
                         <th>Registered</th>
-                        <th>Edit</th>
+                        <th colspan ="2">Edit</th>
                     </tr>
                 </thead>
                 <tbody>';
@@ -41,11 +41,11 @@ class UserView extends UserController {
                     <td>" . $user['user_email'] . "</td>
                     <td>" . $user['user_device_count'] . "</td>
                     <td>" . $user['user_registered_timestamp'] . "</td>
-                    <td><a href='userEdit.php?id=" . $user['user_id'] . "'><button>Edit</button></a></td>
+                    <td><a href='userEdit.php?id=" . $user['user_id'] . "'><button type= 'submit'>Edit</button></a></td>
                     <td>
                         <form method='post'>
                             <input type='hidden' name='delete_user' value='" . $user['user_id'] . "'>
-                            <button type='submit' onclick=\"return confirm('Are you sure?')\">Delete</button>
+                            <button type='delete' onclick=\"return confirm('Are you sure?')\">Delete</button>
                         </form>
                     </td>
                 </tr>";
