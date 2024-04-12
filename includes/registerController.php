@@ -1,7 +1,7 @@
 <?php
 
-include_once "registerClasses.php";
-class registerControl extends Register {
+include_once "registerModel.php";
+class registerController extends RegisterModel {
 
     private $userNickname;
     private $userName;
