@@ -8,7 +8,7 @@ class EventView extends EventController {
     public function __construct($controller) {
         $this->controller = $controller;
     }
-    public function displayAllEvents() {
+    public function displayAllEventInfo() {
         if (isset($_POST["search_event"])) {
             $search_keyword = $_POST["search_event"];
             $event_info = $this->controller->searchEventByKeyword($search_keyword);
