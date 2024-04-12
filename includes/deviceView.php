@@ -55,10 +55,27 @@ class DeviceView extends DeviceModel {
     }
 
     public function displayAllDeviceInfo() {
-        $device_info = $this->controller->getAllDeviceInfo();
-
-        if($device_info) {
-            foreach($device_info as $event) {
+        if (isset($_POST["search_device"])) {
+            $search_keyword = $_POST["search_device"];
+            $device_info = $this->controller->searchDeviceByKeyword($search_keyword);
+        } else {
+            $device_info = $this->controller->getAllDeviceInfo();
+        }
+        echo '<div class="content active">
+            <h2>Devices</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Device Visible</th>
+                        <th>Device ID</th>
+                        <th>Device Name</th>
+                        <th>User ID</th>
+                        <th>Device Registered</th>
+                    </tr>
+                </thead>
+                <tbody>';
+        if (!empty($device_info)) {
+            foreach ($device_info as $event) {
                 echo "<tr>";
                 echo "<td>" . ($event['crypto_device_record_visible'] ? "Yes" : "No") . "</td>";
                 echo "<td>" . ($event['crypto_device_id']) . "</td>";
@@ -74,8 +91,13 @@ class DeviceView extends DeviceModel {
                     </td>';
                 echo "</tr>";
             }
-            return true;
+        } else {
+            echo "<tr>";
+            echo "<td colspan='5'>No Record</td>";
+            echo "</tr>";
         }
+        echo '    </tbody> </table> </div>';
+    }
     }
 
 }

@@ -115,6 +115,22 @@ class DeviceModel extends Dbh
             $_SESSION["message"] = "Error deleting device: " . $e->getMessage();
         }
     }
+    
+    public function searchDeviceByKeyword($search_keyword) {
+        try {
+            $query = "SELECT * FROM crypto_device WHERE crypto_device_name LIKE :search_keyword OR crypto_device_id LIKE :search_keyword";
+            $stmt = $this->connect()->prepare($query);
+
+            $stmt->bindParam(":search_keyword", $search_keyword, PDO::PARAM_STR);
+
+            $stmt->execute(["search_keyword" => "%$search_keyword%"]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error searching event info: " . $e->getMessage();
+            header("location: ./admin.php?tab=devices");
+            exit();
+        }
+    }
 
 
 }

@@ -60,7 +60,15 @@ class DeviceController extends DeviceModel
         }
     }
 
-
+    public function searchDeviceByKeyword($search_keyword) {
+        try {
+            return $this->model->searchDeviceByKeyword($search_keyword);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error searching device info: " . $e->getMessage();
+            header("Location: admin.php?tab=devices");
+            exit();
+        }
+    }
 
     private function emptyInputCheck($device_name)
     {
