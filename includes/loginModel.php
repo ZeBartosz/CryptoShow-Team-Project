@@ -1,6 +1,6 @@
 <?php
     require_once "dbh.php";
-class Login extends Dbh {
+class LoginModel extends Dbh {
 
     public function getUser($userNickname, $pwd) {
         $stmt = $this->connect()->prepare('SELECT * FROM registered_user WHERE user_nickname = ? OR user_email = ?;');
@@ -16,8 +16,6 @@ class Login extends Dbh {
             header("location: ../login.php?error=usernotfound");
             exit();
         }
-
-        // This will be uncommented when register is going to hash password
 
         $pwdHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $checkPwd = password_verify($pwd, $pwdHashed[0]['user_hashed_password']);
