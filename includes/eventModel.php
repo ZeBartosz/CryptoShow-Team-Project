@@ -32,7 +32,7 @@ class EventModel extends Dbh {
         }
     }
 
-    public function getAllEvents() {
+    public function getAllEventInfo() {
         try {
             $query = "SELECT * FROM event";
             $stmt = $this->connect()->prepare($query);
