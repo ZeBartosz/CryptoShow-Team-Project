@@ -46,7 +46,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-<link rel="stylesheet" href="./css-files/adminStyle.css">
 <?php if(isset($_SESSION["message"])) { ?>
     <h5><?= $_SESSION['message'] ?></h5> <?php
     unset($_SESSION["message"]);
