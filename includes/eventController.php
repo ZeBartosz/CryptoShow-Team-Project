@@ -17,6 +17,16 @@ class EventController extends EventModel {
         }
     }
 
+    public function searchEventByKeyword($search_keyword) {
+        try {
+            return $this->model->searchEventByKeyword($search_keyword);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error searching device info: " . $e->getMessage();
+            header("Location: admin.php?tab=events");
+            exit();
+        }
+    }
+
     public function getEvent($event_id){
         try {
             return $this->model->getEvent($event_id);

@@ -101,4 +101,20 @@ class EventModel extends Dbh {
         }
     }
 
+    public function searchEventByKeyword($search_keyword) {
+        try {
+            $query = "SELECT * FROM event WHERE event_name LIKE :search_keyword OR event_description LIKE :search_keyword OR event_venue LIKE :search_keyword OR event_id LIKE :search_keyword";
+            $stmt = $this->connect()->prepare($query);
+
+            $stmt->bindParam(":search_keyword", $search_keyword, PDO::PARAM_STR);
+
+            $stmt->execute(["search_keyword" => "%$search_keyword%"]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error searching device info: " . $e->getMessage();
+            header("location: ./admin.php?tab=events");
+            exit();
+        }
+    }
+
 }
