@@ -150,7 +150,7 @@ button[type=delete]:hover {
     background-color: rgb(252, 129, 129);
     color: black;
   }
-  .addEventBtn{
+  button[type=addEventBtn]{
     margin-bottom: 5px;
     border-radius: 5px;
     background-color: rgb(0, 0, 0);
@@ -161,7 +161,11 @@ button[type=delete]:hover {
     
 
   }
-.addEventBtn:hover{
+button[type=addEventBtn]:hover{
+
     background-color: rgb(190, 188, 188);
     color: black;
+}
+label[type=searchbox]{
+    display :none
 }
