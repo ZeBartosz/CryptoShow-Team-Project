@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $userNickname = $_POST["username"];
     $pwd = $_POST["password"];
 
-    $login = new LoginControl($userNickname, $pwd);
+    $login = new LoginControlLer($userNickname, $pwd);
     $login->loginUser();
 
     header("location: ./index.php");
