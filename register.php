@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $register->registerUser();
 
-    header("location: ../login.php?registersuccess");
+    header("location: ./login.php?registersuccess");
 }
 ?>
 <div class="body">
