@@ -14,7 +14,7 @@ if(isset($_GET["eventId"])) {
     $event_info = $controller->getEvent($event_id);
     if(!$event_info) {
         $_SESSION["message"] = "Invalid event ID";
-        header("location: ./admin.php");
+        header("location: ./admin.php?tab=events");
         exit();
     }
 }
@@ -26,14 +26,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_venue = $_POST["venue"];
     $event_description = htmlspecialchars($_POST["description"], ENT_QUOTES, "UTF-8");
     $controller = new EventController();
-    $result = $controller->setEventInfo($event_id, $event_date, $event_name, $event_description, $event_date, $event_venue);
+    $result = $controller->setEventInfo($event_id, $event_name, $event_description, $event_date, $event_venue);
 
     if($result === true) {
         $_SESSION["message"] = "Successfully edited user information";
-        header("location: ./admin.php");
+        header("location: ./admin.php?tab=events");
         exit();
     } else {
-        header("location: ./admin.php");
+        header("location: ./admin.php?tab=events");
         $_SESSION["message"] = "Error updating user information";
     }
 }
@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <button type="submit" name="submit">Update User</button>
 </form>
-<a href="./admin.php"><button>Cancel</button></a>
+<a href="./admin.php?tab=events"><button>Cancel</button></a>
 <?php
 include_once "footer.php";
 ?>

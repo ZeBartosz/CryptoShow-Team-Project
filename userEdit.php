@@ -12,7 +12,7 @@ if(isset($_GET["id"])) {
     $user_info = $controller->getUserInfo($user_id);
     if(!$user_info) {
         $_SESSION["message"] = "Invalid user ID";
-        header("location: ./admin.php");
+        header("location: ./admin.php?tab=users");
         exit();
     }
 }
@@ -28,10 +28,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($result === true) {
         $_SESSION["message"] = "Successfully edited user information";
-        header("location: ./admin.php");
+        header("location: ./admin.php?tab=users");
         exit();
     } else {
-        header("location: ./admin.php");
+        header("location: ./admin.php?tab=users");
         $_SESSION["message"] = "Error updating user information";
     }
 }
@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <button type="submit" name="submit">Update User</button>
 </form>
-<a href="./admin.php"><button>Cancel</button></a>
+<a href="./admin.php?tab=users"><button>Cancel</button></a>
 <?php
 include_once "footer.php";
 ?>

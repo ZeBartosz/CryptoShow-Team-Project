@@ -16,15 +16,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($result === true) {
         $_SESSION["message"] = "Successfully added event";
-        header("location: ./admin.php");
+        header("location: ./admin.php?tab=events");
 
     } else {
         $_SESSION["message"] = "Error adding event";
-        header("location: ./admin.php");
+        header("location: ./admin.php?tab=events");
         exit();
     }
 }
-
 ?>
 <?php if(isset($_SESSION["message"])) { ?>
     <h5><?= $_SESSION["message"] ?></h5> <?php
@@ -53,11 +52,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <button type="submit" name="submit">Upload Event</button>
 </form>
-<a href="./admin.php"><button>Cancel</button></a>
-
+<a href="./admin.php?tab=events"><button>Cancel</button></a>
 <?php
 include_once "footer.php";
 ?>
 </body>
-
 </html>
