@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="contentBox">
     <div class="search">
             <form method="post"">
-                <label for="searchBox">Search:</label>
+                <label type="searchBox">Search:</label>
                 <input type="text" id="searchBox"
                        name="<?php if($current_tab === 'users'){
                     echo "search_user";
