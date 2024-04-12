@@ -71,6 +71,7 @@ class DeviceView extends DeviceModel {
                         <th>Device Name</th>
                         <th>User ID</th>
                         <th>Device Registered</th>
+                        <th colspan ="2">Edit</th>
                     </tr>
                 </thead>
                 <tbody>';
@@ -82,11 +83,11 @@ class DeviceView extends DeviceModel {
                 echo "<td>" . $event["crypto_device_name"] . "</td>";
                 echo "<td>" . $event['fk_user_id'] . "</td>";
                 echo "<td>" . ($event['crypto_device_registered_timestamp']) . "</td>";
-                echo '<td><a href="deviceEdit.php?deviceId=' . $event["crypto_device_id"] . '&userId=' . $_SESSION["user_id"] . '&isAdmin=' . $_SESSION["is_admin"] . '"><button>Edit</button></a></td>';
+                echo '<td><a href="deviceEdit.php?deviceId=' . $event["crypto_device_id"] . '&userId=' . $_SESSION["user_id"] . '&isAdmin=' . $_SESSION["is_admin"] . '"><button type ="submit">Edit</button></a></td>';
                 echo '<td>
                         <form method="post">
                             <input type="hidden" name="delete_device" value="' . $event['crypto_device_id'] . '">
-                            <button type="submit" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                            <button type="delete" onclick="return confirm(\'Are you sure?\')">Delete</button>
                         </form>
                     </td>';
                 echo "</tr>";
