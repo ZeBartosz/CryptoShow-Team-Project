@@ -9,9 +9,9 @@ class EventController extends EventModel {
         $this->model = new EventModel();
     }
 
-    public function getAllEvents() {
+    public function getAllEventInfo() {
         try {
-            return $this->model->getAllEvents();
+            return $this->model->getAllEventInfo();
         } catch (PDOException $e) {
             $_SESSION["message"] = "Error fetching Events: ". $e->getMessage();
         }
