@@ -17,7 +17,7 @@ class EventView extends EventController {
         }
         echo '<div class="content active">
             <h2>Events</h2>
-            <a href="./addEvent.php"><button>Add Event</button></a>
+            <a href="./addEvent.php"><button type = "addEventBtn">Add Event</button></a>
             <table>
                 <thead>
                     <tr>
@@ -27,7 +27,7 @@ class EventView extends EventController {
                         <th>Event Date</th>
                         <th>Event Venue</th>
                         <th>Published</th>
-                        <th>Edit</th>
+                        <th colspan ="3">Edit</th>
                     </tr>
                 </thead>
                 <tbody>';
@@ -40,11 +40,11 @@ class EventView extends EventController {
                             <td>" . $event['event_venue'] . "</td>
                             <td>" . $event['event_description'] . "</td>
                             <td>" . ($event['is_published'] ? "Yes" : "No") . "</td>
-                            <td><a href='./eventEdit.php?eventId=" . $event['event_id'] . "'><button>Edit</button></a></td>
+                            <td><a href='./eventEdit.php?eventId=" . $event['event_id'] . "'><button type ='submit'>Edit</button></a></td>
                             <td>
                                 <form method='post'>
                                     <input type='hidden' name='delete_event' value='" . $event['event_id'] . "'>
-                                    <button type='submit' onclick=\"return confirm('Are you sure?')\">Delete</button>
+                                    <button type='delete' onclick=\"return confirm('Are you sure?')\">Delete</button>
                                 </form>
                             </td>
                             <td>
