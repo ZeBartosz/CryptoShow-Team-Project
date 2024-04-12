@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="body">
 <h1>Create an account</h1>
         <p>Create a CryptoShow Account</p>
-    <form action="php-files/registerProcess.php" method="post">
+    <form method="post">
         <label for="username">Username or Email:</label>
         <input type="text" id="username" name="username"
         placeholder="Username">
