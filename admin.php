@@ -1,7 +1,7 @@
 <?php
 $title = "Admin Page";
 $css_file = "./css-files/adminStyle.css";
-$css_file = "";
+$css_filee = "./css-files/header.css";
 include_once "header.php";
 require_once "validateAdmin.php";
 include "db_connect.php";
