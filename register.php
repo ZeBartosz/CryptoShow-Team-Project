@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $repeatPwd = $_POST["rptPassword"];
     $email = $_POST["email"];
 
-    $register = new registerControl($userNickname, $userName, $pwd, $repeatPwd, $email);
+    $register = new registerController($userNickname, $userName, $pwd, $repeatPwd, $email);
 
     $register->registerUser();
 
