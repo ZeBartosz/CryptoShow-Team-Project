@@ -6,7 +6,6 @@ if(isset($_GET['logout'])) {
         session_unset();
         session_destroy();
         header("location: index.php");
-
         exit();
     }
 }
@@ -19,11 +18,8 @@ if(isset($_GET['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title;?></title>
     <link rel="stylesheet" href="<?php echo $css_file ?>">
-    <link rel="stylesheet" href="<?php echo $css_filee ?>">
-    
+    <link rel="stylesheet" href="<?php echo $css_filee ?>">  
     <script src="./Js-Files/carousel.js" defer></script>
-    <script src="./Js-Files/adminTabs.js" defer></script>
-    
     </head>
 <body>
 <header>
@@ -44,8 +40,6 @@ if(isset($_GET['logout'])) {
               echo  "<li><a class='headerBtn' href='login.php'>Login</a></li>";
             }
             ?>
-
-    </ul>
+        </ul>
     </nav>
-
 </header>
