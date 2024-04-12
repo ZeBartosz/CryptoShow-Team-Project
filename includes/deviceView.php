@@ -98,6 +98,4 @@ class DeviceView extends DeviceModel {
         }
         echo '    </tbody> </table> </div>';
     }
-    }
-
 }
