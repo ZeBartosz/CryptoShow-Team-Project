@@ -12,7 +12,10 @@ include_once "eventController.php";
 include_once "deviceController.php";
 include_once "deviceView.php";
 
-$current_tab = isset($_GET['tab']) ? $_GET['tab'] : 'users';
+if(!isset($_GET["tab"])) {
+    header("location: admin.php?tab=users");
+}
+$current_tab = $_GET['tab'];
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["delete_user"])) {
