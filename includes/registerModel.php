@@ -1,6 +1,6 @@
 <?php
-
-class Register extends Dbh {
+include_once "dbh.php";
+class RegisterModel extends Dbh {
 
     protected function setUser($userNickname, $userName, $pwd, $email) {
         $stmt = $this->connect()->prepare("INSERT INTO registered_user (user_nickname, user_name, user_hashed_password,
