@@ -1,7 +1,7 @@
 <?php
 
-include "loginClasses.php";
-class LoginControl extends Login {
+include "loginModel.php";
+class LoginController extends LoginModel {
     private $userNickname;
     private $pwd;
 
