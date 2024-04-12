@@ -60,12 +60,24 @@ class UserModel extends Dbh {
 
         }catch (PDOException $e) {
             $_SESSION["message"] = "Error editing user info: " . $e->getMessage();
-            header("location: ./admin.php");
+            header("location: ./admin.php?tab=users");
             exit();
         }
     }
 
+    public function searchUserByKeyword($search_keyword) {
+        try {
+            $query = "SELECT * FROM registered_user WHERE user_nickname LIKE :search_keyword OR user_name LIKE :search_keyword OR user_email LIKE :search_keyword OR user_id LIKE :search_keyword";
+            $stmt = $this->connect()->prepare($query);
 
+            $stmt->bindParam(":search_keyword", $search_keyword, PDO::PARAM_STR);
 
-
+            $stmt->execute(["search_keyword" => "%$search_keyword%"]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error searching user info: " . $e->getMessage();
+            header("location: ./admin.php?tab=users");
+            exit();
+        }
+    }
 }

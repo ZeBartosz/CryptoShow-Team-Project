@@ -26,6 +26,16 @@ class UserController extends UserModel {
         }
     }
 
+    public function searchUserByKeyword($search_keyword) {
+        try {
+            return $this->model->searchUserByKeyword($search_keyword);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error searching user info: " . $e->getMessage();
+            header("Location: admin.php?tab=users");
+            exit();
+        }
+    }
+
     public function setUserInfo($user_id, $username, $fullname, $email, $is_admin)
     {
         $result = $this->hasEmptyInput($username, $fullname, $email);
