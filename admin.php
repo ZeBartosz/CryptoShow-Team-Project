@@ -1,6 +1,7 @@
 <?php
 $title = "Admin Page";
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/adminStyle.css";
+$css_file = "";
 include_once "header.php";
 require_once "validateAdmin.php";
 include "db_connect.php";
@@ -10,6 +11,8 @@ include_once "eventView.php";
 include_once "eventController.php";
 include_once "deviceController.php";
 include_once "deviceView.php";
+
+$current_tab = isset($_GET['tab']) ? $_GET['tab'] : 'users';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["delete_user"])) {
@@ -40,9 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: {$_SERVER['PHP_SELF']}");
         exit();
     }
-
 }
-
 
 ?>
 <link rel="stylesheet" href="./css-files/adminStyle.css">
@@ -52,111 +53,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 } ?>
 <div class="container">
     <div class="tabs">
-        <button class="tabBtn active">Users</button>
-        <button class="tabBtn">Events</button>
-        <button class="tabBtn">Devices</button>
-        <div class="line"></div>
+        <a href="?tab=users"><button class="tabBtn">Users</button></a>
+        <a href="?tab=events"><button class="tabBtn">Events</button></a>
+        <a href="?tab=devices"><button class="tabBtn">Devices</button></a>
     </div>
     <div class="contentBox">
-        <div class="content active">
-            <h2>Users</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Admin</th>
-                    <th>User ID</th>
-                    <th>Nickname</th>
-                    <th>Fullname</th>
-                    <th>Email</th>
-                    <th>Device count</th>
-                    <th>Registered</th>
-                    <th>Edit</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                    $userController = new UserController();
-                    $userView = new UserView($userController);
-                    $userDisplayed = $userView->displayAllUserInfo();
-                if(!$userDisplayed === true) {
-                    echo "<tr>";
-                    echo "<td colspan='7'>No Record</td>";
-                    echo "</tr>";
-                }
-                ?>
-
-                </tbody>
-            </table>
+    <div class="search">
+            <form method="post"">
+                <label for="searchBox">Search:</label>
+                <input type="text" id="searchBox"
+                       name="<?php if($current_tab === 'users'){
+                    echo "search_user";
+                }elseif ($current_tab === 'events') {
+                    echo "search_event";
+                } elseif ($current_tab === 'devices') {
+                    echo "search_device";
+                }  ?>" placeholder="Search...">
+                <button type="submit" name="submit">Search</button>
+                <button type="submit">Clear</button>
+            </form>
         </div>
-        <div class="content">
-            <h2>Events</h2>
-            <div>
-                <a href="./addEvent.php"><button>Add Event</button></a>
-            </div>
-            <table>
-                <thead>
-                <tr>
-                    <th>Event ID</th>
-                    <th>Event Name</th>
-                    <th>Event Description</th>
-                    <th>Event Date</th>
-                    <th>Event Venue</th>
-                    <th>Published</th>
-                    <th>Edit</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $eventController = new EventController();
-                $userView = new EventView($eventController);
-                $eventDisplayed = $userView->displayAllEvents();
-                if(!$eventDisplayed === true) {
-                    echo "<tr>";
-                    echo "<td colspan='6'>No Record</td>";
-                    echo "</tr>";
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>
-        <div class="content">
-            <h2>Devices</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Device Visible</th>
-                    <th>Device ID</th>
-                    <th>Device Name</th>
-                    <th>User ID</th>
-                    <th>Device Registered</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $deviceController = new DeviceController();
-                $deviceView = new DeviceView($deviceController);
-                $deviceDisplayed = $deviceView->displayAllDeviceInfo();
-                if(!$deviceDisplayed === true) {
-                    echo "<tr>";
-                    echo "<td colspan='6'>No Record</td>";
-                    echo "</tr>";
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>
-
+        <?php
+        $userView = new UserView(new UserController());
+        $eventView = new EventView(new EventController());
+        $deviceView = new DeviceView(new DeviceController());
+        if ($current_tab === 'users') {
+            $userView->displayAllUserInfo();
+        } elseif ($current_tab === 'events') {
+            $eventView->displayAllEventInfo();
+        } elseif ($current_tab === 'devices') {
+            $deviceView->displayAllDeviceInfo();
+        }
+        ?>
     </div>
 </div>
-
-<div>
-
-</div>
-
-
 <?php
 include_once "footer.php"
 ?>
 </body>
-
 </html>
