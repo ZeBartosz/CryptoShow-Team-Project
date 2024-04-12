@@ -17,7 +17,7 @@ class EventView extends EventController {
         }
         echo '<div class="content active">
             <h2>Events</h2>
-            <a href="./addEvent.php"><button>Add Device</button></a>
+            <a href="./addEvent.php"><button>Add Event</button></a>
             <table>
                 <thead>
                     <tr>
