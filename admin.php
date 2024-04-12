@@ -52,9 +52,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 } ?>
 <div class="container">
     <div class="tabs">
-        <a href="?tab=users"><button class="tabBtn">Users</button></a>
-        <a href="?tab=events"><button class="tabBtn">Events</button></a>
-        <a href="?tab=devices"><button class="tabBtn">Devices</button></a>
+        <a href="?tab=users"><button class="tabBtn <?php echo ($_GET['tab'] == 'users' ? 'active' : ''); ?>">Users</button></a>
+        <a href="?tab=events"><button class="tabBtn <?php echo ($_GET['tab'] == 'events' ? 'active' : ''); ?>">Events</button></a>
+        <a href="?tab=devices"><button class="tabBtn <?php echo ($_GET['tab'] == 'devices' ? 'active' : ''); ?>">Devices</button></a>
     </div>
     <div class="contentBox">
     <div class="search">
