@@ -18,6 +18,30 @@ class UserController extends UserModel {
         }
     }
 
+    public function getForeignUserInfo($user_id) {
+        try {
+            return $this->model->getForeignUserInfo($user_id);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error fetching all user info: " . $e->getMessage();
+        }
+    }
+
+    public function isAttending($user_id, $event_id) {
+        try {
+            return $this->model->isAttending($user_id, $event_id);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error fetching all attendance: " . $e->getMessage();
+        }
+    }
+
+    public function getAllAttendingUsers($event_id) {
+        try {
+            return $this->model->getAllAttendingUsers($event_id);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error fetching all user info: " . $e->getMessage();
+        }
+    }
+
     public function getAllUserInfo() {
         try {
             return $this->model->getAllUserInfo();
