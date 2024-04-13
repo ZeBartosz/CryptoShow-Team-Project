@@ -5,6 +5,18 @@ class EventController extends EventModel {
 
     private $model;
 
+    private $user_id;
+    
+    private $event_id;
+
+    public function setUserForeignId($user_id) {
+        $this->user_id = $user_id;
+    }
+
+    public function setEventForeignId($event_id) {
+        $this->event_id = $event_id;
+    }
+
     public function __construct() {
         $this->model = new EventModel();
     }
@@ -33,6 +45,10 @@ class EventController extends EventModel {
         }catch (PDOException $e) {
             $_SESSION["message"] = "Error fetching Events: ". $e->getMessage();
         }
+    }
+
+    public function bookEvent($user_id, $event_id) {
+        $this->model->setbookEvent($user_id, $event_id);
     }
 
     public function setEventInfo($event_id, $event_name, $event_description, $event_date, $event_venue) {
