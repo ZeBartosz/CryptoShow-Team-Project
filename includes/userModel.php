@@ -11,11 +11,26 @@ class UserModel extends Dbh {
             $stmt->bindParam(":userid", $user_id, PDO::PARAM_INT);
 
             $stmt->execute();
-            header("location: ./admin.php");
             $_SESSION["message"] = "User deleted successfully";
+            header("location: ./admin.php");
         } catch (PDOException $e) {
             header("location: ./admin.php");
             $_SESSION["message"] = "Error deleting user: " . $e->getMessage();
+        }
+    }
+
+    public function getForeignUserInfo($foreign_user_id) {
+        try {
+            $user_id = array_column($foreign_user_id, "fk_user_id");
+            $placeholders = implode(',', array_fill(0, count($user_id), "?"));
+            $query = "SELECT * FROM registered_user WHERE user_id IN ($placeholders)";
+            $stmt = $this->connect()->prepare($query);
+
+
+            $stmt->execute($user_id);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error fetching user info: " . $e->getMessage();
         }
     }
 
@@ -32,6 +47,25 @@ class UserModel extends Dbh {
         }
     }
 
+    public function isAttending($user_id, $event_id) {
+        try {
+            $query = "SELECT * FROM user_event WHERE fk_user_id=:user_id AND fk_event_id=:event_id";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+            $stmt->bindParam(":event_id", $event_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($row) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            $_SESSION["message"] = "Error checking attendance: " . $e->getMessage();
+        }
+    }
+
     public function getAllUserInfo() {
         try {
             $query = "SELECT * FROM registered_user";
@@ -40,6 +74,18 @@ class UserModel extends Dbh {
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
+            $_SESSION["message"] = "Error fetching all user info: " . $e->getMessage();
+        }
+    }
+
+    public function getAllAttendingUsers($event_id) {
+        try {
+            $query = "SELECT fk_user_id FROM user_event WHERE fk_event_id = ?;";
+            $stmt = $this->connect()->prepare($query);
+
+            $stmt->execute(array($event_id));
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }catch (PDOException $e) {
             $_SESSION["message"] = "Error fetching all user info: " . $e->getMessage();
         }
     }
