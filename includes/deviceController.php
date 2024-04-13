@@ -24,11 +24,17 @@ class DeviceController extends DeviceModel
             exit();
         }
 
-        $result = $this->isVisible($crypto_device_record_visible);
-        if($result === false) {
+        if(!$this->is($crypto_device_record_visible)) {
+        header("location: profile.php?error=invalidInput");
+        exit();
+        }
+
+        if(!$this->invalidName($device_name)) {
             header("location: profile.php?error=invalidInput");
             exit();
         }
+
+
 
 
         $this->setNewProfileInfo($device_name, $device_image_name, $crypto_device_record_visible, $deviceID);
@@ -43,6 +49,11 @@ class DeviceController extends DeviceModel
 
         $result = $this->isVisible($crypto_device_record_visible);
         if($result === false) {
+            header("location: profile.php?error=invalidInput");
+            exit();
+        }
+
+        if(!$this->invalidName($device_name)) {
             header("location: profile.php?error=invalidInput");
             exit();
         }
@@ -69,7 +80,9 @@ class DeviceController extends DeviceModel
             exit();
         }
     }
-
+    
+    
+//    Validation
     private function emptyInputCheck($device_name)
     {
         if (empty($device_name)) {
@@ -88,6 +101,16 @@ class DeviceController extends DeviceModel
             $result = false;
         }
 
+        return $result;
+    }
+
+    private function invalidName($name) {
+        $result;
+        if(!preg_match("/^[a-zA-Z-0-9]*$/", $name)) {
+            $result = false;
+        } else {
+            $result = true;
+        }
         return $result;
     }
 
