@@ -32,6 +32,18 @@ class EventModel extends Dbh {
         }
     }
 
+    public function setbookEvent($user_id, $event_id) {
+        try {
+            $query = "INSERT INTO user_event (fk_user_id, fk_event_id) VALUES (?, ?);";
+            $stmt = $this->connect()->prepare($query);
+
+            $stmt->execute(array($user_id, $event_id));
+        } catch (PDOException $e) {
+            header("location: ./eventList.php");
+            $_SESSION[""] = "Error booking an event: " . $e->getMessage();
+        }
+    }
+
     public function getAllEventInfo() {
         try {
             $query = "SELECT * FROM event";
