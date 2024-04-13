@@ -10,7 +10,7 @@ include "profileModel.php";
 include "profileController.php";
 include "profileView.php";
 
-if(isset($_SESSION["user_id"]) == $_GET["userId"] || $_SESSION["is_admin"]) {
+if(isset($_SESSION["user_id"]) == $_GET["userId"] || isset($_SESSION["is_admin"])) {
 } else {
     header("location: index.php?error=none");
 }
@@ -61,7 +61,7 @@ if(isset($_POST["submit"])) {
         $deviceInfo->setForeignId($id);
         $deviceInfo->updateDeivce($name, $target_file, $is_visible, $deviceId);
 
-        if(isset($_GET["isAdmin"]) == 1) {
+        if(isset($_GET["isAdmin"]) == 1 && $_SESSION["is_admin"]) {
             $_SESSION["message"] = "Edited device successfully";
             header("location: admin.php");
             exit();
