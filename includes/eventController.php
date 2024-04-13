@@ -138,7 +138,7 @@ class EventController extends EventModel {
 
     private function isValidEventName($event_name) {
         $result;
-        if(preg_match("/^[a-zA-Z\s]*$/", $event_name)) {
+        if(preg_match("/^[a-zA-Z-0-9\s]*$/", $event_name)) {
             $result = true;
         } else {
             $result = false;
