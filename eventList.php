@@ -1,71 +1,76 @@
 <?php
+include_once "db_connect.php";
     try {
-        require_once "./includes/db_connect.php";
-        $query = "SELECT event_date, event_name, event_venue, event_description FROM event;";
+        $query = "SELECT * FROM event;";
         $stmt = $pdo->prepare($query);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $pdo = null;
         $stmt = null;
-        // Function to categorize events
-        function categorizeEvent($eventDate) {
-            $today = date("Y-m-d");
-            return strtotime($eventDate) >= strtotime($today) ? 'upcoming' : 'past';
-        }
-
     } catch (PDOException $th) {
         die("Query failed: " . $th->getMessage());
     }
 $title = " Cryptoshow events";
 $css_file = "./css-files/dashboardStyle.css";
 $css_filee = "./css-files/x.css";
-include_once "./includes/header.php";
+include_once "header.php";
+include_once "eventController.php";
+include_once "userController.php";
 
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST["book"])) {
+        $event_id = $_POST["event_id"];
+        $user_id = $_SESSION["user_id"];
+        $controller = new EventController();
+        $controller->setUserForeignId($user_id);
+        $controller->setEventForeignId($event_id);
+        $controller->bookEvent($user_id, $event_id);
+    }
+}
 ?>
-
-<script>
-            // JavaScript function to filter events
-            function filterEvents(type) {
-                var events = document.querySelectorAll('.event');
-                events.forEach(function(event) {
-                    if (type === 'all' || event.classList.contains(type)) {
-                        event.style.display = '';
-                    } else {
-                        event.style.display = 'none';
-                    }
-                });
-            }
-</script>
 <div class="container">
-            <div class="sidebar">
-                <div class="filter" onclick="filterEvents('all')">All Events</div>
-                <div class="filter" onclick="filterEvents('upcoming')">Upcoming Events</div>
-                <div class="filter" onclick="filterEvents('past')">Past Events</div>
-            </div>
-            <ul class="event-list">
-    <?php foreach ($results as $row): ?>
-        <?php $eventCategory = categorizeEvent($row["event_date"]); ?>
-        <li class="event <?php echo $eventCategory; ?>">
-            <div class="event-date"><?php echo htmlspecialchars($row["event_date"]); ?></div>
-            <div class="event-title"><?php echo htmlspecialchars($row["event_name"]); ?></div>
-            <div class="event-location"><?php echo htmlspecialchars($row["event_venue"]); ?></div>
-            <button class="book-button">Book Now</button>
+            <div class="event-list">
+    <?php foreach ($results as $row) { ?>
+                <li class="event">
+                    <div class="event-date"><?php echo htmlspecialchars($row["event_date"]); ?></div>
+                    <div class="event-title"><?php echo htmlspecialchars($row["event_name"]); ?></div>
+                    <div class="event-location"><?php echo htmlspecialchars($row["event_venue"]); ?></div>
+                    <div class="event-location"><?php if(isset($_SESSION["user_id"]) && $row["event_id"]) {
+                        $isAttending = new UserController();
+                        $isAttending = $isAttending->isAttending($_SESSION["user_id"], $row["event_id"]);
+                        if($isAttending) {
+                            echo "You are attending";
+                        } else {
+                            echo "You are Not attending";
+                        }
+                    }?></div>
+                    <?php
+                    if(isset($_SESSION["user_id"]) && $row["event_id"]){
+                        $isAttending = new UserController();
+                        $isAttending = $isAttending->isAttending($_SESSION["user_id"], $row["event_id"]);
+                        if(!$isAttending) { ?>
+                            <form method="post">
+                                <input name="event_id" type="hidden" value='<?= $row["event_id"] ?>'>
+                                <button name="book" type="book" class="book-button">Book Now</button>
+                            </form>
+                        <?php } else {
+                        }
+                        ?>
+                    <?php } ?>
             <br>
             <form action="popup.php" method="post">
                 <input type="hidden" name="event_date" value="<?php echo htmlspecialchars($row["event_date"]); ?>">
                 <input type="hidden" name="event_name" value="<?php echo htmlspecialchars($row["event_name"]); ?>">
                 <input type="hidden" name="event_venue" value="<?php echo htmlspecialchars($row["event_venue"]); ?>">
                 <input type="hidden" name="event_description" value="<?php echo htmlspecialchars($row["event_description"]); ?>">
-                
+                <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($row["event_id"]); ?>">
                 <input type="submit" name="submit_button" value="For more information click here">
             </form>
         </li>
-        
-    <?php endforeach; ?>
-</ul>
-    <footer>
-        <p>&copy; 2024 CryptoShow. All rights reserved.</p>
-    </footer>
 
+            </div>
+    <?php } ?>
+</ul>
+</div>
     </body>
 </html>
