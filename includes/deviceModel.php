@@ -35,11 +35,6 @@ class DeviceModel extends Dbh
             exit();
         }
 
-        if ($stmt->rowCount() == 0) {
-            $stmt = null;
-            header("Location: profile.php?error=nothingInTheArray");
-            exit();
-        }
 
         $DevicesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -115,7 +110,7 @@ class DeviceModel extends Dbh
             $_SESSION["message"] = "Error deleting device: " . $e->getMessage();
         }
     }
-    
+
     public function searchDeviceByKeyword($search_keyword) {
         try {
             $query = "SELECT * FROM crypto_device WHERE crypto_device_name LIKE :search_keyword OR crypto_device_id LIKE :search_keyword";
