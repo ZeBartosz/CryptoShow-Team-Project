@@ -34,7 +34,7 @@
 
         }
 
-        if ($_FILES["image"]["size"] > 300000000 ){
+        if ($_FILES["image"]["size"] > 200000000 ){
             header("location: {$_SERVER['PHP_SELF']}");
             $_SESSION["message"] = "Error image too large ";
             exit();
@@ -42,21 +42,35 @@
 
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $count = "1";
+        while (file_exists($target_file)) {
+            $target_file = $target_dir . $count . basename($_FILES["image"]["name"]);
+            $count++;
+        }
+
         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
         $deviceInfo = new DeviceController();
 
-        $deviceInfo->setForeignId($id);
-        $deviceInfo->insertDevice($name, $target_file, $is_visible);
-
         $profileView = new ProfileView();
-        $deviceCount = $profileView->fetchDeivceCount($id) + 1;
+        $deviceCount = $profileView->fetchDeivceCount($id);
 
-        $profileView = new ProfileController($id);
-        $profileView->updateDeviceCount($deviceCount);
+        if ($deviceCount < 5){
+            $deviceInfo->setForeignId($id);
+            $deviceInfo->insertDevice($name, $target_file, $is_visible);
+
+            $deviceCount++;
+
+            $profileView = new ProfileController($id);
+            $profileView->updateDeviceCount($deviceCount);
+        } else {
+            header("location: profile.php?error=deviceCountReached");
+            exit();
+        }
 
 
-        header("location: profile.php?error=no");
+
+        header("location: profile.php");
 
 
 
