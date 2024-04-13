@@ -5,6 +5,7 @@
     include_once "profileModel.php";
     include_once "profileController.php";
     include_once "profileView.php";
+    require_once "validateSession.php";
     $profileInfo = new ProfileView();
 
 if(isset($_POST["submit"])) {
