@@ -33,7 +33,7 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
                 <div class="col-lg-4">
                     <div class="service-box">
                         <div class="box-inner">
-                            <img src="<?php ($row["crypto_device_image_name"])?>;">
+                            <img src="<?= $row["crypto_device_image_name"]?>">
                             <div class="box-content">
                                 <h3 class="title"><?php echo $row["crypto_device_name"]; ?></h3>
                                 <h3 class="title"><?php echo $row["crypto_device_id"]; ?></h3>
