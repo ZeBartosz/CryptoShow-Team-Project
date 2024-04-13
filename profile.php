@@ -9,6 +9,7 @@ include "profileinfo_view.php";
 include "deviceModel.php";
 include "deviceController.php";
 include "deviceView.php";
+require_once "validateSession.php";
 $profileInfo = new ProfileInfoView();
 $controller = new DeviceController();
 $deviceInfo = new DeviceView($controller);
