@@ -57,4 +57,21 @@ class UserView extends UserController {
         }
         echo '</tbody></table></div>';
     }
+    public function displayAttendingUsers($event_id)
+    {
+        echo '<table>
+                <thead>
+                    <tr>
+                        <th>User who will be attending</th>
+                    </tr>
+                </thead>
+                <tbody>';
+        $user_info = $this->controller->getAllAttendingUsers($event_id);
+        $user_info = $this->controller->getForeignUserInfo($user_info);
+        foreach ($user_info as $user) {
+            echo "<tr>
+                    <td>" . $user['user_nickname'] . "</td>
+                  </tr>";
+        }
+    }
 }
