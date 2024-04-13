@@ -1,6 +1,7 @@
 <?php
 $title = "Edit user";
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/adminStyle.css";
+$css_filee = "./css-files/header.css";
 include_once "header.php";
 require_once "validateAdmin.php";
 include "db_connect.php";
@@ -40,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <h5><?= $_SESSION["message"] ?></h5> <?php
     unset($_SESSION["message"]);
 } ?>
-<form method="post">
+<form class="edit-form" method="post">
     <input type="hidden" value="<?= $user_info["user_id"] ?>" name="userid">
     <div>
         <label>Username</label>
@@ -59,8 +60,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="checkbox"  <?php if($user_info["is_admin"]) echo "checked"; ?> name="admin">
     </div>
     <button type="submit" name="submit">Update User</button>
+    <a href="./admin.php?tab=users"><button type= "delete">Cancel</button></a>
 </form>
-<a href="./admin.php?tab=users"><button>Cancel</button></a>
 <?php
 include_once "footer.php";
 ?>

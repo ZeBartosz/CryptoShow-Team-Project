@@ -1,7 +1,7 @@
 <?php
 $title = "Profile page";
-$css_file = "./css-files/dashboardStyle.css";
-$css_file2 = "./css-files/profileStyle.css";
+$css_file = "./css-files/header.css";
+$css_filee = "./css-files/profileStyle.css";
 include_once "header.php";
 include "profileinfo.php";
 include "profileinfo_contrl.php";
@@ -17,12 +17,13 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
 
 ?>
 <body>
-    <section>
+    <div class = "container-info">
         <h1>User nickname: <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
         <p>User name: <?php $profileInfo->fetchName($_SESSION["user_id"])?></p>
         <p>User email: <?php $profileInfo->fetchEmail($_SESSION["user_id"])?></p>
-        <a href="profileSetting.php">Edit Profile</a>
-    </section>
+        <a href="profileSetting.php"><button type = "edit">Edit Profile</button></a>
+        <a href="deviceAdd.php"><button type ="edit">Add Device</button></a>
+    
 
     <section>
         <p>User device count: <?php echo $profileInfo->fetchDeivceCount($_SESSION["user_id"]); ?>/5</p>
@@ -45,7 +46,7 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
             </div>
         </div>
 
-        <a href="deviceAdd.php">Add Device</a>
+        
     </section>
 </body>
 

@@ -1,5 +1,6 @@
 <?php
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/header.css";
+$css_filee = "./css-files/adminStyle.css";
 include "header.php";
 require_once "validateAdmin.php";
 include "db_connect.php";
@@ -29,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <h5><?= $_SESSION["message"] ?></h5> <?php
     unset($_SESSION["message"]);
 } ?>
-<form method="post">
+<form class="edit-form" method="post">
     <div>
         <label>Event name</label>
         <input type="text" name="name" placeholder="Event Name">

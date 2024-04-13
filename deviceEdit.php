@@ -1,6 +1,8 @@
 <?php
 $title = "Edit Device";
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/adminStyle.css";
+$css_filee = "./css-files/header.css";
+
 include_once "header.php";
 include "deviceModel.php";
 include "deviceController.php";
@@ -64,7 +66,7 @@ if(isset($_POST["delete"])) {
         <div class="wrapper">
             <div class="profile-settings">
                 <h3>DEVICE SETTINGS</h3>
-                <form method="post" enctype="multipart/form-data">
+                <form class="edit-form" method="post" enctype="multipart/form-data">
                     <P>Change Device name! <?php echo $deviceId; ?></P>
                     <input type="text" name="name" placeholder="Device name..." value="<?php $deviceInfo1->fetchSpeDeviceName($deviceId)?>">
                     <p>Change your device image!</p>

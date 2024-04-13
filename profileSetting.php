@@ -1,13 +1,13 @@
 <?php
     $title = "Edit your profile";
-    $css_file = "./css-files/dashboardStyle.css";
+    $css_file = "./css-files/adminStyle.css";
+    $css_filee = "./css-files/header.css";
     include_once "header.php";
     include "profileinfo.php";
     include "profileinfo_contrl.php";
     include "profileinfo_view.php";
     $profileInfo = new ProfileInfoView();
 
-session_start();
 
 if(isset($_POST["submit"])) {
 
@@ -34,7 +34,7 @@ if(isset($_POST["submit"])) {
             <div class="wrapper">
                 <div class="profile-settings">
                     <h3>PROFILE SETTINGS</h3>
-                    <form method="post">
+                    <form class="edit-form" method="post">
                         <P>Change your nickname!</P>
                         <input type="text" name="nickname" placeholder="User nickname..." value="<?php $profileInfo->fetchNickname($_SESSION["user_id"])?>">
                         <p>Change your name!</p>

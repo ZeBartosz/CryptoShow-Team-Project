@@ -1,6 +1,7 @@
 <?php
     $title = "Add Device";
-    $css_file = "./css-files/dashboardStyle.css";
+    $css_file = "./css-files/header.css";
+    $css_filee = "./css-files/adminStyle.css";
     include_once "header.php";
     include "deviceModel.php";
     include "deviceController.php";
@@ -31,7 +32,7 @@
             <div class="wrapper">
                 <div class="profile-settings">
                     <h3>ADD DEVICE</h3>
-                    <form method="post" enctype="multipart/form-data">
+                    <form class="edit-form" method="post" enctype="multipart/form-data">
                         <P>Change your device name!</P>
                         <input type="text" name="name" placeholder="device name...">
                         <p>Change your device image!</p>
