@@ -33,11 +33,13 @@ if(isset($_GET['logout'])) {
             ?>
             <?php
             if (isset($_SESSION['user_id'] )) {
+                echo  "<li><a class='headerBtn' href='./eventList.php'>Events</a></li>";
                 echo  "<li><a class='headerBtn' href='./profile.php'>Profile</a></li>";
                 echo "<li><a class='headerBtn' href='index.php?logout=true'>Logout</a></button></li>";
             } else {
-              echo  "<li><a class='headerBtn' href='register.php'>Register</a></li>";
-              echo  "<li><a class='headerBtn' href='login.php'>Login</a></li>";
+                echo  "<li><a class='headerBtn' href='./eventList.php'>Events</a></li>";
+                echo  "<li><a class='headerBtn' href='register.php'>Register</a></li>";
+                echo  "<li><a class='headerBtn' href='login.php'>Login</a></li>";
             }
             ?>
         </ul>
