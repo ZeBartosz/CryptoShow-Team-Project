@@ -20,13 +20,14 @@ CREATE TABLE `registered_user` (
     `user_nickname` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
     `user_name` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
     `user_email` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+    `user_description` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+    `user_image` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     `user_hashed_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
     `user_device_count` tinyint(5) unsigned NOT NULL DEFAULT 0,
     `user_registered_timestamp` timestamp NOT NULL,
     `is_admin` BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
 
 
 -- ------------------------------------
@@ -71,7 +72,7 @@ DROP TABLE IF EXISTS `user_event`;
 CREATE TABLE `user_event` (
     `fk_user_id` INT(10) unsigned NOT NULL,
     `fk_event_id` INT(10) unsigned NOT NULL,
-     FOREIGN KEY (fk_user_id) REFERENCES registered_user (user_id),
+     FOREIGN KEY (fk_user_id) REFERENCES registered_user (user_id) ON DELETE CASCADE,
      FOREIGN KEY (fk_event_id) REFERENCES event (event_id) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
 COLLATE=utf8_unicode_ci;
