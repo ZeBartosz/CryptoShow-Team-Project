@@ -1,30 +1,27 @@
 <?php
     $title = "Edit your profile";
-    $css_file = "./css-files/adminStyle.css";
-    $css_filee = "./css-files/header.css";
+    $css_file = "./css-files/dashboardStyle.css";
     include_once "header.php";
-    include "profileinfo.php";
-    include "profileinfo_contrl.php";
-    include "profileinfo_view.php";
-    $profileInfo = new ProfileInfoView();
-
+    include_once "profileModel.php";
+    include_once "profileController.php";
+    include_once "profileView.php";
+    $profileInfo = new ProfileView();
 
 if(isset($_POST["submit"])) {
 
     $id = $_SESSION["user_id"];
 
-    $nickname = htmlspecialchars($_POST["nickname"], ENT_QUOTES, "UTF-8");
-    $name = htmlspecialchars($_POST["name"], ENT_QUOTES, "UTF-8");
-    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL, );
-
+    $nickname = $_POST["nickname"];
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $pwd = $_POST["password"];
+    $repeatPwd = $_POST["rptPassword"];
 
     include_once "dbh.php";
-    include_once "profileinfo.php";
-    include_once "profileinfo_contrl.php";
-    include_once "profileinfo_view.php";
-    $profileInfo = new ProfileInfoContrl($id);
 
-    $profileInfo->updateProfileInfo($nickname, $name, $email);
+    $profileInfo = new ProfileController($id);
+
+    $profileInfo->updateProfileInfo($nickname, $name, $email, $pwd, $repeatPwd);
 
     header("location: profile.php?error=none");
 }
@@ -35,12 +32,16 @@ if(isset($_POST["submit"])) {
                 <div class="profile-settings">
                     <h3>PROFILE SETTINGS</h3>
                     <form class="edit-form" method="post">
-                        <P>Change your nickname!</P>
+                        <label for="nickname">Change Nickname:</label>
                         <input type="text" name="nickname" placeholder="User nickname..." value="<?php $profileInfo->fetchNickname($_SESSION["user_id"])?>">
-                        <p>Change your name!</p>
+                        <label for="name">Change Name:</label>
                         <input type="text" name="name" placeholder="User name..." value="<?php $profileInfo->fetchName($_SESSION["user_id"])?>">
-                        <p>Change your email!</p>
+                        <label for="email">Change Email:</label>
                         <input type="text" name="email" placeholder="User email..." value="<?php $profileInfo->fetchEmail($_SESSION["user_id"])?>">
+                        <label for="password">Change Password:</label>
+                        <input type="password" id="password" name="password"placeholder="Password">
+                        <label for="rptPassword">Repeat Password:</label>
+                        <input type="password" id="rptPassword" name="rptPassword"placeholder="Repeat password">
                         <button type="submit" name="submit">SAVE</button>
                     </form>
                 </div>
