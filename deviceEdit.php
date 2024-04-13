@@ -46,15 +46,16 @@ if(isset($_POST["submit"])) {
 
         }
 
-        if ($_FILES["image"]["size"] > 300000000 ){
+        if ($_FILES["image"]["size"] > 200000000 ){
             header("location: {$_SERVER['PHP_SELF']}");
             $_SESSION["message"] = "Error image too large ";
             exit();
         }
 
+        $profileInfo = new ProfileView();
 
-        $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+
+        $target_file = $deviceInfo1->fetchDeviceImagine();
         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
         $deviceInfo->setForeignId($id);
@@ -65,7 +66,7 @@ if(isset($_POST["submit"])) {
             header("location: admin.php");
             exit();
         }
-        header("location: profile.php?error=none");
+        header("location: profile.php");
     }
 }
 
@@ -85,7 +86,7 @@ if(isset($_POST["delete"])) {
         $profileView = new ProfileController($id);
         $profileView->updateDeviceCount($deviceCount);
 
-        header("location: profile.php?error=none");
+        header("location: profile.php");
     }
 
 
