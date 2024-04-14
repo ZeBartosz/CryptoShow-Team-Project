@@ -12,6 +12,7 @@ include_once "deviceView.php";
 require_once "validateSession.php";
 ?>
 <body>
+    <main>
 <?php if(isset($_GET["username"])) {
     $username = $_GET["username"];
     $profileInfo = new ProfileView();
@@ -19,19 +20,21 @@ require_once "validateSession.php";
     $controller = new DeviceController();
     $deviceInfo = new DeviceView($controller);
     $items = $deviceInfo->fetchPublicDeviceInfo($profileInfo["user_id"]);
-
+    
     ?>
     <div class = "container-info">
-        <p>Nickname: <?= $profileInfo["user_nickname"]?></p>
+        <h1>Nickname: <?= $profileInfo["user_nickname"]?></h1>
         <img src="<?= $profileInfo["user_image"]?>">
         <p>Bio: <br> <?= $profileInfo["user_description"]?></p>
         <p>Name: <?= $profileInfo["user_name"]?></p>
         <p>Email: <?= $profileInfo["user_email"]?></p>
-    </div>
+    
     <section>
         <div class="service-boxes">
-            <div class="container">
-                <?php foreach($items as $row) { ?>
+            
+                <?php if(!empty($items)){?>
+                    <div class="container">
+                     <?php foreach($items as $row) {  ?>
                     <div class="col-lg-4">
                         <div class="service-box">
                             <div class="box-inner">
@@ -45,6 +48,9 @@ require_once "validateSession.php";
                     </div>
                 <?php } ?>
             </div>
+                <?php } ?>
+               
+        </div>
         </div>
     </section>
 
@@ -57,7 +63,7 @@ $deviceInfo = new DeviceView($controller);
 $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
 ?>
 <div class = "container-info">
-    <h1>User nickname: <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
+    <h1>Hello <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
     <img src="<?= $profileInfo->fetchImage($_SESSION["user_id"])?>">
     <p>User Bio: <br> <?php $profileInfo->fetchBio($_SESSION["user_id"])?></p>
     <p>User name: <?php $profileInfo->fetchName($_SESSION["user_id"])?></p>
@@ -77,7 +83,6 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
                                     <h3 class="title"><?php echo $row["crypto_device_name"]; ?></h3>
                                     <h3 class="title"><?php echo $row["crypto_device_id"]; ?></h3>
                                     <a href="deviceEdit.php?deviceId=<?php echo $row["crypto_device_id"]; ?>&userId=<?php echo $_SESSION["user_id"]; ?>" class="link-device-edit" ><button type ="edit">Edit Device</button></a>
-
                                 </div>
                             </div>
                         </div>
@@ -86,6 +91,12 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
             </div>
         </div>
     </section>
+    
     <?php } ?>
+    </main>
+    <?php
+    include_once "footer.php";
+    ?>
+
 </body>
 </html>
