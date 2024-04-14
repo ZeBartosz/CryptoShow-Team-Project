@@ -88,7 +88,7 @@
             <div class="wrapper">
                 <div class="profile-settings">
                     <h3>ADD DEVICE</h3>
-                    <form method="post" enctype="multipart/form-data">
+                    <form class="edit-form" method="post" enctype="multipart/form-data">
                         <label for="name">Device Name:</label>
                         <input type="text" name="name" placeholder="device name...">
                         <label for="image">Device Image:</label>
