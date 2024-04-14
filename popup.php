@@ -1,6 +1,6 @@
 <?php
 $title = " event details";
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/header.css";
 $css_filee = "./css-files/popup.css";
 include_once "header.php";
 include_once "userView.php";
