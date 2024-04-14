@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div>
         <label>Event Description</label>
-        <textarea name="description"><?= $event_info["event_description"] ?></textarea>
+        <textarea name="description" maxlength="255"><?= $event_info["event_description"] ?></textarea>
     </div>
     <div>
         <label>Event Date</label>
