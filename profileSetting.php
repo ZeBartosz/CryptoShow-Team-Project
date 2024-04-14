@@ -3,7 +3,7 @@
     ini_set("file_upload", "On");
     $title = "Edit your profile";
     $css_file = "./css-files/header.css";
-    $css_filee = "./css-files/profileStyle.css";
+    $css_filee = "./css-files/adminStyle.css";
     include_once "header.php";
     include_once "profileModel.php";
     include_once "profileController.php";
