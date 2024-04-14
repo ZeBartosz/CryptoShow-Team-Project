@@ -6,7 +6,7 @@ include_once "header.php";
 require_once "validateSession.php";
 require_once "dbh.php";
 include_once "registerController.php";
-
+isLoggedIn();
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $userNickname = $_POST["username"];
     $firstName = $_POST["name"];
