@@ -61,6 +61,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="?tab=devices"><button class="tabBtn <?php echo ($_GET['tab'] == 'devices' ? 'active' : ''); ?>">Devices</button></a>
     </div>
     <div class="contentBox">
+        <?php if(isset($_SESSION["message"])) { ?>
+            <h5><?= $_SESSION['message'] ?></h5> <?php
+            unset($_SESSION["message"]);
+        } ?>
     <div class="search">
              <form method="post">
                 <label type="searchBox">Search:</label>
