@@ -88,13 +88,13 @@
             <div class="wrapper">
                 <div class="profile-settings">
                     <h3>ADD DEVICE</h3>
-                    <form class="edit-form" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data">
                         <label for="name">Device Name:</label>
-                        <input type="text" name="name" placeholder="device name...">
+                        <input type="text" name="name" placeholder="device name..." required>
                         <label for="image">Device Image:</label>
-                        <input type="file" name="image" placeholder="device image..." >
+                        <input type="file" name="image" placeholder="device image..." required>
                         <label for="visible">Device Visibility:</label>
-                        <input type="checkbox" name="visible" value="checked" >
+                        <input type="checkbox" name="visible" value="checked" required>
                         <button type="submit" name="submit">ADD</button>
                     </form>
                 </div>

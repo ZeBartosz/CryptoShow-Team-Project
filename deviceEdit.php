@@ -1,8 +1,7 @@
 <?php
 ini_set("file_upload", "On");
 $title = "Edit Device";
-$css_file = "./css-files/adminStyle.css";
-$css_filee = "./css-files/header.css";
+$css_file = "./css-files/dashboardStyle.css";
 include_once "header.php";
 include "deviceModel.php";
 include "deviceController.php";
@@ -28,35 +27,43 @@ if(isset($_POST["submit"])) {
         $is_visible = isset($_POST["visible"])? 1 : 0;
         $deviceInfo = new DeviceController();
 
-        $fileName = $_FILES["image"]["name"];
-        $fileExt = explode('.', $fileName);
-        $actualFileExt = strtolower(end($fileExt));
-        $allowed = array('jpg', 'jpeg', 'png');
+        if($_FILES["image"]["error"] == 4 ){
+            $target_file = $deviceInfo1->fetchSpeDeviceImagine($deviceId);
+        } else {
+            $fileName = $_FILES["image"]["name"];
+            $fileExt = explode('.', $fileName);
+            $actualFileExt = strtolower(end($fileExt));
+            $allowed = array('jpg', 'jpeg', 'png');
 
-        if (!in_array($actualFileExt, $allowed)){
-            header("location: {$_SERVER['PHP_SELF']}");
-            $_SESSION["message"] = "Error wrong image compression";
-            exit();
+            if (!in_array($actualFileExt, $allowed)){
+                header("location: {$_SERVER['PHP_SELF']}");
+                $_SESSION["message"] = "Error wrong image compression";
+                exit();
 
+            }
+
+            if($_FILES["image"]["error"] == 1){
+                header("location: {$_SERVER['PHP_SELF']}");
+                $_SESSION["message"] = "Error with the image";
+                exit();
+
+            }
+
+            if ($_FILES["image"]["size"] > 200000000 ){
+                header("location: {$_SERVER['PHP_SELF']}");
+                $_SESSION["message"] = "Error image too large ";
+                exit();
+            }
+
+            $target_dir = "uploads/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            $count = "1";
+            while (file_exists($target_file)) {
+                $target_file = $target_dir . $count . basename($_FILES["image"]["name"]);
+                $count++;
+            }
         }
 
-        if($_FILES["image"]["error"] == 1){
-            header("location: {$_SERVER['PHP_SELF']}");
-            $_SESSION["message"] = "Error with the image";
-            exit();
-
-        }
-
-        if ($_FILES["image"]["size"] > 200000000 ){
-            header("location: {$_SERVER['PHP_SELF']}");
-            $_SESSION["message"] = "Error image too large ";
-            exit();
-        }
-
-        $profileInfo = new ProfileView();
-
-
-        $target_file = $deviceInfo1->fetchDeviceImagine();
         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
         $deviceInfo->setForeignId($id);

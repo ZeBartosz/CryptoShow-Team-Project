@@ -48,7 +48,7 @@ class DeviceView extends DeviceModel {
     public function fetchSpeDeviceImagine($deviceId){
         $profileInfo = $this->getSpecificDevicesInfo($deviceId);
 
-        echo $profileInfo[0]["crypto_device_image"];
+        return $profileInfo[0]["crypto_device_image"];
     }
 
 
@@ -58,8 +58,6 @@ class DeviceView extends DeviceModel {
         return $profileInfo[0]["crypto_device_record_visible"];
     }
 
-    public function displayAllDeviceInfo() {
-        $device_info = $this->controller->getAllDeviceInfo();
 
     public function displayAllDeviceInfo() {
         if (isset($_POST["search_device"])) {
