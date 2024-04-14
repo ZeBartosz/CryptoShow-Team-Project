@@ -25,6 +25,10 @@ class ProfileView extends ProfileModel {
 
         return $profileInfo[0]["user_device_count"];
     }
+    
+    public function fetchPublicProfileInfo($username) {
+        return $this->getPublicProfileInfo($username);
+    }
 
 
 }
