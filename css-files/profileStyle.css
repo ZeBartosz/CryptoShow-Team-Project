@@ -54,5 +54,7 @@ button[type=edit]:hover{
 .title{
     margin: 2px;
 }
-
+.avatar {
+border-radius: 360px;
+}
 
