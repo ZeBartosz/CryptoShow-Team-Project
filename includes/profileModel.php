@@ -49,20 +49,20 @@ class ProfileModel extends Dbh
     }
 
 
-    protected function setNewProfileInfo($userId, $userNickname, $userName, $userEmail, $pwd)
+    protected function setNewProfileInfo($userId, $userNickname, $userName, $userEmail, $pwd, $image, $bio)
     {
 
         if(empty($pwd)) {
-            $stmt = $this->connect()->prepare('UPDATE registered_user SET user_nickname = ?, user_name = ?, user_email = ? WHERE user_id = ?;');
-            if (!$stmt->execute(array($userNickname, $userName, $userEmail, $userId))) {
+            $stmt = $this->connect()->prepare('UPDATE registered_user SET user_nickname = ?, user_name = ?, user_email = ?, user_image = ?, user_description = ?  WHERE user_id = ?;');
+            if (!$stmt->execute(array($userNickname, $userName, $userEmail, $image, $bio, $userId))) {
                 $stmt = null;
                 header("Location: ../php-files/profile.php?error=stmtfaied");
                 exit();
             }
         } else {
             $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
-            $stmt = $this->connect()->prepare('UPDATE registered_user SET user_nickname = ?, user_name = ?, user_email = ?, user_hashed_password = ? WHERE user_id = ?;');
-            if (!$stmt->execute(array($userNickname, $userName, $userEmail, $hashedPwd, $userId))) {
+            $stmt = $this->connect()->prepare('UPDATE registered_user SET user_nickname = ?, user_name = ?, user_email = ?, user_hashed_password = ?, user_image = ?, user_description = ? WHERE user_id = ?;');
+            if (!$stmt->execute(array($userNickname, $userName, $userEmail, $hashedPwd, $image, $bio, $userId))) {
                 $stmt = null;
                 header("Location: ../php-files/profile.php?error=stmtfaied");
                 exit();
@@ -73,14 +73,13 @@ class ProfileModel extends Dbh
 
     protected function setDeviceCount($userId, $deviceCount)
     {
-
-            $stmt = $this->connect()->prepare('UPDATE registered_user SET user_device_count = ? WHERE user_id = ?;');
-            if (!$stmt->execute(array($deviceCount, $userId))) {
-                $stmt = null;
-                header("Location: ../php-files/profile.php?error=stmtfaied");
-                exit();
-            }
+        $stmt = $this->connect()->prepare('UPDATE registered_user SET user_device_count = ? WHERE user_id = ?;');
+        if (!$stmt->execute(array($deviceCount, $userId))) {
+            $stmt = null;
+            header("Location: ../php-files/profile.php?error=stmtfaied");
+            exit();
         }
+    }
 
 
 

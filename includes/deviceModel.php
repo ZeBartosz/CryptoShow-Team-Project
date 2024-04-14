@@ -41,6 +41,19 @@ class DeviceModel extends Dbh
         return $DevicesData;
     }
 
+    protected function getPublicDeviceInfo($userId) {
+        $sql = "SELECT * FROM crypto_device WHERE fk_user_id = ? AND crypto_device_record_visible = 1;";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->bindParam(array($userId));
+        if (!$stmt->execute()) {
+            $stmt = null;
+            header("Location: index.php?error=stmtfailed");
+            exit();
+        }
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 
     protected function setNewProfileInfo($device_name, $device_image_name, $crypto_device_record_visible, $device_id) {
 

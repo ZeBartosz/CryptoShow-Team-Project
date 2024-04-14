@@ -80,9 +80,7 @@ class DeviceController extends DeviceModel
             exit();
         }
     }
-    
-    
-//    Validation
+
     private function emptyInputCheck($device_name)
     {
         if (empty($device_name)) {

@@ -3,12 +3,12 @@ $title = "Profile page";
 $css_file = "./css-files/header.css";
 $css_filee = "./css-files/profileStyle.css";
 include_once "header.php";
-include "profileModel.php";
-include "profileController.php";
-include "profileView.php";
-include "deviceModel.php";
-include "deviceController.php";
-include "deviceView.php";
+include_once "profileModel.php";
+include_once "profileController.php";
+include_once "profileView.php";
+include_once "deviceModel.php";
+include_once "deviceController.php";
+include_once "deviceView.php";
 require_once "validateSession.php";
 ?>
 <body>
@@ -16,22 +16,50 @@ require_once "validateSession.php";
     $username = $_GET["username"];
     $profileInfo = new ProfileView();
     $profileInfo = $profileInfo->fetchPublicProfileInfo($username);
-?>
-<div class = "container-info">
-    <h1>Hello <?= $profileInfo["user_nickname"]?></h1>
-    <p>User name: <?= $profileInfo["user_name"]?></p>
-    <p>User email: <?= $profileInfo["user_email"]?></p>
-</div>
-<?php } else { ?>
-<?php
-    isNotLoggedIn();
-    $profileInfo = new ProfileView();
     $controller = new DeviceController();
     $deviceInfo = new DeviceView($controller);
-    $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
+    $items = $deviceInfo->fetchPublicDeviceInfo($profileInfo["user_id"]);
+
     ?>
+    <div class = "container-info">
+        <p>Nickname: <?= $profileInfo["user_nickname"]?></p>
+        <img src="<?= $profileInfo["user_image"]?>">
+        <p>Bio: <br> <?= $profileInfo["user_description"]?></p>
+        <p>Name: <?= $profileInfo["user_name"]?></p>
+        <p>Email: <?= $profileInfo["user_email"]?></p>
+    </div>
+    <section>
+        <div class="service-boxes">
+            <div class="container">
+                <?php foreach($items as $row) { ?>
+                    <div class="col-lg-4">
+                        <div class="service-box">
+                            <div class="box-inner">
+                                <img src="<?= $row["crypto_device_image_name"]?>">
+                                <div class="box-content">
+                                    <h3 class="title"><?php echo $row["crypto_device_name"]; ?></h3>
+                                    <h3 class="title"><?php echo $row["crypto_device_id"]; ?></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </section>
+
+<?php } else { ?>
+<?php
+isNotLoggedIn();
+$profileInfo = new ProfileView();
+$controller = new DeviceController();
+$deviceInfo = new DeviceView($controller);
+$items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
+?>
 <div class = "container-info">
-    <h1>Hello <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
+    <h1>User nickname: <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
+    <img src="<?= $profileInfo->fetchImage($_SESSION["user_id"])?>">
+    <p>User Bio: <br> <?php $profileInfo->fetchBio($_SESSION["user_id"])?></p>
     <p>User name: <?php $profileInfo->fetchName($_SESSION["user_id"])?></p>
     <p>User email: <?php $profileInfo->fetchEmail($_SESSION["user_id"])?></p>
     <a href="profileSetting.php"><button type = "edit">Edit Profile</button></a>
@@ -57,6 +85,6 @@ require_once "validateSession.php";
             </div>
         </div>
     </section>
- <?php } ?>
+    <?php } ?>
 </body>
 </html>

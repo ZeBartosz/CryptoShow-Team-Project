@@ -20,6 +20,18 @@ class ProfileView extends ProfileModel {
         echo $profileInfo[0]["user_email"];
     }
 
+    public function fetchImage($userId){
+        $profileInfo = $this->getProfileInfo($userId);
+
+        return $profileInfo[0]["user_image"];
+    }
+
+    public function fetchBio($userId){
+        $profileInfo = $this->getProfileInfo($userId);
+
+        echo $profileInfo[0]["user_description"];
+    }
+
     public function fetchDeivceCount($userId){
         $profileInfo = $this->getProfileInfo($userId);
 

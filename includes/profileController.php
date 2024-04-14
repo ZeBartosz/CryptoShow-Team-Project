@@ -1,17 +1,19 @@
 <?php
 
-
+include_once "deviceModel.php";
 class ProfileController extends ProfileModel
 {
 
     private $userId;
+    private $model;
 
     public function __construct($userId)
     {
         $this->userId = $userId;
     }
 
-    public function updateProfileInfo($userNickname, $userName, $userEmail, $pwd, $repeatPwd)
+
+    public function updateProfileInfo($userNickname, $userName, $userEmail, $pwd, $repeatPwd, $image, $bio)
     {
         if ($this->emptyInputCheck($userNickname, $userName, $userEmail)) {
             header("location: ../profile.php?error=emptyinput");
@@ -21,6 +23,11 @@ class ProfileController extends ProfileModel
 
         if (!$this->invalidUsername($userNickname)) {
             header("location: ../profile.php?error=invalidUsername");
+            exit();
+        }
+
+        if ($this->reachedDescriptionLimit($bio)) {
+            header("location: ../profile.php?error=DescriptionLimitMet");
             exit();
         }
 
@@ -43,7 +50,7 @@ class ProfileController extends ProfileModel
 
 
 
-        $this->setNewProfileInfo($this->userId, $userNickname, $userName, $userEmail, $pwd);
+        $this->setNewProfileInfo($this->userId, $userNickname, $userName, $userEmail, $pwd, $image, $bio);
 
     }
 
@@ -100,6 +107,16 @@ class ProfileController extends ProfileModel
             $result = false;
         } else {
             $result = true;
+        }
+        return $result;
+    }
+
+    private function reachedDescriptionLimit($event_description) {
+        $result;
+        if(strlen($event_description) > 255) {
+            $result = true;
+        } else {
+            $result = false;
         }
         return $result;
     }

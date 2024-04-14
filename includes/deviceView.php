@@ -35,6 +35,10 @@ class DeviceView extends DeviceModel {
         return $profileInfo;
     }
 
+    public function fetchPublicDeviceInfo($userId) {
+        return $this->getPublicDeviceInfo($userId);
+    }
+
     public function fetchSpeDeviceName($deviceId){
         $profileInfo = $this->getSpecificDevicesInfo($deviceId);
 
@@ -53,6 +57,9 @@ class DeviceView extends DeviceModel {
 
         return $profileInfo[0]["crypto_device_record_visible"];
     }
+
+    public function displayAllDeviceInfo() {
+        $device_info = $this->controller->getAllDeviceInfo();
 
     public function displayAllDeviceInfo() {
         if (isset($_POST["search_device"])) {
