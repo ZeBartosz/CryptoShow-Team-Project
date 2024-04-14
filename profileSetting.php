@@ -6,6 +6,7 @@
     include_once "profileController.php";
     include_once "profileView.php";
     require_once "validateSession.php";
+    isNotLoggedIn();
     $profileInfo = new ProfileView();
 
 if(isset($_POST["submit"])) {
