@@ -49,6 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+<main>
 <?php if(isset($_SESSION["message"])) { ?>
     <h5><?= $_SESSION['message'] ?></h5> <?php
     unset($_SESSION["message"]);
@@ -95,6 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
     </div>
 </div>
+</main>
 <?php
 include_once "footer.php"
 ?>
