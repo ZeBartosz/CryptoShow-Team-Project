@@ -1,5 +1,5 @@
 <?php
-include_once "db_connect.php";
+include_once "./includes/db_connect.php";
     try {
         $query = "SELECT * FROM event;";
         $stmt = $pdo->prepare($query);
@@ -11,11 +11,11 @@ include_once "db_connect.php";
         die("Query failed: " . $th->getMessage());
     }
 $title = " Cryptoshow events";
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/header.css";
 $css_filee = "./css-files/x.css";
-include_once "header.php";
-include_once "eventController.php";
-include_once "userController.php";
+include_once "./includes/header.php";
+include_once "./includes/eventController.php";
+include_once "./includes/userController.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["book"])) {
@@ -64,13 +64,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="hidden" name="event_venue" value="<?php echo htmlspecialchars($row["event_venue"]); ?>">
                 <input type="hidden" name="event_description" value="<?php echo htmlspecialchars($row["event_description"]); ?>">
                 <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($row["event_id"]); ?>">
-                <input type="submit" name="submit_button" value="For more information click here">
+                <input type="submit" name="submit_button" class="info-button" value="For more information click here">
+
             </form>
         </li>
 
-            </div>
+            
     <?php } ?>
+    </div>
 </ul>
 </div>
     </body>
 </html>
+
