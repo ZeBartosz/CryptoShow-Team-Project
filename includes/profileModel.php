@@ -29,6 +29,25 @@ class ProfileModel extends Dbh
         return $profileData;
     }
 
+    protected function getPublicProfileInfo($username) {
+        $sql = "SELECT * FROM registered_user WHERE user_nickname = :username";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+        if (!$stmt->execute()) {
+            $stmt = null;
+            header("Location: index.php?error=stmtfailed");
+            exit();
+        }
+
+        if ($stmt->rowCount() == 0) {
+            $stmt = null;
+            header("Location: ./index.php?error=profilenotfound");
+            exit();
+        }
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 
     protected function setNewProfileInfo($userId, $userNickname, $userName, $userEmail, $pwd)
     {
