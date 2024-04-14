@@ -52,8 +52,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="checkbox" name="publish" checked="">
     </div>
     <button type="submit" name="submit">Upload Event</button>
+    <a href="./admin.php?tab=events"><button type = "delete">Cancel</button></a>
 </form>
-<a href="./admin.php?tab=events"><button>Cancel</button></a>
+
 <?php
 include_once "footer.php";
 ?>
