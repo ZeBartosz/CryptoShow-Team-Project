@@ -18,7 +18,7 @@ require_once "validateSession.php";
     $profileInfo = $profileInfo->fetchPublicProfileInfo($username);
 ?>
 <div class = "container-info">
-    <p>User nickname: <?= $profileInfo["user_nickname"]?></p>
+    <h1>Hello <?= $profileInfo["user_nickname"]?></h1>
     <p>User name: <?= $profileInfo["user_name"]?></p>
     <p>User email: <?= $profileInfo["user_email"]?></p>
 </div>
@@ -31,7 +31,7 @@ require_once "validateSession.php";
     $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
     ?>
 <div class = "container-info">
-    <h1>User nickname: <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
+    <h1>Hello <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
     <p>User name: <?php $profileInfo->fetchName($_SESSION["user_id"])?></p>
     <p>User email: <?php $profileInfo->fetchEmail($_SESSION["user_id"])?></p>
     <a href="profileSetting.php"><button type = "edit">Edit Profile</button></a>
