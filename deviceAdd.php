@@ -79,16 +79,18 @@
 ?>
 
 
-<?php if(isset($_SESSION["message"])) { ?>
-    <h5><?= $_SESSION['message'] ?></h5> <?php
-    unset($_SESSION["message"]);
-} ?>
+
     <section class="profile">
         <div class="profile-bg">
             <div class="wrapper">
                 <div class="profile-settings">
-                    <h3>ADD DEVICE</h3>
-                    <form method="post" enctype="multipart/form-data">
+                    
+                    <form class="edit-form" method="post" enctype="multipart/form-data">
+                        <?php if(isset($_SESSION["message"])) { ?>
+                            <h5><?= $_SESSION['message'] ?></h5> <?php
+                            unset($_SESSION["message"]);
+                        } ?>
+                        <h3>ADD DEVICE</h3>
                         <label for="name">Device Name:</label>
                         <input type="text" name="name" placeholder="device name..." required>
                         <label for="image">Device Image:</label>
