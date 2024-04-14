@@ -41,8 +41,8 @@ class UserView extends UserController {
                     <td>" . $user['user_email'] . "</td>
                     <td>" . $user['user_device_count'] . "</td>
                     <td>" . $user['user_registered_timestamp'] . "</td>
-                    <td><a href='userEdit.php?id=" . $user['user_id'] . "'><button type= 'submit'>Edit</button></a></td>
-                    <td>
+                    <td><a href='userEdit.php?id=" . $user['user_id'] . "'><button type= 'submit'>Edit</button></a>
+                    
                         <form method='post'>
                             <input type='hidden' name='delete_user' value='" . $user['user_id'] . "'>
                             <button type='delete' onclick=\"return confirm('Are you sure?')\">Delete</button>
