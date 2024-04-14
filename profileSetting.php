@@ -1,6 +1,7 @@
 <?php
     $title = "Edit your profile";
-    $css_file = "./css-files/dashboardStyle.css";
+    $css_file = "./css-files/header.css";
+    $css_filee = "./css-files/profileStyle.css";
     include_once "header.php";
     include_once "profileModel.php";
     include_once "profileController.php";
