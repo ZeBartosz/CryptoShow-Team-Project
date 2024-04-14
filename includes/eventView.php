@@ -40,14 +40,14 @@ class EventView extends EventController {
                             <td>" . $event['event_venue'] . "</td>
                             <td>" . $event['event_description'] . "</td>
                             <td>" . ($event['is_published'] ? "Yes" : "No") . "</td>
-                            <td><a href='./eventEdit.php?eventId=" . $event['event_id'] . "'><button type ='submit'>Edit</button></a></td>
+                            <td><a href='./eventEdit.php?eventId=" . $event['event_id'] . "'><button type ='submit'>Edit</button></a>
                             <td>
                                 <form method='post'>
                                     <input type='hidden' name='delete_event' value='" . $event['event_id'] . "'>
                                     <button type='delete' onclick=\"return confirm('Are you sure?')\">Delete</button>
                                 </form>
-                            </td>
-                            <td>
+                            
+                            
                                 <form method='post'>
                                     <button type='submit' name='publish' value='" . $event['event_id'] . "' onclick=\"return confirm('Are you sure?')\">Publish</button>
                                 </form>
