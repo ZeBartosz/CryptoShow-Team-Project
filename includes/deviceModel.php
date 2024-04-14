@@ -51,7 +51,7 @@ class DeviceModel extends Dbh
             exit();
         }
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
