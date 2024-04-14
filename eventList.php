@@ -1,5 +1,5 @@
 <?php
-include_once "./includes/db_connect.php";
+include_once "db_connect.php";
     try {
         $query = "SELECT * FROM event;";
         $stmt = $pdo->prepare($query);
@@ -13,9 +13,9 @@ include_once "./includes/db_connect.php";
 $title = " Cryptoshow events";
 $css_file = "./css-files/header.css";
 $css_filee = "./css-files/x.css";
-include_once "./includes/header.php";
-include_once "./includes/eventController.php";
-include_once "./includes/userController.php";
+include_once "header.php";
+include_once "eventController.php";
+include_once "userController.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["book"])) {
