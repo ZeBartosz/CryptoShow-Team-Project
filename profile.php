@@ -76,7 +76,8 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
                                 <div class="box-content">
                                     <h3 class="title"><?php echo $row["crypto_device_name"]; ?></h3>
                                     <h3 class="title"><?php echo $row["crypto_device_id"]; ?></h3>
-                                    <a href="deviceEdit.php?deviceId=<?php echo $row["crypto_device_id"]; ?>&userId=<?php echo $_SESSION["user_id"]; ?>" class="link-device-edit" >Edit Device</a>
+                                    <a href="deviceEdit.php?deviceId=<?php echo $row["crypto_device_id"]; ?>&userId=<?php echo $_SESSION["user_id"]; ?>" class="link-device-edit" ><button type ="edit">Edit Device</button></a>
+
                                 </div>
                             </div>
                         </div>
