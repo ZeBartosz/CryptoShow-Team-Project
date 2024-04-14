@@ -1,7 +1,8 @@
 <?php
     ini_set("file_upload", "On");
     $title = "Add Device";
-    $css_file = "./css-files/dashboardStyle.css";
+    $css_file = "./css-files/adminStyle.css";
+    $css_filee = "./css-files/header.css";
     include_once "header.php";
     include "deviceModel.php";
     include "deviceController.php";
