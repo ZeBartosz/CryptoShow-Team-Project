@@ -61,8 +61,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="contentBox">
     <div class="search">
-            <form method="post"">
+             <form method="post">
                 <label type="searchBox">Search:</label>
+                <div class="glass">
                 <input type="text" id="searchBox"
                        name="<?php if($current_tab === 'users'){
                     echo "search_user";
@@ -71,6 +72,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 } elseif ($current_tab === 'devices') {
                     echo "search_device";
                 }  ?>" placeholder="Search...">
+                <button type= "img"><img src ="./images/magnifying.png"></button>
+                
+                
+                
+                </div>
                 <button type="submit" name="submit">Search</button>
                 <button type="submit">Clear</button>
             </form>
