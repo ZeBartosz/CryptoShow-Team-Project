@@ -24,7 +24,7 @@ class DeviceController extends DeviceModel
             exit();
         }
 
-        if(!$this->is($crypto_device_record_visible)) {
+        if(!$this->isVisible($crypto_device_record_visible)) {
         header("location: profile.php?error=invalidInput");
         exit();
         }
