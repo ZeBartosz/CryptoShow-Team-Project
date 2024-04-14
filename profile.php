@@ -24,7 +24,7 @@ require_once "validateSession.php";
     ?>
     <div class = "container-info">
         <h1>Nickname: <?= $profileInfo["user_nickname"]?></h1>
-        <img src="<?= $profileInfo["user_image"]?>">
+        <img class="avatar" src="<?= $profileInfo["user_image"]?>">
         <p>Bio: <br> <?= $profileInfo["user_description"]?></p>
         <p>Name: <?= $profileInfo["user_name"]?></p>
         <p>Email: <?= $profileInfo["user_email"]?></p>
