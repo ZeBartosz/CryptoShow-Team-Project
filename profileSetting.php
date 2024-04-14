@@ -23,38 +23,41 @@ if(isset($_POST["submit"])) {
     $pwd = $_POST["password"];
     $repeatPwd = $_POST["rptPassword"];
 
-    $fileName = $_FILES["image"]["name"];
-    $fileExt = explode('.', $fileName);
-    $actualFileExt = strtolower(end($fileExt));
-    $allowed = array('jpg', 'jpeg', 'png');
+    if($_FILES["image"]["error"] == 4 ){
+        $target_file = $profileInfo->fetchImage($id);
+    } else {
+        $fileName = $_FILES["image"]["name"];
+        $fileExt = explode('.', $fileName);
+        $actualFileExt = strtolower(end($fileExt));
+        $allowed = array('jpg', 'jpeg', 'png');
 
-    if (!in_array($actualFileExt, $allowed)){
-        header("location: {$_SERVER['PHP_SELF']}");
-        $_SESSION["message"] = "Error wrong image compression";
-        exit();
+        if (!in_array($actualFileExt, $allowed)){
+            header("location: {$_SERVER['PHP_SELF']}");
+            $_SESSION["message"] = "Error wrong image compression";
+            exit();
 
-    }
+        }
 
-    if($_FILES["image"]["error"] == 1){
-        header("location: {$_SERVER['PHP_SELF']}");
-        $_SESSION["message"] = "Error with the image";
-        exit();
+        if($_FILES["image"]["error"] == 1){
+            header("location: {$_SERVER['PHP_SELF']}");
+            $_SESSION["message"] = "Error with the image";
+            exit();
 
-    }
+        }
 
-    if ($_FILES["image"]["size"] > 200000000 ){
-        header("location: {$_SERVER['PHP_SELF']}");
-        $_SESSION["message"] = "Error image too large ";
-        exit();
-    }
+        if ($_FILES["image"]["size"] > 200000000 ){
+            header("location: {$_SERVER['PHP_SELF']}");
+            $_SESSION["message"] = "Error image too large ";
+            exit();
+        }
 
-
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    $count = "1";
-    while (file_exists($target_file)) {
-        $target_file = $target_dir . $count . basename($_FILES["image"]["name"]);
-        $count++;
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $count = "1";
+        while (file_exists($target_file)) {
+            $target_file = $target_dir . $count . basename($_FILES["image"]["name"]);
+            $count++;
+        }
     }
 
     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
@@ -80,11 +83,11 @@ if(isset($_POST["submit"])) {
                         <label for="name">Change Name:</label>
                         <input type="text" name="name" placeholder="User name..." value="<?php $profileInfo->fetchName($_SESSION["user_id"])?>">
                         <label for="email">Change Email:</label>
-                        <input type="text" name="email" placeholder="User email..." cccc">
-                        <label for="image">Profile Image:</label>
+                        <input type="text" name="email" placeholder="User email..." value="<?php $profileInfo->fetchEmail($_SESSION["user_id"])?>">
+                        <label for="image">Profile Image: max 2mb</label>
                         <input type="file" name="image" placeholder="Avatar...">
                         <label for="description">Change Bio:</label>
-                        <textarea name="description" placeholder="Wrtie a bio... (max 255 char)" value="" rows="4" cols="37"><?php $profileInfo->fetchBio($_SESSION["user_id"])?></textarea>
+                        <textarea name="description" maxlength="255" placeholder="Write a bio... (max 255 char)" value="" rows="4" cols="37"><?php $profileInfo->fetchBio($_SESSION["user_id"])?></textarea>
                         <label for="password">Change Password:</label>
                         <input type="password" id="password" name="password" placeholder="Password">
                         <label for="rptPassword">Repeat Password:</label>
