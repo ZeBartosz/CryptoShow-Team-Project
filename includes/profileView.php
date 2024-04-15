@@ -29,7 +29,7 @@ class ProfileView extends ProfileModel {
     public function fetchBio($userId){
         $profileInfo = $this->getProfileInfo($userId);
 
-        echo $profileInfo[0]["user_description"];
+        return $profileInfo[0]["user_description"];
     }
 
     public function fetchDeivceCount($userId){
