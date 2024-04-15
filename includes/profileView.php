@@ -5,7 +5,7 @@ class ProfileView extends ProfileModel {
     public function fetchNickname($userId){
         $profileInfo = $this->getProfileInfo($userId);
 
-        echo $profileInfo[0]["user_nickname"];
+        return $profileInfo[0]["user_nickname"];
     }
 
     public function fetchName($userId){
@@ -17,7 +17,7 @@ class ProfileView extends ProfileModel {
     public function fetchEmail($userId){
         $profileInfo = $this->getProfileInfo($userId);
 
-        echo $profileInfo[0]["user_email"];
+        return $profileInfo[0]["user_email"];
     }
 
     public function fetchImage($userId){
