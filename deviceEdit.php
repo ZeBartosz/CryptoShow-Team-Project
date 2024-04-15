@@ -111,8 +111,9 @@ if(isset($_POST["delete"])) {
     <div class="profile-bg">
         <div class="wrapper">
             <div class="profile-settings">
-                <h3>DEVICE SETTINGS</h3>
+                
                 <form class="edit-form" method="post" enctype="multipart/form-data">
+                <h3>DEVICE SETTINGS</h3>
                     <label for="name">Change Name:</label>
                     <input type="text" name="name" placeholder="Device name..." value="<?php $deviceInfo1->fetchSpeDeviceName($deviceId)?>">
                     <label for="image">Change image:</label>
