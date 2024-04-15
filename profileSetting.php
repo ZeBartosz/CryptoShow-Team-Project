@@ -72,11 +72,16 @@ if(isset($_POST["submit"])) {
 
     $profileInfo->updateProfileInfo($nickname, $name, $email, $pwd, $repeatPwd, $target_file, $bio, $currentNickname, $currentEmail);
 
+    $_SESSION["profileMessage"] = "Edited profile successfully";
     header("location: profile.php?error=none");
 }
 
 ?>
     <section class="profile">
+        <?php if(isset($_SESSION["message"])) { ?>
+            <h5><?= $_SESSION['message'] ?></h5> <?php
+            unset($_SESSION["message"]);
+        } ?>
         <div class="profile-bg">
             <div class="wrapper">
                 <div class="profile-settings">
