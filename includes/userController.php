@@ -2,15 +2,18 @@
 
 include_once "userModel.php";
 
-class UserController extends UserModel {
+class UserController extends UserModel
+{
 
     private $model;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->model = new UserModel();
     }
 
-    public function getUserInfo($user_id) {
+    public function getUserInfo($user_id)
+    {
         try {
             return $this->model->getUserInfo($user_id);
         } catch (PDOException $e) {
@@ -18,7 +21,8 @@ class UserController extends UserModel {
         }
     }
 
-    public function getForeignUserInfo($user_id) {
+    public function getForeignUserInfo($user_id)
+    {
         try {
             return $this->model->getForeignUserInfo($user_id);
         } catch (PDOException $e) {
@@ -26,7 +30,8 @@ class UserController extends UserModel {
         }
     }
 
-    public function isAttending($user_id, $event_id) {
+    public function isAttending($user_id, $event_id)
+    {
         try {
             return $this->model->isAttending($user_id, $event_id);
         } catch (PDOException $e) {
@@ -34,7 +39,8 @@ class UserController extends UserModel {
         }
     }
 
-    public function getAllAttendingUsers($event_id) {
+    public function getAllAttendingUsers($event_id)
+    {
         try {
             return $this->model->fetchAllAttendingUsers($event_id);
         } catch (PDOException $e) {
@@ -47,7 +53,8 @@ class UserController extends UserModel {
         $this->model->deleteUserInfo($user_id);
     }
 
-    public function getAllUserInfo() {
+    public function getAllUserInfo()
+    {
         try {
             return $this->model->fetchAllUserInfo();
         } catch (PDOException $e) {
@@ -55,7 +62,8 @@ class UserController extends UserModel {
         }
     }
 
-    public function searchUserByKeyword($search_keyword) {
+    public function searchUserByKeyword($search_keyword)
+    {
         try {
             return $this->model->searchUserByKeyword($search_keyword);
         } catch (PDOException $e) {
@@ -65,49 +73,63 @@ class UserController extends UserModel {
         }
     }
 
-    public function setUserInfo($user_id, $username, $fullname, $email, $is_admin)
+    public function inputUserInfo($user_id, $username, $fullname, $email, $is_admin, $currentUsername, $currentEmail)
     {
         $result = $this->hasEmptyInput($username, $fullname, $email);
-        if($result === true) {
+        if ($result === true) {
             $_SESSION["message"] = "Error Empty Input";
             header("location: ./userEdit.php?id=$user_id");
             exit();
         }
 
         $result = $this->isValidFullname($fullname);
-        if($result === false) {
+        if ($result === false) {
             $_SESSION["message"] = "Error Invalid Full name";
             header("location: ./userEdit.php?id=$user_id");
             exit();
         }
 
         $result = $this->isValidUsername($username);
-        if($result === false) {
+        if ($result === false) {
             $_SESSION["message"] = "Error Invalid Username";
             header("location: ./userEdit.php?id=$user_id");
             exit();
         }
 
         $result = $this->isValidEmail($email);
-        if($result === false) {
+        if ($result === false) {
             $_SESSION["message"] = "Error Invalid Email";
             header("location: ./userEdit.php?id=$user_id");
             exit();
         }
 
         $result = $this->isValidAdmin($is_admin);
-        if($result === false) {
+        if ($result === false) {
             $_SESSION["message"] = "Error Invalid Admin Promotion";
             header("location: ./userEdit.php?id=$user_id");
             exit();
         }
 
+        if ($this->userNicknameTaken($username, $currentUsername)) {
+            $_SESSION["message"] = "Error Username taken";
+            header("location: ./userEdit.php?id=$user_id");
+            exit();
+        }
+
+        if ($this->userEmailTaken($email, $currentEmail)){
+            $_SESSION["message"] = "Error Email taken";
+            header("location: ./userEdit.php?id=$user_id");
+            exit();
+        }
+        var_dump($username);
+        var_dump($currentUsername);
         return $this->model->setUserInfo($user_id, $username, $fullname, $email, $is_admin);
     }
 
-    private function hasEmptyInput($username, $fullname, $email) {
+    private function hasEmptyInput($username, $fullname, $email)
+    {
         $result;
-        if(empty($username) || empty($fullname) || empty($email)) {
+        if (empty($username) || empty($fullname) || empty($email)) {
             $result = true;
         } else {
             $result = false;
@@ -115,7 +137,8 @@ class UserController extends UserModel {
         return $result;
     }
 
-    private function isValidEmail($email) {
+    private function isValidEmail($email)
+    {
         $result;
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $result = true;
@@ -125,9 +148,10 @@ class UserController extends UserModel {
         return $result;
     }
 
-    private function isValidFullname($fullname) {
+    private function isValidFullname($fullname)
+    {
         $result;
-        if(preg_match("/^[a-zA-Z]+(\s[a-zA-Z]+)$/", $fullname)) {
+        if (preg_match("/^[a-zA-Z]+(\s[a-zA-Z]+)$/", $fullname)) {
             $result = true;
         } else {
             $result = false;
@@ -135,9 +159,10 @@ class UserController extends UserModel {
         return $result;
     }
 
-    private function isValidUsername($username) {
+    private function isValidUsername($username)
+    {
         $result;
-        if(preg_match("/^[a-zA-Z-0-9]*$/", $username)) {
+        if (preg_match("/^[a-zA-Z-0-9]*$/", $username)) {
             $result = true;
         } else {
             $result = false;
@@ -145,12 +170,34 @@ class UserController extends UserModel {
         return $result;
     }
 
-    private function isValidAdmin($is_admin) {
+    private function isValidAdmin($is_admin)
+    {
         $result;
-        if($is_admin === 1 || $is_admin === 0) {
+        if ($is_admin === 1 || $is_admin === 0) {
             $result = true;
         } else {
             $result = false;
+        }
+        return $result;
+    }
+
+    private function userNicknameTaken ($username, $currentUsername) {
+        $result;
+        if($this->CheckUsername($username, $currentUsername)){
+            $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+
+    }
+
+    private function userEmailTaken ($email, $currentEmail){
+        $result;
+        if($this->CheckEmail($email, $currentEmail)) {
+            $result = false;
+        } else {
+            $result = true;
         }
         return $result;
     }
