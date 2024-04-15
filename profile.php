@@ -1,7 +1,7 @@
 <?php
 $title = "Profile page";
 $css_file = "./css-files/header.css";
-$css_filee = "./css-files/profileS.css";
+$css_filee = "./css-files/profileStyle.css";
 include_once "header.php";
 include_once "profileModel.php";
 include_once "profileController.php";
