@@ -66,11 +66,12 @@
             $profileView->updateDeviceCount($deviceCount);
         } else {
             header("location: profile.php?error=deviceCountReached");
+            $_SESSION["profileMessage"] = "Error device count reached";
             exit();
         }
 
 
-
+        $_SESSION["profileMessage"] = "added device successfully";
         header("location: profile.php");
 
 
@@ -81,6 +82,10 @@
 
 <main>
     <section class="profile">
+        <?php if(isset($_SESSION["message"])) { ?>
+            <h5><?= $_SESSION['message'] ?></h5> <?php
+            unset($_SESSION["message"]);
+        } ?>
         <div class="profile-bg">
             <div class="wrapper">
                 <div class="profile-settings">
