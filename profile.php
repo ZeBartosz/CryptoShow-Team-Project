@@ -67,7 +67,7 @@ $deviceInfo = new DeviceView($controller);
 $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
 ?>
 <div class = "container-info">
-    <h1>Hello <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
+    <h1>Hello <?= $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
     <?php if(!empty($profileInfo->fetchImage($_SESSION["user_id"]))) { ?>
         <img class="avatar" src="<?= $profileInfo->fetchImage($_SESSION["user_id"])?>">
     <?php } else { ?>
@@ -81,7 +81,7 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
         <a href="profileSetting.php"><button type = "edit">Add your Bio</button></a>
     <?php } ?>
     <p>User name: <?php $profileInfo->fetchName($_SESSION["user_id"])?></p>
-    <p>User email: <?php $profileInfo->fetchEmail($_SESSION["user_id"])?></p>
+    <p>User email: <?= $profileInfo->fetchEmail($_SESSION["user_id"])?></p>
     <a href="profileSetting.php"><button type = "edit">Edit Profile</button></a>
     <a href="deviceAdd.php"><button type ="edit">Add Device</button></a>
     <section>
