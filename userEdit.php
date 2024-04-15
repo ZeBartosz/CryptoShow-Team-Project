@@ -40,12 +40,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<?php if(isset($_SESSION["message"])) { ?>
-    <h5><?= $_SESSION["message"] ?></h5> <?php
-    unset($_SESSION["message"]);
-} ?>
 <main>
 <form class="edit-form" method="post">
+    <?php if(isset($_SESSION["message"])) { ?>
+    <h5><?= $_SESSION["message"] ?></h5> <?php
+    unset($_SESSION["message"]);
+    } ?>
     <input type="hidden" value="<?= $user_info["user_id"] ?>" name="userid">
     <div>
         <label>Username</label>
