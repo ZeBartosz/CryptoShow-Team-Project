@@ -36,15 +36,20 @@ class UserController extends UserModel {
 
     public function getAllAttendingUsers($event_id) {
         try {
-            return $this->model->getAllAttendingUsers($event_id);
+            return $this->model->fetchAllAttendingUsers($event_id);
         } catch (PDOException $e) {
             $_SESSION["message"] = "Error fetching all user info: " . $e->getMessage();
         }
     }
 
+    public function deleteUserInfo($user_id)
+    {
+        $this->model->deleteUserInfo($user_id);
+    }
+
     public function getAllUserInfo() {
         try {
-            return $this->model->getAllUserInfo();
+            return $this->model->fetchAllUserInfo();
         } catch (PDOException $e) {
             $_SESSION["message"] = "Error fetching all user info: " . $e->getMessage();
         }
