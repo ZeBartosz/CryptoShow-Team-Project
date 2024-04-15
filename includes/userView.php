@@ -71,15 +71,24 @@ class UserView extends UserController {
                     </tbody>';
             $user_info = $this->controller->getForeignUserInfo($user_info);
             foreach ($user_info as $user) {
-                echo "<tr>
-      <td>
-          <div class='user-tag'>
-              <img class='user-img' src='" . $user['user_image'] . "' alt='User Image'>
-              <a href='profile.php?username=" . $user['user_nickname'] . "'>" . $user['user_nickname'] . "</a>
-          </div>
-      </td>
-  </tr>";
-
+                if (!empty($user["user_image"])) {
+                echo"<tr>
+                        <td>
+                            <div class='user-tag'>
+                            <img class='user-img' src='" . $user['user_image'] . "' alt='User Image'>
+                            <a href='profile.php?username=" . $user['user_nickname'] . "'>" . $user['user_nickname'] . "</a>
+                        </div>
+                        </td>
+                    </tr>";
+                }else{
+                echo"<tr>
+                        <td>
+                            <div class='user-tag'>
+                            <img class='user-img' src='./images/login.png' alt='User Image'>
+                            <a href='profile.php?username=" . $user['user_nickname'] . "'>" . $user['user_nickname'] . "</a>
+                        </div>
+                        </td>
+                    </tr>";}
                       
             }
         } else {
