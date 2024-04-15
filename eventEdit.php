@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Event Venue</label>
         <input type="text" value="<?= $event_info["event_venue"] ?>" name="venue" required>
     </div>
-    <button type="submit" name="submit">Update User</button>
+    <button type="submit" name="submit">Update Event</button>
     <a href="./admin.php?tab=events"><button type ="delete">Cancel</button></a>
 </form>
 </main>
