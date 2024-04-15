@@ -16,37 +16,45 @@ class ProfileController extends ProfileModel
     public function updateProfileInfo($userNickname, $userName, $userEmail, $pwd, $repeatPwd, $image, $bio)
     {
         if ($this->emptyInputCheck($userNickname, $userName, $userEmail)) {
-            header("location: ../profile.php?error=emptyinput");
+            header("location: profile.php?error=emptyinput");
             exit();
         }
 
 
         if (!$this->invalidUsername($userNickname)) {
-            header("location: ../profile.php?error=invalidUsername");
+            header("location: profile.php?error=invalidUsername");
             exit();
         }
 
-        if ($this->reachedDescriptionLimit($bio)) {
-            header("location: ../profile.php?error=DescriptionLimitMet");
+        if (!$this->reachedDescriptionLimit($bio)) {
+            header("location: profile.php?error=DescriptionLimitMet");
             exit();
         }
 
         if (!$this->invalidName($userName)) {
-            header("location: ../profile.php?error=invalidName");
+            header("location: profile.php?error=invalidName");
             exit();
         }
 
         if (!$this->invalidEmail($userEmail)) {
-            header("location: ../profile.php?error=invalidEmail");
+            header("location: profile.php?error=invalidEmail");
             exit();
         }
 
         if (!$this->pwdMatch($pwd, $repeatPwd)) {
-            header("location: ../profile.php?error=");
+            header("location: profile.php?error=passwordNotMatching");
             exit();
         }
 
+        if (!$this->userNicknameTaken($userNickname)) {
+            header("location: profile.php?error=userNicknameTaken");
+            exit();
+        }
 
+        if (!$this->userEmailTaken($userEmail)){
+            header("location: profile.php?error=userEmailTaken");
+            exit();
+        }
 
 
 
@@ -114,9 +122,30 @@ class ProfileController extends ProfileModel
     private function reachedDescriptionLimit($event_description) {
         $result;
         if(strlen($event_description) > 255) {
-            $result = true;
-        } else {
             $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+    }
+
+    private function userNicknameTaken ($userNickname) {
+        $result;
+        if($this->CheckUsername($userNickname) === false){
+            $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+
+    }
+
+    private function userEmailTaken ($userEmail){
+        $result;
+        if($this->CheckEmail($userEmail) === false) {
+            $result = false;
+        } else {
+            $result = true;
         }
         return $result;
     }
