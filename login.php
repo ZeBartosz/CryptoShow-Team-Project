@@ -27,9 +27,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         } ?>
         <form method="post">
             <label for="username">Username or Email:</label><br>
-            <input type="text" id="username" name="username"placeholder="Username"><br>
+            <input type="text" id="username" name="username"placeholder="Username" required><br>
             <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password"placeholder="Password"><br><br>
+            <input type="password" id="password" name="password"placeholder="Password" required><br><br>
             <button type="submit" name="submit">Login</button>
         </form>
         <p>Don't have an account? <a href="register.php">Register here</a></p>
