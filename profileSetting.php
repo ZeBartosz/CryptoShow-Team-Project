@@ -64,9 +64,12 @@ if(isset($_POST["submit"])) {
 
     include_once "dbh.php";
 
+    $currentNickname = $profileInfo->fetchNickname($_SESSION["user_id"]);
+    $currentEmail = $profileInfo->fetchEmail($_SESSION["user_id"]);
+
     $profileInfo = new ProfileController($id);
 
-    $profileInfo->updateProfileInfo($nickname, $name, $email, $pwd, $repeatPwd, $target_file, $bio);
+    $profileInfo->updateProfileInfo($nickname, $name, $email, $pwd, $repeatPwd, $target_file, $bio, $currentNickname, $currentEmail);
 
     header("location: profile.php?error=none");
 }
@@ -79,11 +82,11 @@ if(isset($_POST["submit"])) {
                     <h3>PROFILE SETTINGS</h3>
                     <form class="edit-form" method="post" enctype="multipart/form-data">
                         <label for="nickname">Change Nickname:</label>
-                        <input type="text" name="nickname" placeholder="User nickname..." value="<?php $profileInfo->fetchNickname($_SESSION["user_id"])?>" required>
+                        <input type="text" name="nickname" placeholder="User nickname..." value="<?= $profileInfo->fetchNickname($_SESSION["user_id"])?>" required>
                         <label for="name">Change Name:</label>
                         <input type="text" name="name" placeholder="User name..." value="<?php $profileInfo->fetchName($_SESSION["user_id"])?>" required>
                         <label for="email">Change Email:</label>
-                        <input type="text" name="email" placeholder="User email..." value="<?php $profileInfo->fetchEmail($_SESSION["user_id"])?>" required>
+                        <input type="text" name="email" placeholder="User email..." value="<?= $profileInfo->fetchEmail($_SESSION["user_id"])?>" required>
                         <label for="image">Profile Image: max 2mb</label>
                         <input type="file" name="image" placeholder="Avatar...">
                         <label for="description">Change Bio:</label>
