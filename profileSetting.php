@@ -96,6 +96,7 @@ if(isset($_POST["submit"])) {
                         <input type="password" id="password" name="password" placeholder="Password">
                         <label for="rptPassword">Repeat Password:</label>
                         <input type="password" id="rptPassword" name="rptPassword"placeholder="Repeat password">
+                        <a href="profile.php" ><button type="button" >Cancel</button></a>
                         <button type="submit" name="submit">SAVE</button>
                     </form>
                 </div>
