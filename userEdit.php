@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $is_admin = isset($_POST["admin"])? 1 : 0;
     $controller = new UserController();
-    $result = $controller->setUserInfo($user_id, $username, $fullname, $email, $is_admin, $currentUsername, $currentEmail);
+    $result = $controller->inputUserInfo($user_id, $username, $fullname, $email, $is_admin, $currentUsername, $currentEmail);
 
     if($result === true) {
         $_SESSION["message"] = "Successfully edited user information";
