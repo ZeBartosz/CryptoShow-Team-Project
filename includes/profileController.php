@@ -131,7 +131,7 @@ class ProfileController extends ProfileModel
 
     private function userNicknameTaken ($userNickname) {
         $result;
-        if($this->CheckUsername($userNickname) === false){
+        if($this->CheckUsername($userNickname)){
             $result = false;
         } else {
             $result = true;
@@ -142,7 +142,7 @@ class ProfileController extends ProfileModel
 
     private function userEmailTaken ($userEmail){
         $result;
-        if($this->CheckEmail($userEmail) === false) {
+        if($this->CheckEmail($userEmail)) {
             $result = false;
         } else {
             $result = true;
