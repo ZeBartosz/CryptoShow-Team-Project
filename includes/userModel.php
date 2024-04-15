@@ -92,7 +92,7 @@ class UserModel extends Dbh {
 
     protected function setUserInfo($user_id, $username, $fullname, $email, $is_admin) {
         try {
-            $query = "UPDATE registered_user SET user_nickname = :username, user_name = :fullname, user_email = :email, is_admin = :is_admin WHERE user_id = :user_id AND user_nickname = :username";
+            $query = "UPDATE registered_user SET user_nickname = :username, user_name = :fullname, user_email = :email, is_admin = :is_admin WHERE user_id = :user_id";
             $stmt = $this->connect()->prepare($query);
 
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
