@@ -25,6 +25,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <div class="body">
 <h1>Create an account</h1>
+    <?php if(isset($_SESSION["message"])) { ?>
+        <h5><?= $_SESSION['message'] ?></h5> <?php
+        unset($_SESSION["message"]);
+    } ?>
         <p>Create a CryptoShow Account</p>
     <form method="post">
         <label for="username">Username or Email:</label>
