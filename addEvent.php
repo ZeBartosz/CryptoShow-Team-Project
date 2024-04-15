@@ -26,12 +26,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<?php if(isset($_SESSION["message"])) { ?>
-    <h5><?= $_SESSION["message"] ?></h5> <?php
-    unset($_SESSION["message"]);
-} ?>
 <main>
 <form class="edit-form" method="post">
+    <?php if(isset($_SESSION["message"])) { ?>
+    <h5><?= $_SESSION["message"] ?></h5> <?php
+    unset($_SESSION["message"]);
+    } ?>
     <div>
         <label>Event name</label>
         <input type="text" name="name" placeholder="Event Name" required>
