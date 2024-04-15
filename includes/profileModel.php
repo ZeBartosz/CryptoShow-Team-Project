@@ -116,7 +116,7 @@ class ProfileModel extends Dbh
         }
 
         $email = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($currentEmail === $email) {
+        if ($currentEmail === $email["user_email"]) {
             return true;
         } else {
             $resultCheck;
