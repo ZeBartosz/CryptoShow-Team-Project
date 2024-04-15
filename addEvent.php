@@ -34,19 +34,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <form class="edit-form" method="post">
     <div>
         <label>Event name</label>
-        <input type="text" name="name" placeholder="Event Name">
+        <input type="text" name="name" placeholder="Event Name" required>
     </div>
     <div>
         <label>Event Description</label>
-        <textarea name="desc" maxlength="255" placeholder="Event Description"></textarea>
+        <textarea name="desc" maxlength="255" placeholder="Event Description" required></textarea>
     </div>
     <div>
         <label>Event Date</label>
-        <input type="date" name="date" placeholder="Event Date">
+        <input type="date" name="date" placeholder="Event Date" required>
     </div>
     <div>
         <label>Event Venue</label>
-        <input type="text" name="venue" placeholder="Event Venue">
+        <input type="text" name="venue" placeholder="Event Venue" required>
     </div>
     <div>
         <label>Publish event</label>
