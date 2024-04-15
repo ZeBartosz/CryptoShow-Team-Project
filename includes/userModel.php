@@ -3,7 +3,7 @@
 require_once "dbh.php";
 class UserModel extends Dbh {
 
-    public function deleteUserInfo($user_id)
+    protected function deleteUserInfo($user_id)
     {
         try {
             $query = "DELETE FROM registered_user WHERE user_id=:userid";
@@ -19,7 +19,7 @@ class UserModel extends Dbh {
         }
     }
 
-    public function getForeignUserInfo($foreign_user_id) {
+    protected function getForeignUserInfo($foreign_user_id) {
         try {
             $user_id = array_column($foreign_user_id, "fk_user_id");
             $placeholders = implode(',', array_fill(0, count($user_id), "?"));
@@ -34,7 +34,7 @@ class UserModel extends Dbh {
         }
     }
 
-    public function getUserInfo($user_id) {
+    protected function getUserInfo($user_id) {
         try {
             $query = "SELECT * FROM registered_user WHERE user_id = :user_id";
             $stmt = $this->connect()->prepare($query);
@@ -47,7 +47,7 @@ class UserModel extends Dbh {
         }
     }
 
-    public function isAttending($user_id, $event_id) {
+    protected function isAttending($user_id, $event_id) {
         try {
             $query = "SELECT * FROM user_event WHERE fk_user_id=:user_id AND fk_event_id=:event_id";
             $stmt = $this->connect()->prepare($query);
@@ -66,7 +66,7 @@ class UserModel extends Dbh {
         }
     }
 
-    public function getAllUserInfo() {
+    protected function fetchAllUserInfo() {
         try {
             $query = "SELECT * FROM registered_user";
             $stmt = $this->connect()->prepare($query);
@@ -78,7 +78,7 @@ class UserModel extends Dbh {
         }
     }
 
-    public function getAllAttendingUsers($event_id) {
+    protected function fetchAllAttendingUsers($event_id) {
         try {
             $query = "SELECT fk_user_id FROM user_event WHERE fk_event_id = ?;";
             $stmt = $this->connect()->prepare($query);
@@ -90,7 +90,7 @@ class UserModel extends Dbh {
         }
     }
 
-    public function setUserInfo($user_id, $username, $fullname, $email, $is_admin) {
+    protected function setUserInfo($user_id, $username, $fullname, $email, $is_admin) {
         try {
             $query = "UPDATE registered_user SET user_nickname = :username, user_name = :fullname, user_email = :email, is_admin = :is_admin WHERE user_id = :user_id AND user_nickname = :username";
             $stmt = $this->connect()->prepare($query);
@@ -111,7 +111,7 @@ class UserModel extends Dbh {
         }
     }
 
-    public function searchUserByKeyword($search_keyword) {
+    protected function searchUserByKeyword($search_keyword) {
         try {
             $query = "SELECT * FROM registered_user WHERE user_nickname LIKE :search_keyword OR user_name LIKE :search_keyword OR user_email LIKE :search_keyword OR user_id LIKE :search_keyword";
             $stmt = $this->connect()->prepare($query);
