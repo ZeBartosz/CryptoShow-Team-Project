@@ -94,7 +94,7 @@ class DeviceModel extends Dbh
 
     }
 
-    public function getAllDeviceInfo()
+    protected function getAllDeviceInfo()
     {
         try {
             $query = "SELECT * FROM crypto_device";
@@ -108,7 +108,7 @@ class DeviceModel extends Dbh
         }
     }
 
-    public function deleteDeviceInfo($device_id)
+    protected function deleteDeviceInfo($device_id)
     {
         try {
             $query = "DELETE FROM crypto_device WHERE crypto_device_id=:deviceid";
@@ -124,7 +124,7 @@ class DeviceModel extends Dbh
         }
     }
 
-    public function searchDeviceByKeyword($search_keyword) {
+    protected function fetchSearchDeviceByKeyword($search_keyword) {
         try {
             $query = "SELECT * FROM crypto_device WHERE crypto_device_name LIKE :search_keyword OR crypto_device_id LIKE :search_keyword";
             $stmt = $this->connect()->prepare($query);
