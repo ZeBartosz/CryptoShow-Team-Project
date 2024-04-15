@@ -121,6 +121,11 @@ if(isset($_POST["delete"])) {
                     <label for="visible">Change visibility:</label>
                     <input type="checkbox" <?php if($deviceInfo1->fetchSpeDeviceVisible($deviceId)) echo "checked";?> value="<?php $deviceInfo1->fetchSpeDeviceVisible($deviceId) ?>" name="visible">
                     <button type="submit" name="submit">SAVE</button>
+                    <a <?php if(isset($_GET["isAdmin"]) == 1) { ?>
+                        href="admin.php"
+                    <?php } else { ?>
+                        href="profile.php"
+                    <?php } ?> ><button type="button" >Cancel</button></a>
                     <form method="post">
                         <button type="delete" name="delete" onclick="return confirm('Are you sure you want to deletethis device?')">Delete Device</button>
                     </form>
