@@ -81,7 +81,7 @@ class ProfileModel extends Dbh
         }
     }
 
-    protected function CheckUsername($userNickname) {
+    protected function CheckUsername($userNickname, $currentNickname) {
         $stmt = $this->connect()->prepare("SELECT user_nickname FROM registered_user WHERE user_nickname = ?;");
 
         if(!$stmt->execute(array($userNickname))) {
@@ -91,7 +91,7 @@ class ProfileModel extends Dbh
         }
 
         $nickname = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($userNickname === $nickname && $nickname["user_nickname"]) {
+        if ($currentNickname === $nickname["user_nickname"]) {
             return true;
         } else {
             $resultCheck;
@@ -101,11 +101,12 @@ class ProfileModel extends Dbh
                 $resultCheck = true;
             }
             return $resultCheck;
+
         }
 
     }
 
-    protected function CheckEmail($userEmail) {
+    protected function CheckEmail($userEmail, $currentEmail) {
         $stmt = $this->connect()->prepare("SELECT user_email FROM registered_user WHERE user_email = ?;");
 
         if(!$stmt->execute(array($userEmail))) {
@@ -115,7 +116,7 @@ class ProfileModel extends Dbh
         }
 
         $email = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($userEmail === $email && $email["user_nickname"]) {
+        if ($currentEmail === $email) {
             return true;
         } else {
             $resultCheck;
