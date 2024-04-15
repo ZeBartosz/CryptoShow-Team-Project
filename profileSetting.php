@@ -79,15 +79,15 @@ if(isset($_POST["submit"])) {
                     <h3>PROFILE SETTINGS</h3>
                     <form class="edit-form" method="post" enctype="multipart/form-data">
                         <label for="nickname">Change Nickname:</label>
-                        <input type="text" name="nickname" placeholder="User nickname..." value="<?php $profileInfo->fetchNickname($_SESSION["user_id"])?>">
+                        <input type="text" name="nickname" placeholder="User nickname..." value="<?php $profileInfo->fetchNickname($_SESSION["user_id"])?>" required>
                         <label for="name">Change Name:</label>
-                        <input type="text" name="name" placeholder="User name..." value="<?php $profileInfo->fetchName($_SESSION["user_id"])?>">
+                        <input type="text" name="name" placeholder="User name..." value="<?php $profileInfo->fetchName($_SESSION["user_id"])?>" required>
                         <label for="email">Change Email:</label>
-                        <input type="text" name="email" placeholder="User email..." value="<?php $profileInfo->fetchEmail($_SESSION["user_id"])?>">
+                        <input type="text" name="email" placeholder="User email..." value="<?php $profileInfo->fetchEmail($_SESSION["user_id"])?>" required>
                         <label for="image">Profile Image: max 2mb</label>
                         <input type="file" name="image" placeholder="Avatar...">
                         <label for="description">Change Bio:</label>
-                        <textarea name="description" maxlength="255" placeholder="Write a bio... (max 255 char)" value="" rows="4" cols="37"><?php $profileInfo->fetchBio($_SESSION["user_id"])?></textarea>
+                        <textarea name="description" maxlength="255" placeholder="Write a bio... (max 255 char)" value="" rows="4" cols="37"><?= $profileInfo->fetchBio($_SESSION["user_id"])?></textarea>
                         <label for="password">Change Password:</label>
                         <input type="password" id="password" name="password" placeholder="Password">
                         <label for="rptPassword">Repeat Password:</label>
