@@ -1,6 +1,7 @@
 <?php
 
 include_once "userController.php";
+
 class UserView extends UserController {
 
     private $controller;
@@ -67,12 +68,19 @@ class UserView extends UserController {
                             <th>User who will be attending</th>
                         </tr>
                     </thead>
-                    </tbody>';
+                    <tbody>';
             $user_info = $this->controller->getForeignUserInfo($user_info);
             foreach ($user_info as $user) {
                 echo "<tr>
-                        <td><a href='profile.php?username=".$user['user_nickname']."'>".$user['user_nickname']."</a></td>
-                      </tr>";
+      <td>
+          <div class='user-tag'>
+              <img class='user-img' src='" . $user['user_image'] . "' alt='User Image'>
+              <a href='profile.php?username=" . $user['user_nickname'] . "'>" . $user['user_nickname'] . "</a>
+          </div>
+      </td>
+  </tr>";
+
+                      
             }
         } else {
             echo '<table>
@@ -81,7 +89,7 @@ class UserView extends UserController {
                             <th>No attending Users</th>
                         </tr>
                     </thead>
-                    </tbody>';
+                    <tbody>';
         }
     }
 }
