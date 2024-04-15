@@ -20,6 +20,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="content">
         <h1>Sign in</h1>
         <p>Sign into your CryptoShow account</p>
+        <?php if(isset($_SESSION["message"])) { ?>
+            <h5><?= $_SESSION['message'] ?></h5> <?php
+            unset($_SESSION["message"]);
+        } ?>
         <form method="post">
             <label for="username">Username or Email:</label><br>
             <input type="text" id="username" name="username"placeholder="Username"><br>
