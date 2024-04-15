@@ -75,6 +75,7 @@ if(isset($_POST["submit"])) {
             header("location: admin.php");
             exit();
         }
+        $_SESSION["profileMessage"] = "Edited device successfully";
         header("location: profile.php");
     }
 }
@@ -95,6 +96,7 @@ if(isset($_POST["delete"])) {
         $profileView = new ProfileController($id);
         $profileView->updateDeviceCount($deviceCount);
 
+        $_SESSION["profileMessage"] = "Deleted device successfully";
         header("location: profile.php");
     }
 
