@@ -68,7 +68,7 @@ class UserView extends UserController {
                             <th>User who will be attending</th>
                         </tr>
                     </thead>
-                    <tbody>';
+                    </tbody>';
             $user_info = $this->controller->getForeignUserInfo($user_info);
             foreach ($user_info as $user) {
                 echo "<tr>
@@ -89,7 +89,7 @@ class UserView extends UserController {
                             <th>No attending Users</th>
                         </tr>
                     </thead>
-                    <tbody>';
+                    </tbody>';
         }
     }
 }
