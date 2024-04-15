@@ -13,7 +13,7 @@ class ProfileController extends ProfileModel
     }
 
 
-    public function updateProfileInfo($userNickname, $userName, $userEmail, $pwd, $repeatPwd, $image, $bio)
+    public function updateProfileInfo($userNickname, $userName, $userEmail, $pwd, $repeatPwd, $image, $bio, $currentNickname, $currentEmail)
     {
         if ($this->emptyInputCheck($userNickname, $userName, $userEmail)) {
             header("location: profile.php?error=emptyinput");
@@ -46,12 +46,12 @@ class ProfileController extends ProfileModel
             exit();
         }
 
-        if (!$this->userNicknameTaken($userNickname)) {
+        if ($this->userNicknameTaken($userNickname, $currentNickname)) {
             header("location: profile.php?error=userNicknameTaken");
             exit();
         }
 
-        if (!$this->userEmailTaken($userEmail)){
+        if ($this->userEmailTaken($userEmail, $currentEmail)){
             header("location: profile.php?error=userEmailTaken");
             exit();
         }
@@ -129,9 +129,9 @@ class ProfileController extends ProfileModel
         return $result;
     }
 
-    private function userNicknameTaken ($userNickname) {
+    private function userNicknameTaken ($userNickname, $currentNickname) {
         $result;
-        if($this->CheckUsername($userNickname)){
+        if($this->CheckUsername($userNickname, $currentNickname)){
             $result = false;
         } else {
             $result = true;
@@ -140,9 +140,9 @@ class ProfileController extends ProfileModel
 
     }
 
-    private function userEmailTaken ($userEmail){
+    private function userEmailTaken ($userEmail, $currentEmail){
         $result;
-        if($this->CheckEmail($userEmail)) {
+        if($this->CheckEmail($userEmail, $currentEmail)) {
             $result = false;
         } else {
             $result = true;
