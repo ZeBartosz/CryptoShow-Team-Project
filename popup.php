@@ -2,9 +2,9 @@
 $title = " event details";
 $css_file = "./css-files/header.css";
 $css_filee = "./css-files/popup.css";
-include_once "header.php";
-include_once "userView.php";
-include_once "userController.php";
+include_once "./includes/header.php";
+include_once "./includes/userView.php";
+include_once "./includes/userController.php";
 
 
 
@@ -21,7 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <section class="event-info">
             <p><strong>Location:</strong> <?php echo $event_venue ?></p>
             <p><strong>Date:</strong> <?php echo $event_date?></p>
-            <a href="eventList.php">Go back</a>
+            
+            <form action="eventList.php" method="post">
+            <input type="submit" name="back-button" class="back-button" value="Go back">
+            </form>
+           
         </section>
         <section class="event-description">
             <h2>Description of the Event</h2>
