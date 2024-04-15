@@ -1,7 +1,7 @@
 <?php
 $title = "Profile page";
 $css_file = "./css-files/header.css";
-$css_filee = "./css-files/profileStyle.css";
+$css_filee = "./css-files/profileS.css";
 include_once "header.php";
 include_once "profileModel.php";
 include_once "profileController.php";
@@ -24,8 +24,12 @@ require_once "validateSession.php";
     ?>
     <div class = "container-info">
         <h1>Nickname: <?= $profileInfo["user_nickname"]?></h1>
-        <img class="avatar" src="<?= $profileInfo["user_image"]?>">
-        <p>Bio: <br> <?= $profileInfo["user_description"]?></p>
+        <?php if (!empty($profileInfo["user_image"])) { ?>
+            <img class="avatar" src="<?= $profileInfo["user_image"]?>">
+        <?php } ?>
+        <?php if (!empty($profileInfo["user_description"])) {?>
+            <p>Bio: <br> <?= $profileInfo["user_description"]?></p>
+        <?php } ?>
         <p>Name: <?= $profileInfo["user_name"]?></p>
         <p>Email: <?= $profileInfo["user_email"]?></p>
     
@@ -64,8 +68,18 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
 ?>
 <div class = "container-info">
     <h1>Hello <?php $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
-    <img src="<?= $profileInfo->fetchImage($_SESSION["user_id"])?>">
-    <p>User Bio: <br> <?php $profileInfo->fetchBio($_SESSION["user_id"])?></p>
+    <?php if(!empty($profileInfo->fetchImage($_SESSION["user_id"]))) { ?>
+        <img class="avatar" src="<?= $profileInfo->fetchImage($_SESSION["user_id"])?>">
+    <?php } else { ?>
+        <p>You don't have a profile Image set</p>
+        <a href="profileSetting.php"><button type = "edit">Add your Avatar</button></a>
+    <?php } ?>
+    <?php if(!empty($profileInfo->fetchBio($_SESSION["user_id"]))) { ?>
+        <p>User Bio: <br> <?= $profileInfo->fetchBio($_SESSION["user_id"])?></p>
+    <?php } else { ?>
+        <p>You don't have a profile Bio set</p>
+        <a href="profileSetting.php"><button type = "edit">Add your Bio</button></a>
+    <?php } ?>
     <p>User name: <?php $profileInfo->fetchName($_SESSION["user_id"])?></p>
     <p>User email: <?php $profileInfo->fetchEmail($_SESSION["user_id"])?></p>
     <a href="profileSetting.php"><button type = "edit">Edit Profile</button></a>
