@@ -126,4 +126,48 @@ class UserModel extends Dbh {
             exit();
         }
     }
+    protected function CheckUsername($username, $currentUsername) {
+        $stmt = $this->connect()->prepare("SELECT user_nickname FROM registered_user WHERE user_nickname = ?;");
+
+        if(!$stmt->execute(array($username))) {
+            $stmt = null;
+            header("location: admin.php?error=stmtfailed");
+            exit();
+        }
+        $nickname = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($currentUsername === $nickname["user_nickname"]) {
+            return true;
+        } else {
+            $resultCheck;
+            if ($stmt->rowCount() > 0) {
+                $resultCheck = false;
+            } else {
+                $resultCheck = true;
+            }
+            return $resultCheck;
+        }
+    }
+
+    protected function CheckEmail($email, $currentEmail) {
+        $stmt = $this->connect()->prepare("SELECT user_email FROM registered_user WHERE user_email = ?;");
+
+        if(!$stmt->execute(array($email))) {
+            $stmt = null;
+            header("location: admin.php?error=stmtfailed");
+            exit();
+        }
+
+        $email = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($currentEmail === $email["user_email"]) {
+            return true;
+        } else {
+            $resultCheck;
+            if ($stmt->rowCount() > 0) {
+                $resultCheck = false;
+            } else {
+                $resultCheck = true;
+            }
+            return $resultCheck;
+        }
+    }
 }
