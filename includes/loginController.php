@@ -12,8 +12,7 @@ class LoginController extends LoginModel {
 
     public function loginUser() {
         if(!$this->emptyInput() == false) {
-            header("location: ../loginPage.php?error=emptyInput");
-            exit();
+            $_SESSION["message"] = "Empty input";
         }
         $this->getUser($this->userNickname, $this->pwd);
     }
