@@ -46,19 +46,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="hidden" value="<?= $user_info["user_id"] ?>" name="userid">
     <div>
         <label>Username</label>
-        <input type="text" value="<?= $user_info["user_nickname"] ?>" name="username">
+        <input type="text" value="<?= $user_info["user_nickname"] ?>" name="username" required>
     </div>
     <div>
         <label>Full name</label>
-        <input type="text" value="<?= $user_info["user_name"] ?>" name="fullname">
+        <input type="text" value="<?= $user_info["user_name"] ?>" name="fullname" required>
     </div>
     <div>
         <label>Email</label>
-        <input type="email" value="<?= $user_info["user_email"] ?>" name="email">
+        <input type="email" value="<?= $user_info["user_email"] ?>" name="email" required>
     </div>
     <div>
         <label>Promote to Admin</label>
-        <input type="checkbox"  <?php if($user_info["is_admin"]) echo "checked"; ?> name="admin">
+        <input type="checkbox"  <?php if($user_info["is_admin"]) echo "checked"; ?> name="admin" required>
     </div>
     <button type="submit" name="submit">Update User</button>
     <a href="./admin.php?tab=users"><button type= "delete">Cancel</button></a>
