@@ -47,8 +47,17 @@ class EventController extends EventModel {
         }
     }
 
+    public function deleteEvent($event_id)
+    {
+        $this->model->deleteEvent($event_id);
+    }
+
     public function bookEvent($user_id, $event_id) {
         $this->model->setbookEvent($user_id, $event_id);
+    }
+
+    public function publishEvent($event_id) {
+        $this->model->setPublishEvent($event_id);
     }
 
     public function setEventInfo($event_id, $event_name, $event_description, $event_date, $event_venue) {
