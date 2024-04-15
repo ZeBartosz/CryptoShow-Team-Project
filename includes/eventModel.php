@@ -3,7 +3,7 @@
 include_once "dbh.php";
 class EventModel extends Dbh {
 
-    public function deleteEvent($event_id){
+    protected function deleteEvent($event_id){
         try {
             $query = "DELETE FROM event WHERE event_id = :eventid";
             $stmt = $this->connect()->prepare($query);
@@ -18,7 +18,7 @@ class EventModel extends Dbh {
         }
     }
 
-    public function publishEvent($event_id) {
+    protected function setPublishEvent($event_id) {
         try {
             $query = "UPDATE event SET is_published = 1 WHERE event_id = :eventid";
             $stmt = $this->connect()->prepare($query);
@@ -32,7 +32,7 @@ class EventModel extends Dbh {
         }
     }
 
-    public function setbookEvent($user_id, $event_id) {
+    protected function setbookEvent($user_id, $event_id) {
         try {
             $query = "INSERT INTO user_event (fk_user_id, fk_event_id) VALUES (?, ?);";
             $stmt = $this->connect()->prepare($query);
@@ -40,11 +40,11 @@ class EventModel extends Dbh {
             $stmt->execute(array($user_id, $event_id));
         } catch (PDOException $e) {
             header("location: ./eventList.php");
-            $_SESSION[""] = "Error booking an event: " . $e->getMessage();
+            $_SESSION["message"] = "Error booking an event: " . $e->getMessage();
         }
     }
 
-    public function getAllEventInfo() {
+    protected function getAllEventInfo() {
         try {
             $query = "SELECT * FROM event";
             $stmt = $this->connect()->prepare($query);
@@ -57,7 +57,7 @@ class EventModel extends Dbh {
         }
     }
 
-    public function getEvent($event_id) {
+    protected function getEvent($event_id) {
         try {
             $query = "SELECT * FROM event WHERE event_id = :event_id";
             $stmt = $this->connect()->prepare($query);
@@ -72,7 +72,7 @@ class EventModel extends Dbh {
         }
     }
 
-    public function setEventInfo($event_id, $event_name, $event_description, $event_date, $event_venue) {
+    protected function setEventInfo($event_id, $event_name, $event_description, $event_date, $event_venue) {
         try {
             $query = "UPDATE event SET event_name = :event_name, event_description = :event_description, event_date = :event_date, event_venue = :event_venue WHERE event_id = :event_id";
             $stmt = $this->connect()->prepare($query);
@@ -93,7 +93,7 @@ class EventModel extends Dbh {
         }
     }
 
-    public function addEvent($event_name, $event_description, $event_date, $event_venue, $is_published) {
+    protected function addEvent($event_name, $event_description, $event_date, $event_venue, $is_published) {
         try {
             $query = "INSERT INTO event (event_name, event_date, event_description, event_venue, is_published) VALUES (:event_name, :event_date, :event_description, :event_venue, :is_published) ";
             $stmt = $this->connect()->prepare($query);
@@ -113,7 +113,7 @@ class EventModel extends Dbh {
         }
     }
 
-    public function searchEventByKeyword($search_keyword) {
+    protected function searchEventByKeyword($search_keyword) {
         try {
             $query = "SELECT * FROM event WHERE event_name LIKE :search_keyword OR event_description LIKE :search_keyword OR event_venue LIKE :search_keyword OR event_id LIKE :search_keyword";
             $stmt = $this->connect()->prepare($query);
