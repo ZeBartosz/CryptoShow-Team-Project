@@ -44,8 +44,7 @@ require_once "validateSession.php";
                             <div class="box-inner">
                                 <img src="<?= $row["crypto_device_image_name"]?>">
                                 <div class="box-content">
-                                    <h3 class="title"><?php echo $row["crypto_device_name"]; ?></h3>
-                                    <h3 class="title"><?php echo $row["crypto_device_id"]; ?></h3>
+                                    <h3 class="title"><?php echo $row["crypto_device_name"]; ?></h3>                                
                                 </div>
                             </div>
                         </div>
