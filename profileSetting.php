@@ -58,9 +58,10 @@ if(isset($_POST["submit"])) {
             $target_file = $target_dir . $count . basename($_FILES["image"]["name"]);
             $count++;
         }
+        
+        move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
     }
 
-    move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
     include_once "dbh.php";
 
