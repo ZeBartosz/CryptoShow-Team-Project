@@ -80,8 +80,8 @@ if(isset($_POST["submit"])) {
         <div class="profile-bg">
             <div class="wrapper">
                 <div class="profile-settings">
-                    <h3>PROFILE SETTINGS</h3>
                     <form class="edit-form" method="post" enctype="multipart/form-data">
+                        <h3>PROFILE SETTINGS</h3>
                         <label for="nickname">Change Nickname:</label>
                         <input type="text" name="nickname" placeholder="User nickname..." value="<?= $profileInfo->fetchNickname($_SESSION["user_id"])?>" required>
                         <label for="name">Change Name:</label>
