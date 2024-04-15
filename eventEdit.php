@@ -53,15 +53,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div>
         <label>Event Description</label>
-        <textarea name="description" maxlength="255"><?= $event_info["event_description"] ?></textarea>
+        <textarea name="description" maxlength="255" required><?= $event_info["event_description"] ?></textarea>
     </div>
     <div>
         <label>Event Date</label>
-        <input type="date" value="<?= $event_info["event_date"] ?>" name="date">
+        <input type="date" value="<?= $event_info["event_date"] ?>" name="date" required>
     </div>
     <div>
         <label>Event Venue</label>
-        <input type="text" value="<?= $event_info["event_venue"] ?>" name="venue">
+        <input type="text" value="<?= $event_info["event_venue"] ?>" name="venue" required>
     </div>
     <button type="submit" name="submit">Update User</button>
     <a href="./admin.php?tab=events"><button type ="delete">Cancel</button></a>
