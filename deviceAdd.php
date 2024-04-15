@@ -93,7 +93,7 @@
                         <h3>ADD DEVICE</h3>
                         <label for="name">Device Name:</label>
                         <input type="text" name="name" placeholder="device name..." required>
-                        <label for="image">Device Image:</label>
+                        <label for="image">Device Image: max 2Mb</label>
                         <input type="file" name="image" placeholder="device image..." required>
                         <label for="visible">Device Visibility:</label>
                         <input type="checkbox" name="visible" value="checked">
