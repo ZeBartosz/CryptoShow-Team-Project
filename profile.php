@@ -79,7 +79,7 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
         <a href="profileSetting.php"><button type = "edit">Add your Avatar</button></a>
     <?php } ?>
     <?php if(!empty($profileInfo->fetchBio($_SESSION["user_id"]))) { ?>
-        <p>User Bio: <br> <?= $profileInfo->fetchBio($_SESSION["user_id"])?></p>
+        <p type="bio">User Bio: <br> <?= $profileInfo->fetchBio($_SESSION["user_id"])?></p>
     <?php } else { ?>
         <p>You don't have a profile Bio set</p>
         <a href="profileSetting.php"><button type = "edit">Add your Bio</button></a>
