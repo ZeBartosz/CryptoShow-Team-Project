@@ -19,27 +19,33 @@ class registerController extends RegisterModel {
 
     public function registerUser() {
         if($this->emptyInput() == false) {
-            header("location: registerPage.php?error=emptyinput");
+            $_SESSION["message"] = "Empty input";
+            header("location: register.php?error=emptyinput");
             exit();
         }
         if($this->invalidUsername() == false) {
-            header("location: registerPage.php?error=invalidusername");
+            $_SESSION["message"] = "Invalid username";
+            header("location: register.php?error=invalidusername");
             exit();
         }
         if($this->invalidName() == false) {
-            header("location: registerPage.php?error=invalidname");
+            $_SESSION["message"] = "Invalid name";
+            header("location: register.php?error=invalidname");
             exit();
         }
         if($this->invalidEmail() == false) {
-            header("location: registerPage.php?error=invalidemail");
+            $_SESSION["message"] = "Invalid email";
+            header("location: register.php?error=invalidemail");
             exit();
         }
         if($this->pwdMatch() == false) {
-            header("location: registerPage.php?error=passwordnotmatch");
+            $_SESSION["message"] = "Passwords do not match";
+            header("location: register.php?error=passwordnotmatch");
             exit();
         }
         if($this->userCheckTaken() == false) {
-            header("location: registerPage.php?error=usernameoremailexists");
+            $_SESSION["message"] = "Username or Email exists";
+            header("location: register.php?error=usernameoremailexists");
             exit();
         }
 
