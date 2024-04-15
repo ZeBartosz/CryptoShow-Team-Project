@@ -20,29 +20,29 @@ $current_tab = $_GET['tab'];
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["delete_user"])) {
         $user_id = $_POST["delete_user"];
-        $model = new UserModel();
-        $model->deleteUserInfo($user_id);
+        $controller = new UserController();
+        $controller->deleteUserInfo($user_id);
         header("Location: {$_SERVER['PHP_SELF']}");
         exit();
     }
     if(isset($_POST["delete_event"])) {
         $event_id = $_POST["delete_event"];
-        $model = new EventModel();
-        $model->deleteEvent($event_id);
+        $controller = new EventController();
+        $controller->deleteEvent($event_id);
         header("Location: {$_SERVER['PHP_SELF']}");
         exit();
     }
     if(isset($_POST["publish"])) {
         $event_id = $_POST["publish"];
-        $model = new EventModel();
-        $model->publishEvent($event_id);
+        $controller = new EventController();
+        $controller->publishEvent($event_id);
         header("Location: {$_SERVER['PHP_SELF']}");
         exit();
     }
     if(isset($_POST["delete_device"])) {
         $device_id = $_POST["delete_device"];
-        $model = new DeviceModel();
-        $model->deleteDeviceInfo($device_id);
+        $controller = new DeviceController();
+        $controller->deleteDeviceInfo($device_id);
         header("Location: {$_SERVER['PHP_SELF']}");
         exit();
     }
@@ -50,7 +50,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 <main>
-
+<?php if(isset($_SESSION["message"])) { ?>
+    <h5><?= $_SESSION['message'] ?></h5> <?php
+    unset($_SESSION["message"]);
+} ?>
 <div class="container">
     <div class="tabs">
         <a href="?tab=users"><button class="tabBtn <?php echo ($_GET['tab'] == 'users' ? 'active' : ''); ?>">Users</button></a>
@@ -75,9 +78,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "search_device";
                 }  ?>" placeholder="Search...">
                 <button type= "img"><img src ="./images/magnifying.png"></button>
-                
-                
-                
                 </div>
                 <button type="submit" name="submit">Search</button>
                 <button type="submit">Clear</button>
