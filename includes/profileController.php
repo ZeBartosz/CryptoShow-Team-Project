@@ -15,48 +15,55 @@ class ProfileController extends ProfileModel
 
     public function updateProfileInfo($userNickname, $userName, $userEmail, $pwd, $repeatPwd, $image, $bio, $currentNickname, $currentEmail)
     {
+        
         if ($this->emptyInputCheck($userNickname, $userName, $userEmail)) {
-            header("location: profile.php?error=emptyinput");
+            $_SESSION["message"] = "Error: Empty input ";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
 
         if (!$this->invalidUsername($userNickname)) {
-            header("location: profile.php?error=invalidUsername");
+            $_SESSION["message"] = "Error: Invalid nickname";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
         if (!$this->reachedDescriptionLimit($bio)) {
-            header("location: profile.php?error=DescriptionLimitMet");
+            $_SESSION["message"] = "Error: Description limit";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
         if (!$this->invalidName($userName)) {
-            header("location: profile.php?error=invalidName");
+            $_SESSION["message"] = "Error: Invalid name";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
         if (!$this->invalidEmail($userEmail)) {
-            header("location: profile.php?error=invalidEmail");
+            $_SESSION["message"] = "Error: Invalid email";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
         if (!$this->pwdMatch($pwd, $repeatPwd)) {
-            header("location: profile.php?error=passwordNotMatching");
+            $_SESSION["message"] = "Error: Password not matching";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
         if ($this->userNicknameTaken($userNickname, $currentNickname)) {
-            header("location: profile.php?error=userNicknameTaken");
+            $_SESSION["message"] = "Error: User nickname already taken ";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
         if ($this->userEmailTaken($userEmail, $currentEmail)){
-            header("location: profile.php?error=userEmailTaken");
+            $_SESSION["message"] = "Error: Email already taken ";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
-
-
 
         $this->setNewProfileInfo($this->userId, $userNickname, $userName, $userEmail, $pwd, $image, $bio);
 
