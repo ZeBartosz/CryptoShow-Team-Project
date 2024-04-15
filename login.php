@@ -17,6 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     header("location: ./index.php");
 }
 ?>
+<main>
     <div class="content">
         <h1>Sign in</h1>
         <p>Sign into your CryptoShow account</p>
@@ -33,6 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
         <p>Don't have an account? <a href="register.php">Register here</a></p>
     </div>
+    </main>
     <?php
     include_once "footer.php";
     ?>

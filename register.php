@@ -23,6 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     header("location: ./login.php?registersuccess");
 }
 ?>
+<main>
 <div class="body">
 <h1>Create an account</h1>
     <?php if(isset($_SESSION["message"])) { ?>
@@ -48,6 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
     <p>Already have an account? <a href="login.php">Log in instead</a></p>
 </div>
+</main>
 <?php
     include_once "footer.php";
 ?>

@@ -44,6 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <h5><?= $_SESSION["message"] ?></h5> <?php
     unset($_SESSION["message"]);
 } ?>
+<main>
 <form class="edit-form" method="post">
     <input type="hidden" value="<?= $event_info["event_id"] ?>" name="id">
     <div>
@@ -65,6 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <button type="submit" name="submit">Update User</button>
     <a href="./admin.php?tab=events"><button type ="delete">Cancel</button></a>
 </form>
+</main>
 
 <?php
 include_once "footer.php";

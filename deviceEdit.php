@@ -1,7 +1,8 @@
 <?php
 ini_set("file_upload", "On");
 $title = "Edit Device";
-$css_file = "./css-files/dashboardStyle.css";
+$css_file = "./css-files/adminStyle.css";
+$css_filee = "./css-files/header.css";
 include_once "header.php";
 include "deviceModel.php";
 include "deviceController.php";
@@ -105,6 +106,7 @@ if(isset($_POST["delete"])) {
     <h5><?= $_SESSION['message'] ?></h5> <?php
     unset($_SESSION["message"]);
 } ?>
+<main>
 <section class="profile">
     <div class="profile-bg">
         <div class="wrapper">
@@ -126,6 +128,10 @@ if(isset($_POST["delete"])) {
         </div>
     </div>
 </section>
+</main>
+<?php
+    include_once "footer.php";
+    ?>
 
 
 </body>

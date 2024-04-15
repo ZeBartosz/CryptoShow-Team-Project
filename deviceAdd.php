@@ -79,7 +79,7 @@
 ?>
 
 
-
+<main>
     <section class="profile">
         <div class="profile-bg">
             <div class="wrapper">
@@ -103,6 +103,10 @@
             </div>
         </div>
     </section>
+    </main>
+    <?php
+    include_once "footer.php";
+    ?>
 
 
 </body>

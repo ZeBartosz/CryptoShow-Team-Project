@@ -50,10 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 <main>
-<?php if(isset($_SESSION["message"])) { ?>
-    <h5><?= $_SESSION['message'] ?></h5> <?php
-    unset($_SESSION["message"]);
-} ?>
+
 <div class="container">
     <div class="tabs">
         <a href="?tab=users"><button class="tabBtn <?php echo ($_GET['tab'] == 'users' ? 'active' : ''); ?>">Users</button></a>

@@ -6,7 +6,7 @@ $css_filee = "./css-files/header.css";
 include_once "header.php";
 ?>
 
-
+<main>
 <div class="container">
         <div class="carousel-container">
             <div class="carousel">
@@ -35,6 +35,7 @@ include_once "header.php";
         </button>
 
     </div>
+</main>
 
 
     <?php

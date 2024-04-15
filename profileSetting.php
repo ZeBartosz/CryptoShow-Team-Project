@@ -98,6 +98,9 @@ if(isset($_POST["submit"])) {
             </div>
         </div>
     </section>
+    <?php
+    include_once "footer.php";
+    ?>
 
 
 </body>

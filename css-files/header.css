@@ -4,6 +4,9 @@ body {
     margin: 0;
 
 }
+main{
+    min-height: 100vh;
+    }
 header {
     background-color: hsl(185, 100%, 8%);
     display: flex;
@@ -72,7 +75,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    position: fixed;
+    position: relative;
     
     
 }

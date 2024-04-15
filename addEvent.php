@@ -30,6 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <h5><?= $_SESSION["message"] ?></h5> <?php
     unset($_SESSION["message"]);
 } ?>
+<main>
 <form class="edit-form" method="post">
     <div>
         <label>Event name</label>
@@ -56,6 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class= "cancel-button">
 <a href="./admin.php?tab=events"><button type= "user-cancel">Cancel</button></a>
 </div>
+</main>
 <?php
 include_once "footer.php";
 ?>

@@ -28,6 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<main>
 <div class="container">
     <div class="event-list">
         <?php if(empty($results)) { ?>
@@ -76,6 +77,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     </ul>
 </div>
+</main>
+<?php
+    include_once "footer.php";
+    ?>
 </body>
 </html>
 
