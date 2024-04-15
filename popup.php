@@ -2,9 +2,9 @@
 $title = " event details";
 $css_file = "./css-files/header.css";
 $css_filee = "./css-files/popup.css";
-include_once "./includes/header.php";
-include_once "./includes/userView.php";
-include_once "./includes/userController.php";
+include_once "header.php";
+include_once "userView.php";
+include_once "userController.php";
 
 
 
