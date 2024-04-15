@@ -81,6 +81,55 @@ class ProfileModel extends Dbh
         }
     }
 
+    protected function CheckUsername($userNickname) {
+        $stmt = $this->connect()->prepare("SELECT user_nickname FROM registered_user WHERE user_nickname = ?;");
+
+        if(!$stmt->execute(array($userNickname))) {
+            $stmt = null;
+            header("location: registerPage.php?error=stmtfailed");
+            exit();
+        }
+
+        $nickname = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($userNickname === $nickname && $nickname["user_nickname"]) {
+            return true;
+        } else {
+            $resultCheck;
+            if ($stmt->rowCount() > 0) {
+                $resultCheck = false;
+            } else {
+                $resultCheck = true;
+            }
+            return $resultCheck;
+        }
+
+    }
+
+    protected function CheckEmail($userEmail) {
+        $stmt = $this->connect()->prepare("SELECT user_email FROM registered_user WHERE user_email = ?;");
+
+        if(!$stmt->execute(array($userEmail))) {
+            $stmt = null;
+            header("location: registerPage.php?error=stmtfailed");
+            exit();
+        }
+
+        $email = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($userEmail === $email && $email["user_nickname"]) {
+            return true;
+        } else {
+            $resultCheck;
+            if ($stmt->rowCount() > 0) {
+                $resultCheck = false;
+            } else {
+                $resultCheck = true;
+            }
+            return $resultCheck;
+        }
+    }
+
+
+
 
 
     }
