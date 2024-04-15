@@ -25,15 +25,16 @@ class DeviceController extends DeviceModel
         }
 
         if(!$this->isVisible($crypto_device_record_visible)) {
-        header("location: profile.php?error=invalidInput");
-        exit();
-        }
-
-        if(!$this->invalidName($device_name)) {
-            header("location: profile.php?error=invalidInput");
+            $_SESSION["message"] = "Error: Invalid checkbox input";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
+        if(!$this->invalidName($device_name)) {
+            $_SESSION["message"] = "Error: Invalid device name";
+            header("location: {$_SERVER['PHP_SELF']}");
+            exit();
+        }
 
 
 
@@ -49,12 +50,14 @@ class DeviceController extends DeviceModel
 
         $result = $this->isVisible($crypto_device_record_visible);
         if($result === false) {
-            header("location: profile.php?error=invalidInput");
+            $_SESSION["message"] = "Error: Invalid checkbox input";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
         if(!$this->invalidName($device_name)) {
-            header("location: profile.php?error=invalidInput");
+            $_SESSION["message"] = "Error: Invalid device name";
+            header("location: {$_SERVER['PHP_SELF']}");
             exit();
         }
 
