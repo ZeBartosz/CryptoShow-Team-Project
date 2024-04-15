@@ -7,13 +7,14 @@ class LoginModel extends Dbh {
 
         if(!$stmt->execute(array($userNickname, $pwd))) {
             $stmt = null;
-            header("location: ../login.php?error=stmtfailed");
+            header("location: ./login.php?error=stmtfailed");
             exit();
         }
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../login.php?error=usernotfound");
+            $_SESSION["message"] = "User not found";
+            header("location: ./login.php");
             exit();
         }
 
@@ -22,7 +23,8 @@ class LoginModel extends Dbh {
 
         if($checkPwd == false) {
             $stmt = null;
-            header("location: ../login.php?error=wrongpassword");
+            $_SESSION["message"] = "Wrong password";
+            header("location: ./login.php?error=wrongpassword");
             exit();
         } elseif ($checkPwd == true) {
             $stmt = $this->connect()->prepare('SELECT * FROM registered_user WHERE user_nickname = ? OR user_email = ?
@@ -31,13 +33,13 @@ class LoginModel extends Dbh {
 
             if(!$stmt->execute(array($userNickname, $userNickname, $pwd))) {
                 $stmt = null;
-                header("location: ../login.php?error=stmtfailed");
+                header("location: ./login.php?error=stmtfailed");
                 exit();
             }
 
             if($stmt->rowCount() == 0) {
                 $stmt = null;
-                header("location: ../login.php?error=usernotfound");
+                header("location: ./login.php?error=usernotfound");
                 exit();
             }
 
