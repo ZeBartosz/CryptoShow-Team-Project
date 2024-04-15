@@ -67,9 +67,9 @@ $deviceInfo = new DeviceView($controller);
 $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
 ?>
 <div class = "container-info">
-    <?php if(isset($_SESSION["message"])) { ?>
-        <h5><?= $_SESSION['message'] ?></h5> <?php
-        unset($_SESSION["message"]);
+    <?php if(isset($_SESSION["profileMessage"])) { ?>
+        <h5><?= $_SESSION['profileMessage'] ?></h5> <?php
+        unset($_SESSION["profieMessage"]);
     } ?>
     <h1>Hello <?= $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
     <?php if(!empty($profileInfo->fetchImage($_SESSION["user_id"]))) { ?>
