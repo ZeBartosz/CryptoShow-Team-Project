@@ -122,7 +122,7 @@ if(isset($_POST["delete"])) {
                     <input type="checkbox" <?php if($deviceInfo1->fetchSpeDeviceVisible($deviceId)) echo "checked";?> value="<?php $deviceInfo1->fetchSpeDeviceVisible($deviceId) ?>" name="visible">
                     <button type="submit" name="submit">SAVE</button>
                     <form method="post">
-                        <button type="delete" name="delete">Delete Device</button>
+                        <button type="delete" name="delete" onclick="return confirm('Are you sure you want to deletethis device?')">Delete Device</button>
                     </form>
                 </form>
             </div>
