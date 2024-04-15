@@ -96,7 +96,7 @@
                         <label for="image">Device Image:</label>
                         <input type="file" name="image" placeholder="device image..." required>
                         <label for="visible">Device Visibility:</label>
-                        <input type="checkbox" name="visible" value="checked" required>
+                        <input type="checkbox" name="visible" value="checked">
                         <button type="submit" name="submit">ADD</button>
                     </form>
                 </div>
