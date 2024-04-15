@@ -116,7 +116,7 @@ if(isset($_POST["delete"])) {
                 <h3>DEVICE SETTINGS</h3>
                     <label for="name">Change Name:</label>
                     <input type="text" name="name" placeholder="Device name..." value="<?php $deviceInfo1->fetchSpeDeviceName($deviceId)?>">
-                    <label for="image">Change image:</label>
+                    <label for="image">Change image: max 2Mb</label>
                     <input type="file" name="image" placeholder="device image..." >
                     <label for="visible">Change visibility:</label>
                     <input type="checkbox" <?php if($deviceInfo1->fetchSpeDeviceVisible($deviceId)) echo "checked";?> value="<?php $deviceInfo1->fetchSpeDeviceVisible($deviceId) ?>" name="visible">
