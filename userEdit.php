@@ -17,8 +17,11 @@ if(isset($_GET["id"])) {
         exit();
     }
 }
-
+$currentUsername = $user_info["user_nickname"];
+$currentEmail = $user_info["user_email"];
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $currentUsername;
+    $currentEmail;
     $user_id = $_POST["userid"];
     $username = $_POST["username"];
     $fullname = $_POST["fullname"];
