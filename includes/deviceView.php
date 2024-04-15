@@ -48,7 +48,7 @@ class DeviceView extends DeviceModel {
     public function fetchSpeDeviceImagine($deviceId){
         $profileInfo = $this->getSpecificDevicesInfo($deviceId);
 
-        return $profileInfo[0]["crypto_device_image"];
+        return $profileInfo[0]["crypto_device_image_name"];
     }
 
 
