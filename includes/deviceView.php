@@ -109,8 +109,12 @@ class DeviceView extends DeviceModel {
         return $profileInfo[0]["crypto_device_record_visible"];
     }
 
-    /**
-     * Displays all device information, used in admin.php
+     /**
+     * Displays all device information or searched device information based on a search keyword.
+     *
+     * This method outputs HTML directly to display a table of devices. If a "search_device" POST parameter
+     * is set, it filters the device list by the specified keyword. Otherwise, it displays all devices.
+     * The table includes options to edit or delete each device, with confirmation for deletions.
      */
     public function displayAllDeviceInfo() {
         if (isset($_POST["search_device"])) {
