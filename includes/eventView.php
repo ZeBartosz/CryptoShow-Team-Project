@@ -1,13 +1,33 @@
 <?php
 
 include_once "eventController.php";
+
+/**
+ * Represents the view layer for event management in an application.
+ * 
+ * This class extends the EventController class and utilizes its methods to
+ * manage the retrieval and display of event data.
+*/
 class EventView extends EventController {
 
     private $controller;
 
+    /**
+     * Initializes a new instance of the EventView class.
+     *
+     * @param EventController $controller The event controller instance used to interact with event data.
+     */
     public function __construct($controller) {
         $this->controller = $controller;
     }
+
+    /**
+     * Displays all events or a searched list of events based on the user's search input.
+     *
+     * This method checks if there is a search keyword submitted via POST. If so, it fetches events
+     * matching the keyword. Otherwise, it fetches all events. It renders the events in a table
+     * with options to edit, delete, and publish each event in a HTML format.
+     */
     public function displayAllEventInfo() {
         if (isset($_POST["search_event"])) {
             $search_keyword = $_POST["search_event"];
