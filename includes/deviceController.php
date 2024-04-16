@@ -3,8 +3,9 @@
 include_once "deviceModel.php";
 
 /**
- * Class DeviceController extends the deviceModel class
+ * Class DeviceController 
  * Handles control logic for device-related operations
+ * @extends DeviceModel allows the use of crud function
  */
 class DeviceController extends DeviceModel {
 
