@@ -155,7 +155,7 @@ class DeviceModel extends Dbh {
     }
 
     /**
-     * Retrieves information about all the devices from the database
+     * Retrieves information about all the devices from the database, used in admin.php
      *
      * @return array An array containing information about all the devices
      */
@@ -180,7 +180,7 @@ class DeviceModel extends Dbh {
     }
 
     /**
-     * Deletes information about a specific device from the database
+     * Deletes information about a specific device from the database, used in admin.php
      *
      * @param int $device_id The ID of the device
      */
@@ -207,7 +207,7 @@ class DeviceModel extends Dbh {
     }
 
     /**
-     * Searches for a device in the database based on a keyword
+     * Searches for a device in the database based on a keyword, used in admin.php
      *
      * @param string $search_keyword The keyword to search for
      * @return array An array containing information about devices matching the search keyword
