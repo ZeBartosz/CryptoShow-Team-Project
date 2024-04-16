@@ -149,6 +149,7 @@ class DeviceView extends DeviceModel {
                 echo '<td><a href="deviceEdit.php?deviceId=' . $event["crypto_device_id"] . '&userId=' . $_SESSION["user_id"] . '&isAdmin=' . $_SESSION["is_admin"] . '"><button type ="submit">Edit</button></a>';
                 echo '
                         <form method="post">
+                            <input type="hidden" name="fk_user_id" value="'. $event['fk_user_id'] .'">
                             <input type="hidden" name="delete_device" value="' . $event['crypto_device_id'] . '">
                             <button type="delete" onclick="return confirm(\'Are you sure?\')">Delete</button>
                         </form>
