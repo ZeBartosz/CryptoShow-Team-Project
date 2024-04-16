@@ -18,5 +18,6 @@ A step-by-step series of examples that tell you how to get a development environ
 1. Install servers on local C: drive (Install using .bat file)
 2. Make sure provided php.ini file is placed into correct directory C:/User/php/
 3. Start the servers (Apache, MariaDB);
-4. Point to browser at http://localhost:6789/ or http://127.0.0.1:6789/
-5. When done make sure to shutdown MariaDB and Apache servers to prevent file corruption
+4. Open MariaDB client 'root', paste all the commands from create_db.sql going line by line
+5. Point to browser at http://localhost:6789/ or http://127.0.0.1:6789/
+6. When done make sure to shutdown MariaDB and Apache servers to prevent file corruption
