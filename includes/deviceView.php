@@ -4,6 +4,7 @@ include_once "deviceModel.php";
 /**
  * Class DeviceView
  * Handles the view logic for device-related information
+ * @extends DeviceModle
  */
 class DeviceView extends DeviceModel {
 
