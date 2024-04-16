@@ -2,13 +2,32 @@
 
 include_once "userController.php";
 
+/**
+ * Represents the view layer for displaying user-related data.
+ *
+ * This class handles the presentation of user information, including search results
+ * and lists of attending users for specific events.
+ */
 class UserView extends UserController {
 
     private $controller;
 
+    
+    /**
+     * Initializes a new instance of the UserView class.
+     *
+     * @param UserController $controller The controller that will provide data to this view.
+     */
     public function __construct($controller) {
         $this->controller = $controller;
     }
+
+    /**
+     * Displays all user information in a tabulated format.
+     *
+     * If a search keyword is posted, it displays search results; otherwise, it displays all users.
+     * This method directly outputs HTML to render the information.
+     */
     public function displayAllUserInfo() {
         if (isset($_POST["search_user"])) {
             $search_keyword = $_POST["search_user"];
@@ -58,6 +77,15 @@ class UserView extends UserController {
         }
         echo '</tbody></table></div>';
     }
+
+    /**
+     * Displays users attending a specific event.
+     *
+     * The method retrieves user information of attendees and displays it with links to their profiles
+     * and profile images. If no users are attending, a message is displayed.
+     *
+     * @param int $event_id The event identifier to find attending users for.
+     */
     public function displayAttendingUsers($event_id)
     {
         $user_info = $this->controller->getAllAttendingUsers($event_id);
