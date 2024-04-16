@@ -10,6 +10,8 @@
     include "profileModel.php";
     include "profileController.php";
     include "profileView.php";
+    include_once "validateSession.php";
+    isNotLoggedIn();
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_SESSION["user_id"];
