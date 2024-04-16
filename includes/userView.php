@@ -42,7 +42,7 @@ class UserView extends UserController {
                     <tr>
                         <th>Admin</th>
                         <th>User ID</th>
-                        <th>Nickname</th>
+                        <th>Username</th>
                         <th>Fullname</th>
                         <th>Email</th>
                         <th>Device count</th>
