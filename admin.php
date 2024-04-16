@@ -11,6 +11,8 @@ include_once "eventView.php";
 include_once "eventController.php";
 include_once "deviceController.php";
 include_once "deviceView.php";
+include_once "profileView.php";
+include_once "profileController.php";
 
 if(!isset($_GET["tab"])) {
     header("location: admin.php?tab=users");
@@ -41,18 +43,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if(isset($_POST["delete_device"])) {
         $device_id = $_POST["delete_device"];
-        $controller = new DeviceController();
-        $controller->getSpecificDevice($device_id);
+        $fk_user_id = $_POST["fk_user_id"];
+        $deviceController = new DeviceController();
+        $deviceController->getSpecificDevice($device_id);
+        $deviceController->deleteDeviceInfo($device_id);
         $profileView = new ProfileView();
-        var_dump($controller);
-        $controller->setForeignId($controller[0]["user_device_count"]);
-        $deviceCount = $profileView->fetchDeivceCount($controller[0]["user_device_count"]) - 1;
-        
-        $profileView = new ProfileController($controller[0]["user_device_count"]);
-        $profileView->updateDeviceCount($deviceCount); 
-        $controller->deleteDeviceInfo($device_id);
-        header("Location: {$_SERVER['PHP_SELF']}");
-        exit();
+
+        $deviceCount = $profileView->fetchDeivceCount($fk_user_id) - 1;
+
+        $profileController = new ProfileController($fk_user_id);
+        $profileController->updateDeviceCount($deviceCount);
+
     }
 }
 
