@@ -42,6 +42,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["delete_device"])) {
         $device_id = $_POST["delete_device"];
         $controller = new DeviceController();
+        $controller->getSpecificDevice($device_id);
+        $profileView = new ProfileView();
+        var_dump($controller);
+        $controller->setForeignId($controller[0]["user_device_count"]);
+        $deviceCount = $profileView->fetchDeivceCount($controller[0]["user_device_count"]) - 1;
+        
+        $profileView = new ProfileController($controller[0]["user_device_count"]);
+        $profileView->updateDeviceCount($deviceCount); 
         $controller->deleteDeviceInfo($device_id);
         header("Location: {$_SERVER['PHP_SELF']}");
         exit();
