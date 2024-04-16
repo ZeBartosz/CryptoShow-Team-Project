@@ -78,14 +78,14 @@ if(isset($_POST["submit"])) {
 
 ?>
     <section class="profile">
-        <?php if(isset($_SESSION["message"])) { ?>
-            <h5><?= $_SESSION['message'] ?></h5> <?php
-            unset($_SESSION["message"]);
-        } ?>
         <div class="profile-bg">
             <div class="wrapper">
                 <div class="profile-settings">
                     <form class="edit-form" method="post" enctype="multipart/form-data">
+                        <?php if(isset($_SESSION["message"])) { ?>
+                            <h5><?= $_SESSION['message'] ?></h5> <?php
+                            unset($_SESSION["message"]);
+                        } ?>
                         <h3>PROFILE SETTINGS</h3>
                         <label for="nickname">Change Nickname:</label>
                         <input type="text" name="nickname" placeholder="User nickname..." value="<?= $profileInfo->fetchNickname($_SESSION["user_id"])?>" required>
@@ -101,8 +101,8 @@ if(isset($_POST["submit"])) {
                         <input type="password" id="password" name="password" placeholder="Password">
                         <label for="rptPassword">Repeat Password:</label>
                         <input type="password" id="rptPassword" name="rptPassword"placeholder="Repeat password">
-                        <a href="profile.php" ><button type="button" >Cancel</button></a>
                         <button type="submit" name="submit">SAVE</button>
+                        <a href="profile.php" ><button type="button" >Cancel</button></a>
                     </form>
                 </div>
             </div>
