@@ -130,6 +130,14 @@ footer a:hover {
     .header-menu{
         padding-left: 0;
     }
+    .features{
+        width: fit-content;
+    }
+    img{
+        max-width: 100%;
+    }
+    
+    
     
         
     
