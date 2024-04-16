@@ -1,7 +1,26 @@
 <?php
     require_once "dbh.php";
+
+/**
+ * LoginModel interacts with the database to manage user authentication.
+ * 
+ * This class extends Dbh (Database Handler) and provides methods specifically
+ * for handling user authentication processes, including validating user credentials
+ * against the database.
+ */
 class LoginModel extends Dbh {
 
+    /**
+     * Retrieves and validates a user's login credentials against the database.
+     * 
+     * The method first checks if the user with the given nickname or email exists.
+     * If the user exists, it then verifies the password. If the password is correct,
+     * it fetches additional user details and sets session variables. If any step fails,
+     * it redirects to the login page with an appropriate error message.
+     *
+     * @param string $userNickname The user's nickname or email used to log in.
+     * @param string $pwd The plaintext password provided by the user to log in.
+     */
     public function getUser($userNickname, $pwd) {
         $stmt = $this->connect()->prepare('SELECT * FROM registered_user WHERE user_nickname = ? OR user_email = ?;');
 
