@@ -78,6 +78,7 @@ CREATE TABLE `user_event` (
 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------
+-- Only insert this when you have created at least one user
 -- Update value of is_admin for user_id 1
 -- --------------------------------
 UPDATE registered_user SET is_admin = true WHERE user_id = 1;
