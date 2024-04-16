@@ -61,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div>
         <label>Promote to Admin</label>
-        <input class="checkbox-user" type="checkbox"  <?php if($user_info["is_admin"]) echo "checked"; ?> name="admin" required>
+        <input class="checkbox-user" type="checkbox"  <?php if($user_info["is_admin"]) echo "checked"; ?> name="admin">
     </div>
     <button type="submit" name="submit">Update User</button>
     <a href="./admin.php?tab=users"><button type= "delete">Cancel</button></a>
