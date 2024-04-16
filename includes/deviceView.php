@@ -1,64 +1,117 @@
 <?php
 
 include_once "deviceModel.php";
+/**
+ * Class DeviceView
+ * Handles the view logic for device-related information
+ */
 class DeviceView extends DeviceModel {
 
     private $controller;
 
-    public function __construct($controller) {
+    /**
+     * Constructor
+     * Initialises a new instance of the DeviceView class.
+     *
+     * @param DeviceController $controller The controller instance
+     */
+    public function __construct($controller){
         $this->controller = $controller;
     }
 
-
+    /**
+     * Fetches the device name that are connected to the userId
+     *
+     * @param int $userId The ID of the user
+     */
     public function fetchDeviceName($userId){
         $profileInfo = $this->getDevicesInfo($userId);
-
+        //echos the result in the first row
         echo $profileInfo[0]["crypto_device_name"];
     }
 
+    /**
+     * Fetches the device image file location that are connected to the userId
+     *
+     * @param int $userId The ID of the user
+     */
     public function fetchDeviceImagine($userId){
         $profileInfo = $this->getDevicesInfo($userId);
-
+        //echos the result in the first row
         echo $profileInfo[0]["crypto_device_image_name"];
     }
 
-
+    /**
+     * Fetches the visibility status of a device that are connected to the userId
+     *
+     * @param int $userId The ID of the user
+     */
     public function fetchDeviceVisible($userId){
         $profileInfo = $this->getDevicesInfo($userId);
-
+        //echos the result in the first row
         echo $profileInfo[0]["crypto_device_record_visible"];
     }
 
+    /**
+     * Fetches all devices that are connected to the userId
+     *
+     * @param int $userId The ID of the user
+     * @return array An array containing information about all devices
+     */
     public function fetchAllDeivces($userId){
         $profileInfo = $this->getDevicesInfo($userId);
 
         return $profileInfo;
     }
 
-    public function fetchPublicDeviceInfo($userId) {
+    /**
+     * Fetches devices information where visibility is set to 1 and that are connected to the userId
+     *
+     * @param int $userId The ID of the user
+     * @return array An array containing public device information
+     */
+    public function fetchPublicDeviceInfo($userId){
         return $this->getPublicDeviceInfo($userId);
     }
 
+    /**
+     * Fetches the name of a specific device
+     *
+     * @param int $deviceId The ID of the device
+     */
     public function fetchSpeDeviceName($deviceId){
         $profileInfo = $this->getSpecificDevicesInfo($deviceId);
-
+        //echos the result in the first row
         echo $profileInfo[0]["crypto_device_name"];
     }
 
+    /**
+     * Fetches the image name of a specific device
+     *
+     * @param int $deviceId The ID of the device
+     * @return string The image file location of the device
+     */
     public function fetchSpeDeviceImagine($deviceId){
         $profileInfo = $this->getSpecificDevicesInfo($deviceId);
 
         return $profileInfo[0]["crypto_device_image_name"];
     }
 
-
+    /**
+     * Fetches the visibility status of a specific device
+     *
+     * @param int $deviceId The ID of the device
+     * @return int The visibility status of the device
+     */
     public function fetchSpeDeviceVisible($deviceId){
         $profileInfo = $this->getSpecificDevicesInfo($deviceId);
 
         return $profileInfo[0]["crypto_device_record_visible"];
     }
 
-
+    /**
+     * Displays all device information, used in admin.php
+     */
     public function displayAllDeviceInfo() {
         if (isset($_POST["search_device"])) {
             $search_keyword = $_POST["search_device"];
