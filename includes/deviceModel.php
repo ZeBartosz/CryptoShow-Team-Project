@@ -5,7 +5,7 @@ include_once "dbh.php";
 /**
  * Class DeviceModel
  * This class handles operations related to device information in the database
- * @extends dbh Connects to the database
+ * @extends dbh Connection to the database
  */
 class DeviceModel extends Dbh {
 
