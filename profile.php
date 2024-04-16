@@ -67,8 +67,8 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
 ?>
 <div class = "container-info">
     <?php if(isset($_SESSION["profileMessage"])) { ?>
-        <h5><?= $_SESSION['profileMessage'] ?></h5> <?php
-        unset($_SESSION["profieMessage"]);
+            <h5><?= $_SESSION['profileMessage'] ?></h5> <?php
+            unset($_SESSION["profileMessage"]);
     } ?>
     <h1>Hello <?= $profileInfo->fetchNickname($_SESSION["user_id"])?></h1>
     <?php if(!empty($profileInfo->fetchImage($_SESSION["user_id"]))) { ?>
@@ -98,7 +98,6 @@ $items = $deviceInfo->fetchAllDeivces($_SESSION["user_id"]);
                                 <img src="<?= $row["crypto_device_image_name"]?>">
                                 <div class="box-content">
                                     <h3 class="title"><?php echo $row["crypto_device_name"]; ?></h3>
-                                    <h3 class="title"><?php echo $row["crypto_device_id"]; ?></h3>
                                     <a href="deviceEdit.php?deviceId=<?php echo $row["crypto_device_id"]; ?>&userId=<?php echo $_SESSION["user_id"]; ?>" class="link-device-edit" ><button type ="edit">Edit Device</button></a>
                                 </div>
                             </div>
