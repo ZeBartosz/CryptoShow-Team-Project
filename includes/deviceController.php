@@ -101,6 +101,9 @@ class DeviceController extends DeviceModel {
         //executes the function with the parameters
         $this->setDevice($device_name, $device_image_name, $crypto_device_record_visible, $this->userId);
     }
+    public function getSpecificDevice($device_id) {
+        return $this->getSpecificDevicesInfo($device_id);
+    } 
 
     /**
      * Deletes a device from the database
