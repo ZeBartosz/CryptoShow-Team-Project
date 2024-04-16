@@ -95,3 +95,42 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+@media screen and (max-width :480px){
+    header{
+        display: ruby-text;
+    }
+
+    .logo{
+        font-size: 50%;
+        padding-left: 0;
+    }
+    .navigate{
+        font-size: 14px;
+    }
+    .header-menu{
+        padding-left: 0;
+    }
+    
+        
+    
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    header{
+        display: ruby-text;
+    }
+
+    .logo{
+        font-size: 50%;
+        padding-left: 0;
+    }
+    .navigate{
+        font-size: 14px;
+    }
+    .header-menu{
+        padding-left: 0;
+    }
+    
+        
+    
+}
