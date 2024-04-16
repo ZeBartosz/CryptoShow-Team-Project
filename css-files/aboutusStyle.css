@@ -1,0 +1,12 @@
+.container {
+    background-color: rgb(173, 173, 173);
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+li{
+    list-style: none;
+}
+p {
+    line-height: 1.6;
+}
