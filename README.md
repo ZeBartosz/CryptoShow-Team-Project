@@ -7,10 +7,10 @@ These instructions will get you a copy of the project up and running on your loc
 # Prerequisites
 What you need to install the software:
 
-PHP 8.2 or higher
-MariaDB 10.11.5
-Apache 2.0 or higher
-(P3T-Environment)
+- PHP 8.2 or higher
+- MariaDB 10.11.5
+- Apache 2.0 or higher
+- (P3T-Environment)
 
 # Installing 
 A step-by-step series of examples that tell you how to get a development environment running:
