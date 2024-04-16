@@ -55,10 +55,10 @@ class EventView extends EventController {
                 foreach($event_info as $event) {
                     echo "<tr>
                             <td>" . $event['event_id'] . "</td>
-                            <td>" . $event['event_date'] . "</td>
                             <td>" . $event['event_name'] . "</td>
-                            <td>" . $event['event_venue'] . "</td>
                             <td>" . $event['event_description'] . "</td>
+                            <td>" . $event['event_date'] . "</td>
+                            <td>" . $event['event_venue'] . "</td>
                             <td>" . ($event['is_published'] ? "Yes" : "No") . "</td>
                             <td><a href='./eventEdit.php?eventId=" . $event['event_id'] . "'><button type ='submit'>Edit</button></a>
                             
