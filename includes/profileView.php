@@ -1,5 +1,6 @@
 <?php
 
+include_once "profileModel.php"
 /**
  * Class ProfileView
  * Handles the view logic for profile-related information
