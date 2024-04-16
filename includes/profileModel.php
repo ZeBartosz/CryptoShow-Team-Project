@@ -132,9 +132,9 @@ class ProfileModel extends Dbh {
     /**
      * Check if a given nickname is available
      *
-     * @param string $userNickname The nickname to check.
-     * @param string $currentNickname The current nickname of the user.
-     * @return bool True if the nickname is available or if currentNickname and userNickname are the same, false otherwise.
+     * @param string $userNickname The nickname to check
+     * @param string $currentNickname The current nickname of the user
+     * @return bool True if the nickname is available or if currentNickname and userNickname are the same, false otherwise
      */
     protected function CheckUsername($userNickname, $currentNickname) {
         //query
@@ -168,11 +168,11 @@ class ProfileModel extends Dbh {
     }
 
     /**
-     * Check if a given email is available.
+     * Check if a given email is available
      *
-     * @param string $userEmail The email to check.
-     * @param string $currentEmail The current email of the user.
-     * @return bool True if the email is available or if userEmail and CurrentEmail are the same , false otherwise.
+     * @param string $userEmail The email to check
+     * @param string $currentEmail The current email of the user
+     * @return bool True if the email is available or if userEmail and CurrentEmail are the same , false otherwise
      */
     protected function CheckEmail($userEmail, $currentEmail) {
         //query
